@@ -53,6 +53,7 @@ const supplemental = () => {
  return `<main id="main" class="supplemental">${breadcrumb(page[1])}<section><div><h1>${content[0]}</h1><h2>${content[1]}</h2><p>${content[2]}</p>${button(content[3],content[4])}${page[2]==='contact'?'<p class="contact-note">Dane kontaktowe zostaną uzupełnione przez właściciela strony.</p>':''}</div><img src="assets/hero.png" alt="Edukacyjna gra na wielkiej planszy"></section></main>${homeFooter}`;
 };
 $('#app').innerHTML = header + (isHome ? home() : page[2]==='school' ? schools() : page[2]==='custom' ? custom() : page[2]==='company' ? company() : supplemental());
+if(page[2]==='school') $('.school-fade').insertAdjacentHTML('beforebegin',`<div class="school-scene">${crop('schools',730,128,450,430)}</div>`);
 if(!isHome) document.title = `${page[1]} — Wielkie Gry Planszowe`;
 $('.menu-toggle').addEventListener('click',e=>{const btn=e.currentTarget;const open=btn.getAttribute('aria-expanded')!=='true';btn.setAttribute('aria-expanded',open);$('#navigation').classList.toggle('open',open);});
 const showDialog = html => {$('#dialog-content').innerHTML=html;$('#detail-dialog').showModal();};
