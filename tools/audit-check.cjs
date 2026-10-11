@@ -53,6 +53,15 @@ const fs=require('node:fs/promises');
  }
  await page.locator('#search-results a').click(); await page.waitForURL('**/firmy.html#gra-team-building');
  assert.equal(await page.locator('[data-company-game="0"]').evaluate(e=>e.open),true);
+ await page.locator('.search-toggle').click(); await page.getByRole('searchbox').fill('komunikacja');
+ await page.getByRole('link',{name:'Komunikacja i współpraca — dla firm',exact:true}).click();
+ await page.waitForFunction(()=>document.querySelector('[data-company-game="3"]').open);
+ assert.equal(await page.locator('#search-dialog').evaluate(e=>e.open),false,'Same-page search closes its dialog');
+ assert.ok(await page.locator('[data-company-game="3"] summary').evaluate(e=>e===document.activeElement));
+ await page.locator('[data-company-game="3"] summary').click();
+ await page.locator('.search-toggle').click(); await page.getByRole('searchbox').fill('komunikacja');
+ await page.getByRole('link',{name:'Komunikacja i współpraca — dla firm',exact:true}).click();
+ await page.waitForFunction(()=>document.querySelector('[data-company-game="3"]').open);
  await page.goto(base+'szkoly.html?gra=0');
  assert.equal(await page.locator('[data-game="0"]').evaluate(e=>e.open),true);
  const missing=await page.goto(base+'nie-ma-takiej-strony');

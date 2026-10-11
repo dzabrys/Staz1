@@ -91,12 +91,13 @@ const renderSearch = () => {
 };
 $('.search-toggle').addEventListener('click',()=>{$('#search-dialog').showModal();renderSearch();$('#search-input').focus();});
 $('#search-input').addEventListener('input',renderSearch);
+$('#search-results').addEventListener('click',event=>{const link=event.target.closest('a');if(!link)return;$('#search-dialog').close();if(new URL(link.href).pathname===location.pathname)setTimeout(revealLinkedGame,0);});
 const revealLinkedGame = () => {
  let target;
  try {target=document.getElementById(decodeURIComponent(location.hash.slice(1)));} catch {return;}
  if(!target){const game=new URLSearchParams(location.search).get('gra');if(game!==null&&/^\d$/.test(game))target=$(`[data-${page[2]==='company'?'company-game':'game'}="${game}"] .game-detail-body`);}
  const detail=target?.closest('.game-details');
- if(detail){detail.open=true;detail.scrollIntoView({block:'start'});}
+ if(detail){detail.open=true;detail.scrollIntoView({block:'start'});detail.querySelector('summary').focus({preventScroll:true});}
 };
 revealLinkedGame();window.addEventListener('hashchange',revealLinkedGame);
 if(isHome){
