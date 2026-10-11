@@ -12,21 +12,11 @@ node tools/serve.cjs
 
 Otwórz <http://127.0.0.1:4173>. Zatrzymanie serwera: Ctrl+C.
 
-## Hosting przez GitHub Pages
+## Strona online
 
-1. Otwórz repozytorium: [dzabrys/Staz1](https://github.com/dzabrys/Staz1).
-2. Przejdź do **Settings → Pages**.
-3. W **Build and deployment → Source** wybierz **Deploy from a branch**.
-4. Wybierz gałąź **main** i katalog **/ (root)**. Kliknij **Save**.
-5. Poczekaj na zakończenie publikacji (może potrwać do 10 minut). Adres strony: **https://dzabrys.github.io/Staz1/**.
+Strona jest opublikowana przez GitHub Pages: **https://dzabrys.github.io/Staz1/**.
 
-**Repozytorium jest obecnie prywatne.** Pages dla prywatnego repozytorium osobistego wymaga planu GitHub Pro. W planie Free można użyć publicznego repozytorium. Zmiana widoczności, jeśli właściciel chce ją wykonać: **Settings → General → Danger Zone → Change repository visibility → Make public**. Udostępni to również cały kod i pliki. Widoczności nie zmieniono podczas przygotowania projektu.
-
-GitHub Pages może publikować stronę publicznie także z prywatnego repozytorium. Po włączeniu publikacji strona jest dostępna pod powyższym adresem; nie jest chroniona hasłem.
-
-Aby zakończyć tymczasowy hosting: **Settings → Pages → Unpublish site**. Kolejne zmiany wypchnięte do `main` aktualizują stronę.
-
-Oficjalna dokumentacja: [konfiguracja publikacji](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site), [dostępność Pages w planach GitHuba](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site), [wyłączenie publikacji](https://docs.github.com/en/pages/getting-started-with-github-pages/unpublishing-a-github-pages-site).
+Źródłem publikacji jest gałąź `main`, katalog główny repozytorium. Kolejne zmiany w `main` automatycznie aktualizują stronę. Repozytorium jest publiczne, więc można też udostępnić [kod projektu](https://github.com/dzabrys/Staz1).
 
 ## Pliki i edycja
 
