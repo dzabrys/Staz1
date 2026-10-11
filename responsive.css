@@ -167,3 +167,218 @@ body .header .search-toggle { width: 50px; height: 50px; margin-left: 18px; }
   .competencies .feature-icon { width: 42px; }
   .schools-hero, .company-hero { height: auto; padding-bottom: 28px; }
 }
+
+/* Subpages: content stays in normal flow, with the same header on every route. */
+body:not(.page-home) .header {
+  height: clamp(96px, 7.8vw, 128px);
+  padding: 12px clamp(16px, 2.4vw, 38px);
+}
+body:not(.page-home) .header .brand {
+  width: clamp(220px, 20vw, 340px);
+  max-width: 32%;
+  margin-right: clamp(16px, 2vw, 30px);
+}
+body:not(.page-home) .header .search-toggle { width: 50px; height: 50px; margin-left: 18px; }
+body:not(.page-home) :is(.schools-main, .company-main, .custom-main, .supplemental, .benefits) {
+  width: 100%; max-width: 1600px; margin-inline: auto;
+}
+.schools-main .schools-hero, .company-main .company-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(280px, 1fr);
+  gap: 0 40px;
+  height: auto; min-height: 370px;
+  padding: 0 clamp(16px, 3vw, 48px) 32px;
+}
+body:not(.page-home) .breadcrumb { padding: 12px 0 0; grid-column: 1 / -1; }
+body:not(.page-home) .desktop-break { display: none; }
+.schools-main .schools-intro, .company-main .company-intro {
+  width: auto; padding: 28px 0; min-width: 0;
+}
+.schools-main .schools-intro h1, .company-main .company-intro h1 {
+  font-size: clamp(40px, 4.2vw, 64px); line-height: 1.07;
+  white-space: normal; margin: 0 0 28px;
+}
+.company-main .company-intro h1 em { font-size: inherit; line-height: inherit; }
+.schools-main .schools-intro p, .company-main .company-intro p {
+  font-size: clamp(19px, 1.6vw, 24px); line-height: 1.4;
+  margin: 0; max-width: 44ch; font-weight: 400;
+}
+.schools-main .school-offer, .company-main .company-offer {
+  position: relative; top: auto; right: auto; width: auto;
+  margin: 28px 0 0; min-width: 0;
+}
+.schools-main .school-offer h2, .company-main .company-offer h2 {
+  font-size: clamp(26px, 2.3vw, 34px); line-height: 1.12; white-space: normal;
+}
+.company-main .company-offer h2 .underline:after { bottom: -9px; }
+.schools-main .school-offer p, .company-main .company-offer p {
+  font-size: 18px; line-height: 1.45; letter-spacing: 0; margin-top: 24px;
+}
+.schools-main .school-scene { display: none; }
+.schools-main .school-hero-photo {
+  width: 72%; height: 100%; top: 0; right: 12%; object-fit: cover;
+}
+.schools-main .school-fade, .company-main .company-fade {
+  inset: 0;
+  background: linear-gradient(90deg, #fff 0%, #fffffff5 30%, #ffffff70 56%, #fffffff5 77%, #fff);
+}
+.company-main .company-photo { right: 20%; top: 0; width: 55%; height: 100%; opacity: 1; }
+.company-main .company-photo, .custom-main .custom-photo { container-type: size; overflow: hidden; }
+.company-main .company-photo > .crop, .custom-main .custom-photo > .crop {
+  position: absolute; top: 50%; left: 50%;
+  width: max(100cqw, calc(100cqh * var(--crop-ratio)));
+  height: auto; transform: translate(-50%, -50%);
+}
+body:not(.page-home) .games-section {
+  margin-top: 0; padding: 28px clamp(16px, 3vw, 48px) 36px;
+  border-radius: 28px;
+}
+body:not(.page-home) .games-section h2 {
+  font-size: clamp(26px, 2.4vw, 36px); line-height: 1.2;
+  margin: 0 0 30px; width: auto;
+}
+body:not(.page-home) .games-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+body:not(.page-home) .game-card { display: flex; flex-direction: column; }
+body:not(.page-home) .game-image { container-type: inline-size; }
+body:not(.page-home) .game-image > .crop { aspect-ratio: 2.1 !important; }
+/* Cover the age label baked into each reference thumbnail at every scale. */
+body:not(.page-home) .age {
+  left: 2%; top: 4%; width: 26%; min-height: 29%; padding: 4px 8px;
+  display: grid; place-items: center; font-size: clamp(18px, 6cqw, 24px);
+}
+body:not(.page-home) .game-copy {
+  display: grid; grid-template-columns: minmax(0, 1fr) 44px;
+  grid-template-rows: auto 1fr; gap: 8px 12px; flex: 1;
+  padding: 18px; min-height: 0;
+}
+body:not(.page-home) .game-copy h3 {
+  grid-column: 1 / -1; padding: 0; margin: 0;
+  font-size: 21px; line-height: 1.2; letter-spacing: -.025em;
+  white-space: normal;
+}
+body:not(.page-home) .game-copy p {
+  padding: 0; font-size: 17px; line-height: 1.4; letter-spacing: 0;
+}
+body:not(.page-home) .game-more {
+  position: static; width: 44px; height: 44px; align-self: end;
+}
+body:not(.page-home) .benefits { padding: 28px clamp(16px, 3vw, 48px) 32px; border-radius: 0; }
+body:not(.page-home) .benefits h2 { font-size: clamp(26px, 2.3vw, 34px); line-height: 1.2; margin-bottom: 28px; }
+body:not(.page-home) .benefits-row {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 32px; align-items: start;
+}
+body:not(.page-home) .benefits-row > .feature { border: 0; gap: 14px; padding: 0; min-height: 70px; }
+body:not(.page-home) .benefits .feature-icon { width: 54px; }
+body:not(.page-home) .benefits .feature > span:not(.crop) {
+  font-size: 17px; line-height: 1.4; letter-spacing: 0; overflow-wrap: normal;
+}
+body:not(.page-home) .benefits .socials {
+  grid-column: 1 / -1; gap: 14px; margin: 8px 0 0; justify-self: end;
+}
+body:not(.page-home) .benefits .social-label { position: static; margin-right: 6px; font-size: 16px; }
+body:not(.page-home) .benefits .social-button { width: 48px; height: 48px; }
+
+.custom-main .custom-hero {
+  display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 0 48px; height: auto; min-height: 440px;
+  padding: 0 clamp(16px, 3vw, 48px) 40px;
+}
+.custom-main .custom-intro { width: auto; padding: 28px 0 0; min-width: 0; }
+.custom-main .custom-intro h1 {
+  font-size: clamp(42px, 5.2vw, 78px); line-height: 1.02; margin: 0 0 30px;
+}
+.custom-main .custom-intro h2 { font-size: clamp(26px, 2.3vw, 34px); line-height: 1.2; margin-bottom: 16px; max-width: none; }
+.custom-main .custom-intro p { font-size: clamp(19px, 1.6vw, 24px); line-height: 1.4; max-width: 47ch; letter-spacing: 0; }
+.custom-main .custom-photo { width: 64%; height: 100%; top: 0; right: 0; opacity: 1; }
+.custom-main .custom-fade {
+  inset: 0;
+  background: linear-gradient(90deg, #fff 0%, #fffffff5 36%, #ffffff80 57%, #ffffff30), linear-gradient(0deg, #fff, transparent 30%);
+}
+.custom-main .handwritten {
+  position: relative; top: auto; right: auto; bottom: auto;
+  align-self: end; justify-self: center; margin: 36px 0 20px;
+  font-size: clamp(34px, 3.1vw, 48px); line-height: 1;
+}
+.custom-main .handwritten span { width: 100%; max-width: 230px; }
+.custom-main .process { padding: 28px clamp(16px, 3vw, 48px) 36px; border-radius: 28px; }
+.custom-main .process > h2 { font-size: clamp(26px, 2.4vw, 36px); line-height: 1.25; margin: 0 0 32px; }
+.custom-main .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 40px; }
+.custom-main .steps li { padding: 20px 24px 28px; border-radius: 36px 52px 36px 44px; }
+.custom-main .step-number { font-size: 60px; line-height: 1; margin: 0 0 10px; }
+.custom-main .steps h3 { font-size: 22px; line-height: 1.2; white-space: normal; margin: 0 0 10px; }
+.custom-main .steps p { font-size: 18px; line-height: 1.45; letter-spacing: 0; }
+.custom-main .step-arrow {
+  display: block; right: -34px; top: 32px; width: 28px; height: 28px;
+  transform: none; font-size: inherit;
+}
+.custom-main .step-arrow svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.custom-main .steps li:nth-child(3n) .step-arrow { display: none; }
+body:not(.page-home) .supplemental { min-height: 0; padding: 0 clamp(16px, 3vw, 48px); }
+body:not(.page-home) .supplemental > section {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px;
+  padding: 40px 0 48px; align-items: center;
+}
+body:not(.page-home) .supplemental h1 { font-size: clamp(40px, 4.2vw, 64px); line-height: 1.05; margin-bottom: 24px; }
+body:not(.page-home) .supplemental h2 { font-size: clamp(26px, 2.3vw, 34px); line-height: 1.2; margin-bottom: 18px; }
+body:not(.page-home) .supplemental p { font-size: 20px; line-height: 1.5; }
+body:not(.page-home) .supplemental img { height: auto; min-height: 0; aspect-ratio: 4 / 3; object-fit: cover; }
+body:not(.page-home) .supplemental .contact-note { font-size: 16px; margin-bottom: 0; }
+body:not(.page-home) .home-footer { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+body:not(.page-home) .socials-home { border: 0; padding: 0; justify-content: center; }
+body:not(.page-home) .competencies { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+body:not(.page-home) .competencies .feature { justify-content: flex-start; }
+body:not(.page-home) .competencies .feature > span:not(.crop) { font-size: 16px; overflow-wrap: normal; }
+body:not(.page-home) .competencies .feature-icon { width: 48px; }
+
+@media (min-width: 1500px) {
+  body:not(.page-home) .games-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; }
+}
+@media (max-width: 1200px) {
+  body:not(.page-home) .header { height: 100px; }
+  body:not(.page-home) .header .brand { width: 300px; max-width: 65%; margin-right: 0; }
+  body:not(.page-home) .header .search-toggle { margin-left: 0; }
+}
+@media (max-width: 899px) {
+  .schools-main .schools-hero, .company-main .company-hero { grid-template-columns: minmax(0, 1fr); gap: 0; min-height: 0; }
+  .schools-main .school-offer, .company-main .company-offer { margin: 8px 0 0; }
+  .schools-main .schools-intro, .company-main .company-intro { padding-bottom: 24px; }
+  .schools-main .school-fade, .company-main .company-fade { background: linear-gradient(90deg, #fffffffa, #ffffffb8), linear-gradient(0deg, #fff 45%, transparent); }
+  .company-main .company-photo, .schools-main .school-hero-photo { right: 0; width: 100%; height: 340px; }
+  body:not(.page-home) .games-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  body:not(.page-home) .benefits-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .custom-main .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .custom-main .steps li:nth-child(3n) .step-arrow { display: block; }
+  .custom-main .steps li:nth-child(2n) .step-arrow { display: none; }
+  .custom-main .custom-hero { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 24px; }
+  body:not(.page-home) .supplemental > section { gap: 28px; }
+}
+@media (max-width: 600px) {
+  body:not(.page-home) .header { height: 88px; padding: 10px 4%; }
+  body:not(.page-home) .header .brand { width: 229px; max-width: 65%; }
+  body:not(.page-home) .header .search-toggle { width: 39px; height: 39px; }
+  body:not(.page-home) .header .menu-toggle { min-width: 44px; min-height: 44px; }
+  body:not(.page-home) .games-grid, body:not(.page-home) .benefits-row,
+  .custom-main .steps, .custom-main .custom-hero,
+  body:not(.page-home) .supplemental > section { grid-template-columns: minmax(0, 1fr); }
+  .schools-main .schools-intro h1, .company-main .company-intro h1 { font-size: clamp(36px, 10vw, 46px); }
+  .schools-main .schools-intro h1 em { margin-top: 12px; }
+  body:not(.page-home) .game-copy h3 { font-size: 22px; }
+  body:not(.page-home) .benefits-row > .feature { min-height: 0; }
+  body:not(.page-home) .benefits .socials { justify-self: start; gap: 12px; flex-wrap: wrap; }
+  .custom-main .custom-hero { gap: 0; padding-bottom: 28px; min-height: 0; }
+  .custom-main .custom-intro h1 { font-size: clamp(40px, 12vw, 60px); }
+  .custom-main .custom-intro p { max-width: none; }
+  .custom-main .custom-photo { width: 100%; height: 360px; }
+  .custom-main .custom-fade { background: linear-gradient(90deg, #fffffff5, #ffffffc9), linear-gradient(0deg, #fff 20%, transparent); }
+  .custom-main .handwritten { justify-self: end; margin: 28px 16px 12px; font-size: 34px; }
+  .custom-main .steps { gap: 40px; }
+  .custom-main .steps li .step-arrow {
+    display: block; right: calc(50% - 14px); top: auto; bottom: -34px; transform: rotate(90deg);
+  }
+  .custom-main .steps h3 { font-size: 22px; }
+  body:not(.page-home) .supplemental > section { padding: 28px 0 36px; }
+  body:not(.page-home) .supplemental .button { font-size: 18px; }
+  body:not(.page-home) .competencies { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  body:not(.page-home) .competencies .feature > span:not(.crop) { font-size: 17px; }
+}

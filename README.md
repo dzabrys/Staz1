@@ -42,6 +42,10 @@ Zapisz wygenerowane pliki HTML razem ze zmianami. Treść, nawigacja, pojedynczy
 
 Kopia wersji sprzed poprawek: [backup/przed-poprawkami-2026-10-11](https://github.com/dzabrys/Staz1/tree/backup/przed-poprawkami-2026-10-11).
 
+Kopia przed poprawkami podstron: [backup/przed-poprawkami-podstron-2026-10-11](https://github.com/dzabrys/Staz1/tree/backup/przed-poprawkami-podstron-2026-10-11).
+
+Podstrony mają wspólny nagłówek, wysokość sekcji wynikającą z treści, osobne miejsce na strzałki kart i kadry zdjęć o zachowanych proporcjach. Liczba kolumn zmienia się wraz z szerokością ekranu; na telefonie etapy realizacji tworzą pojedynczą listę z pionowymi strzałkami. Stopki i treści łamią się naturalnie, bez wymuszonych podziałów wyrazów.
+
 Treści są prawdziwymi elementami HTML, a nie jednym obrazem strony. Drobne ilustracje, logo i miniatury są pokazywane jako kadry z dostarczonych wzorów przez wspólną funkcję `crop()` w `app.js`. Dzięki temu zachowują oryginalny wygląd. Przy dostępności osobnych plików źródłowych można zastąpić te kadry samodzielnymi obrazami.
 
 ### Zakres działania
@@ -60,7 +64,7 @@ Fonty Lato i Caveat z Google Fonts, licencje SIL Open Font License zapisano w `a
 
 ## Weryfikacja
 
-Test obejmuje sześć widoków w szerokościach 1920, 1536, 1366, 1024, 768, 390 i 320 px: brak poziomego przewijania, dopasowanie strony głównej do typowych ekranów komputerów, nieobcięte karty, wycentrowane strzałki, przycisk trzeciego slajdu na telefonie, zdjęcia, nawigacja, wyszukiwarka, karuzela, szczegóły gier i brak błędów JavaScript. Sprawdza także treść oraz unikalne metadane z wyłączonym JavaScript. Zrzuty w katalogu `artifacts/` są lokalne i wyłączone z repozytorium.
+Test obejmuje sześć widoków w dziesięciu szerokościach: 1920, 1536, 1500, 1366, 1024, 900, 768, 600, 390 i 320 px. Sprawdza brak poziomego przewijania, dopasowanie strony głównej, nieobcięte karty, rozdzielenie strzałek i tekstu, proporcje kadrów, brak nakładania sekcji, przycisk trzeciego slajdu na telefonie, zdjęcia, nawigację, wyszukiwarkę, karuzelę, szczegóły gier i brak błędów JavaScript. Sprawdza także treść oraz unikalne metadane z wyłączonym JavaScript. Zrzuty wszystkich podstron w katalogu `artifacts/` są lokalne i wyłączone z repozytorium.
 
 Opcjonalny test wymaga Playwright i przeglądarki Microsoft Edge:
 

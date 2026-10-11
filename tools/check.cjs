@@ -9,7 +9,7 @@ const assert = require('node:assert/strict');
  page.on('pageerror',err=>errors.push(err.message));
  const routes=['index.html','szkoly.html','gry-na-zamowienie.html','firmy.html','misja.html','kontakt.html'];
  await fs.mkdir('artifacts',{recursive:true});
- for(const [width,height] of [[1920,1080],[1536,864],[1366,768],[1024,768],[768,1024],[390,844],[320,740]]){
+ for(const [width,height] of [[1920,1080],[1536,864],[1500,900],[1366,768],[1024,768],[900,768],[768,1024],[600,800],[390,844],[320,740]]){
   await page.setViewportSize({width,height});
   for(const route of routes){
    const response=await page.goto('http://127.0.0.1:4173/'+route);
@@ -38,8 +38,30 @@ const assert = require('node:assert/strict');
    }
    if(['szkoly.html','firmy.html'].includes(route)) {
     assert.ok(await page.evaluate(()=>document.querySelector('.school-offer').getBoundingClientRect().bottom<=document.querySelector('.games-section').getBoundingClientRect().top+1),`${route} offer overlaps the games at ${width}`);
+    assert.ok(await page.evaluate(()=>[...document.querySelectorAll('.game-copy')].every(copy=>{
+     const button=copy.querySelector('.game-more').getBoundingClientRect();
+     return [...copy.querySelectorAll('h3,p')].every(text=>{
+      const rect=text.getBoundingClientRect();
+      const overlaps=rect.left<button.right-1&&rect.right>button.left+1&&rect.top<button.bottom-1&&rect.bottom>button.top+1;
+      return !overlaps&&text.scrollWidth<=text.clientWidth+1;
+     });
+    })),`${route} card text overlaps an arrow or its column at ${width}`);
    }
-   if(!['misja.html','kontakt.html'].includes(route)) await page.screenshot({path:`artifacts/${route.replace('.html','')}-${width}.png`,fullPage:true});
+   if(route!=='index.html') {
+    assert.ok(await page.evaluate(()=>[...document.querySelectorAll('main h1, main h2, .steps h3, .steps p, .benefits .feature > span:not(.crop), .supplemental p')].every(text=>text.scrollWidth<=text.clientWidth+1)),`${route} text exceeds its column at ${width}`);
+    assert.ok(await page.evaluate(()=>[...document.querySelectorAll('.company-photo > .crop, .custom-photo > .crop')].every(crop=>{
+     const rect=crop.getBoundingClientRect();
+     const ratio=parseFloat(crop.style.getPropertyValue('--crop-ratio'));
+     return Math.abs(rect.width/rect.height-ratio)<.01;
+    })),`${route} photo crop shows content outside its source rectangle at ${width}`);
+   }
+   if(route==='gry-na-zamowienie.html') {
+    assert.ok(await page.evaluate(()=>{
+     const process=document.querySelector('.process').getBoundingClientRect();
+     return ['.custom-intro','.handwritten'].every(selector=>document.querySelector(selector).getBoundingClientRect().bottom<=process.top+1);
+    }),`Custom introduction overlaps the process at ${width}`);
+   }
+   await page.screenshot({path:`artifacts/${route.replace('.html','')}-${width}.png`,fullPage:true});
   }
  }
  await page.setViewportSize({width:1536,height:1024});
@@ -96,6 +118,6 @@ const assert = require('node:assert/strict');
  assert.equal(descriptions.size,6,'Every page has a unique description');
  await plain.close();
  assert.deepEqual(errors,[]);
- console.log('PASS: 6 routes × 7 viewports; desktop fit, unclipped cards, centered arrows, mobile CTA, images, carousel, search, dialogs, menu, unique SEO metadata and content without JavaScript.');
+ console.log('PASS: 6 routes × 10 viewports; desktop fit, card arrows separated from text, correct photo crops, readable process and footer, mobile CTA, images, carousel, search, dialogs, menu, unique SEO metadata and content without JavaScript.');
  await browser.close();
 })().catch(err=>{console.error(err);process.exit(1)});
