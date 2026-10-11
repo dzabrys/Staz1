@@ -27,7 +27,20 @@ Strona jest opublikowana przez GitHub Pages: **https://dzabrys.github.io/Staz1/*
 - `misja.html`, `kontakt.html` — uzupełniające widoki bez dostarczonych wzorów.
 - `app.js` — wspólne elementy, treści, karty, wyszukiwarka, karuzela i okna szczegółów.
 - `styles.css` — układ, kolory, dekoracje i wersje mobilne.
+- `responsive.css` — dopasowanie do ekranu, nagłówek, stopka i wyrównanie przycisków.
+- `tools/render.cjs` — generator pełnego HTML i metadanych podstron.
+- `sitemap.xml` — mapa sześciu publicznych podstron.
 - `assets/` — lokalne zdjęcia, grafiki, krój pisma i licencje fontów.
+
+Po zmianie szablonów treści w `app.js` lub metadanych w `tools/render.cjs` uruchom:
+
+```sh
+node tools/render.cjs
+```
+
+Zapisz wygenerowane pliki HTML razem ze zmianami. Treść, nawigacja, pojedynczy nagłówek H1, unikalny tytuł, opis i adres canonical są dostępne bez uruchamiania JavaScript. JavaScript obsługuje menu, karuzelę, wyszukiwarkę i okna szczegółów. Główny H1 nie zmienia się przy przełączaniu karuzeli.
+
+Kopia wersji sprzed poprawek: [backup/przed-poprawkami-2026-10-11](https://github.com/dzabrys/Staz1/tree/backup/przed-poprawkami-2026-10-11).
 
 Treści są prawdziwymi elementami HTML, a nie jednym obrazem strony. Drobne ilustracje, logo i miniatury są pokazywane jako kadry z dostarczonych wzorów przez wspólną funkcję `crop()` w `app.js`. Dzięki temu zachowują oryginalny wygląd. Przy dostępności osobnych plików źródłowych można zastąpić te kadry samodzielnymi obrazami.
 
@@ -47,7 +60,7 @@ Fonty Lato i Caveat z Google Fonts, licencje SIL Open Font License zapisano w `a
 
 ## Weryfikacja
 
-Sprawdzono sześć widoków w szerokościach 1536, 768 i 390 px: brak poziomego przewijania, poprawne ładowanie zdjęć, działanie nawigacji, wyszukiwarki, karuzeli i szczegółów gier, brak błędów JavaScript. Zrzuty w katalogu `artifacts/` są lokalne i wyłączone z repozytorium.
+Test obejmuje sześć widoków w szerokościach 1920, 1536, 1366, 1024, 768, 390 i 320 px: brak poziomego przewijania, dopasowanie strony głównej do typowych ekranów komputerów, nieobcięte karty, wycentrowane strzałki, przycisk trzeciego slajdu na telefonie, zdjęcia, nawigacja, wyszukiwarka, karuzela, szczegóły gier i brak błędów JavaScript. Sprawdza także treść oraz unikalne metadane z wyłączonym JavaScript. Zrzuty w katalogu `artifacts/` są lokalne i wyłączone z repozytorium.
 
 Opcjonalny test wymaga Playwright i przeglądarki Microsoft Edge:
 

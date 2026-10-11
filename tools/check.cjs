@@ -9,25 +9,52 @@ const assert = require('node:assert/strict');
  page.on('pageerror',err=>errors.push(err.message));
  const routes=['index.html','szkoly.html','gry-na-zamowienie.html','firmy.html','misja.html','kontakt.html'];
  await fs.mkdir('artifacts',{recursive:true});
- for(const width of [1536,768,390]){
-  await page.setViewportSize({width,height:width===390?844:1024});
+ for(const [width,height] of [[1920,1080],[1536,864],[1366,768],[1024,768],[768,1024],[390,844],[320,740]]){
+  await page.setViewportSize({width,height});
   for(const route of routes){
    const response=await page.goto('http://127.0.0.1:4173/'+route);
    assert.equal(response.status(),200,route);
    await page.evaluate(()=>document.fonts.ready);
    await page.locator('h1').waitFor();
+   // Verify all asset URLs, including images intentionally deferred below the fold.
+   await page.evaluate(async()=>{
+    await Promise.all([...document.images].map(async image=>{
+     image.loading='eager';
+     await image.decode().catch(()=>{});
+    }));
+   });
    const dimensions=await page.evaluate(()=>({width:innerWidth,scroll:document.documentElement.scrollWidth,images:[...document.images].filter(i=>!i.complete||!i.naturalWidth).map(i=>i.src)}));
    assert.ok(dimensions.scroll<=width+1,`${route} overflows at ${width}: ${dimensions.scroll}`);
    assert.deepEqual(dimensions.images,[],`${route} has missing images`);
+   assert.equal(await page.locator('main h1').count(),1,`${route} must have one main heading`);
+   assert.equal(await page.locator('link[rel="canonical"]').count(),1,`${route} must have one canonical`);
+   if(route==='index.html') {
+    const layout=await page.evaluate(()=>({
+     height:document.documentElement.scrollHeight,
+     clipped:[...document.querySelectorAll('.audience')].filter(card=>card.querySelector('.audience-copy').getBoundingClientRect().bottom>card.getBoundingClientRect().bottom+1).length
+    }));
+    assert.equal(layout.clipped,0,`Audience cards are clipped at ${width}`);
+    if(width>=1024) assert.ok(layout.height<=height+1,`Home does not fit ${width}x${height}: ${layout.height}`);
+   }
+   if(['szkoly.html','firmy.html'].includes(route)) {
+    assert.ok(await page.evaluate(()=>document.querySelector('.school-offer').getBoundingClientRect().bottom<=document.querySelector('.games-section').getBoundingClientRect().top+1),`${route} offer overlaps the games at ${width}`);
+   }
    if(!['misja.html','kontakt.html'].includes(route)) await page.screenshot({path:`artifacts/${route.replace('.html','')}-${width}.png`,fullPage:true});
   }
  }
  await page.setViewportSize({width:1536,height:1024});
  await page.goto('http://127.0.0.1:4173/');
  await page.getByRole('button',{name:'Następny slajd'}).click();
- assert.ok(await page.locator('.hero-copy h1').innerText().then(t=>t.includes('dla szkół')));
+ assert.ok(await page.locator('.hero-copy .button').innerText().then(t=>t.includes('Poznaj gry dla szkół')));
  await page.getByRole('button',{name:'Pokaż slajd 3'}).click();
  assert.equal(await page.locator('[data-slide="2"]').getAttribute('aria-pressed'),'true');
+ const heading=await page.locator('.hero-copy h1').innerText();
+ assert.ok(heading.includes('Wielkie gry')&&heading.includes('planszowe'),'SEO heading stays stable across slides');
+ const alignment=await page.evaluate(()=>[...document.querySelectorAll('.carousel-prev,.carousel-next,.hero-copy .button')].map(button=>{
+  const b=button.getBoundingClientRect(),s=button.querySelector('svg').getBoundingClientRect();
+  return {centerOffset:Math.abs((s.y+s.height/2)-(b.y+b.height/2)),outside:s.x<b.x||s.right>b.right};
+ }));
+ assert.ok(alignment.every(a=>a.centerOffset<1&&!a.outside),'Arrows must be centered and contained');
  await page.getByRole('button',{name:'Otwórz wyszukiwarkę'}).click();
  await page.getByRole('searchbox').fill('wody');
  assert.equal(await page.locator('#search-results button').count(),1);
@@ -44,7 +71,31 @@ const assert = require('node:assert/strict');
  await page.getByRole('button',{name:'Menu'}).click();
  await page.getByRole('navigation').getByRole('link',{name:'Szkoły',exact:true}).click();
  await page.waitForURL('**/szkoly.html');
+ await page.setViewportSize({width:320,height:740});
+ await page.goto('http://127.0.0.1:4173/');
+ await page.getByRole('button',{name:'Pokaż slajd 3'}).click();
+ const cta=await page.locator('.hero-copy .button').boundingBox();
+ assert.ok(cta.x>=0&&cta.x+cta.width<=320,'Long CTA fits a narrow mobile viewport');
+ await page.screenshot({path:'artifacts/home-slide-3-320.png',fullPage:true});
+ // A short laptop window may scroll vertically, but must never crop the cards.
+ await page.setViewportSize({width:1280,height:600});
+ await page.goto('http://127.0.0.1:4173/');
+ assert.equal(await page.evaluate(()=>[...document.querySelectorAll('.audience')].filter(c=>c.querySelector('.audience-copy').getBoundingClientRect().bottom>c.getBoundingClientRect().bottom+1).length),0);
+ const plain=await browser.newContext({javaScriptEnabled:false});
+ const htmlPage=await plain.newPage();
+ const titles=new Set(),descriptions=new Set();
+ for(const route of routes){
+  await htmlPage.goto('http://127.0.0.1:4173/'+route);
+  assert.equal(await htmlPage.locator('main h1').count(),1,`${route} has content without JavaScript`);
+  assert.ok(await htmlPage.locator('main').innerText().then(t=>t.length>150));
+  titles.add(await htmlPage.title());
+  descriptions.add(await htmlPage.locator('meta[name="description"]').getAttribute('content'));
+  assert.ok((await htmlPage.locator('link[rel="canonical"]').getAttribute('href')).startsWith('https://dzabrys.github.io/Staz1/'));
+ }
+ assert.equal(titles.size,6,'Every page has a unique title');
+ assert.equal(descriptions.size,6,'Every page has a unique description');
+ await plain.close();
  assert.deepEqual(errors,[]);
- console.log('PASS: 6 routes × 3 widths; images, overflow, carousel, search, game dialogs, mobile navigation, no JavaScript errors.');
+ console.log('PASS: 6 routes × 7 viewports; desktop fit, unclipped cards, centered arrows, mobile CTA, images, carousel, search, dialogs, menu, unique SEO metadata and content without JavaScript.');
  await browser.close();
 })().catch(err=>{console.error(err);process.exit(1)});

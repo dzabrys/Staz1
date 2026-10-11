@@ -1,0 +1,169 @@
+/* Content must fit its container without clipping or a hidden page scrollbar. */
+body .header {
+  width: 100%;
+  max-width: 1600px;
+  height: clamp(96px, 7.8vw, 128px);
+  padding: 12px clamp(16px, 2.4vw, 38px);
+  margin-inline: auto;
+  flex-shrink: 0;
+}
+body .header .brand {
+  width: clamp(220px, 20vw, 340px);
+  max-width: 32%;
+  margin-right: clamp(16px, 2vw, 30px);
+}
+body .header #navigation {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  min-width: 0;
+  height: 76px;
+}
+body .header #navigation > a {
+  min-width: 0;
+  padding-inline: 7px;
+  font-size: clamp(13px, 1.05vw, 17px);
+  white-space: normal;
+  text-align: center;
+}
+body .header #navigation > a svg { flex-shrink: 0; width: 40px; height: 40px; }
+body .header .search-toggle { width: 50px; height: 50px; margin-left: 18px; }
+
+.button { max-width: 100%; white-space: normal; text-align: center; }
+.button-label { min-width: 0; overflow-wrap: break-word; }
+.button svg, .game-more svg { display: block; flex: 0 0 26px; }
+.school-offer h2 { white-space: normal; }
+.feature > span:not(.crop) { min-width: 0; overflow-wrap: break-word; }
+.game-copy h3 { white-space: normal; }
+
+.page-home #app { display: flex; flex-direction: column; min-height: 100dvh; }
+.page-home .home-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1600px;
+  height: auto;
+  max-height: none;
+  grid-template-columns: minmax(300px, .54fr) minmax(0, 1fr);
+  gap: 20px;
+  padding: 0 clamp(16px, 1.7vw, 28px) 16px;
+  margin-inline: auto;
+}
+.page-home .audiences { display: grid; grid-template-rows: repeat(3, minmax(min-content, 1fr)); gap: 12px; }
+.page-home .audience-copy { padding: 12px 16px; }
+.page-home .audience h2 {
+  max-width: 80%;
+  margin: 0 0 14px;
+  font-size: clamp(24px, 2.1vw, 34px);
+  line-height: 1.05;
+}
+.page-home .audience p { max-width: 70%; margin-bottom: 10px; font-size: clamp(16px, 1.2vw, 19px); line-height: 1.15; }
+.page-home .audience .button { padding: 8px 16px; gap: 12px; font-size: 16px; }
+.page-home .card-photo { container-type: size; overflow: hidden; }
+.page-home .card-photo > .crop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100cqw, calc(100cqh * var(--crop-ratio)));
+  height: auto;
+  transform: translate(-50%, -50%);
+}
+.page-home .hero-carousel { min-height: 480px; }
+.page-home .hero-copy { padding: clamp(24px, 3vw, 48px) 30px 100px; }
+.page-home .hero-copy h1 { font-size: clamp(40px, 4.2vw, 68px); }
+.page-home .hero-copy p { font-size: clamp(20px, 1.6vw, 26px); }
+.page-home .hero-copy .button { font-size: clamp(17px, 1.35vw, 21px); }
+.carousel-prev, .carousel-next {
+  top: auto;
+  bottom: 20px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+.carousel-prev { left: 16px; }
+.carousel-next { right: 16px; }
+.carousel-prev svg, .carousel-next svg { display: block; width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.carousel-dots { bottom: 24px; min-height: 40px; align-items: center; gap: 12px; }
+.carousel-dots button { width: 16px; height: 16px; }
+.home-footer {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 24px;
+  width: 100%;
+  max-width: 1600px;
+  min-height: 96px;
+  padding: 14px clamp(16px, 2.4vw, 38px);
+  margin-inline: auto;
+  flex-shrink: 0;
+}
+.socials-home { gap: 14px; padding-right: 24px; }
+.socials-home .social-button { width: 44px; height: 47px; }
+.competencies { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); min-width: 0; gap: 12px; }
+.competencies .feature { gap: 8px; }
+.competencies .feature-icon { width: clamp(34px, 3vw, 48px); }
+.competencies .feature > span:not(.crop) { font-size: clamp(11px, .85vw, 14px); overflow-wrap: break-word; }
+
+/* Offer text determines section height instead of sitting behind the next section. */
+@media (min-width: 601px) {
+  .schools-hero, .company-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
+    gap: 0 32px;
+    height: auto;
+    min-height: 430px;
+    padding: 0 3.3% 32px;
+  }
+  .schools-hero .breadcrumb, .company-hero .breadcrumb { grid-column: 1 / -1; padding: 12px 0 0; }
+  .schools-intro, .company-intro { width: auto; padding: 22px 0; }
+  .schools-intro h1 { white-space: normal; }
+  .schools-hero .school-offer, .company-hero .company-offer { position: relative; top: auto; right: auto; width: auto; margin-top: 22px; }
+  .page-school .games-section, .page-company .games-section { margin-top: 0; }
+}
+
+@media (max-width: 1200px) {
+  body .header { height: 100px; gap: 12px; justify-content: space-between; }
+  body .header .brand { width: 300px; max-width: 65%; margin-right: 0; }
+  body .header .menu-toggle { display: flex; align-items: center; gap: 7px; margin-left: auto; font-size: 24px; background: transparent; }
+  body .header .menu-toggle span { font-size: 15px; }
+  body .header .search-toggle { margin-left: 0; }
+  body .header #navigation { display: none; position: absolute; left: 0; top: 100%; width: 100%; height: auto; background: #fff; padding: 12px 4%; box-shadow: 0 12px 15px #0021591a; }
+  body .header #navigation.open { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  body .header #navigation > a { height: 90px; border: 0; font-size: 15px; }
+  .home-footer { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .socials-home { border: 0; padding: 0; justify-content: center; }
+  .competencies .feature { justify-content: center; }
+}
+@media (max-width: 1000px) {
+  .page-home .home-main { display: flex; flex-direction: column; flex: none; padding-top: 6px; gap: 20px; }
+  .page-home .hero-carousel { order: -1; min-height: 0; height: clamp(430px, 62vw, 590px); }
+  .page-home .hero-copy h1 { font-size: clamp(40px, 6vw, 60px); }
+  .page-home .audiences { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto; }
+  .page-home .audience h2 { max-width: 100%; min-height: 0; }
+  .page-home .audience p { max-width: 100%; min-height: 0; }
+  .competencies { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .competencies .feature > span:not(.crop) { font-size: 14px; }
+  .competencies .feature-icon { width: 48px; }
+}
+@media (max-width: 600px) {
+  body .header { height: 88px; padding: 10px 4%; gap: 10px; }
+  body .header .brand { max-width: 65%; width: 229px; }
+  body .header .search-toggle { width: 39px; height: 39px; }
+  body .header .menu-toggle span { display: none; }
+  body .header #navigation > a { font-size: 13px; }
+  .page-home .hero-carousel { height: 480px; }
+  .page-home .hero-copy { padding: 28px 20px 100px; }
+  .page-home .hero-copy h1 { font-size: clamp(36px, 10vw, 46px); }
+  .page-home .hero-copy p { font-size: 20px; }
+  .page-home .hero-copy .button { padding: 12px 16px; gap: 12px; font-size: 17px; }
+  .page-home .audiences { grid-template-columns: minmax(0, 1fr); }
+  .page-home .audience-copy { padding: 20px; }
+  .page-home .audience h2 { font-size: 30px; max-width: 90%; }
+  .page-home .audience p { max-width: 75%; font-size: 17px; }
+  .page-home .audience .button { font-size: 17px; }
+  .competencies { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 12px; }
+  .competencies .feature { justify-content: flex-start; }
+  .competencies .feature > span:not(.crop) { font-size: 12px; }
+  .competencies .feature-icon { width: 42px; }
+  .schools-hero, .company-hero { height: auto; padding-bottom: 28px; }
+}
