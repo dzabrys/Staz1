@@ -4,13 +4,14 @@ const fs = require('node:fs/promises');
 const assert = require('node:assert/strict');
 (async()=>{
  const browser = await chromium.launch({headless:true,channel:process.env.BROWSER_CHANNEL || 'msedge'});
- const page = await browser.newPage({viewport:{width:1536,height:1024},deviceScaleFactor:1});
+ const page = await browser.newPage({viewport:{width:1536,height:1024},deviceScaleFactor:1,reducedMotion:'reduce'});
  const errors=[];
  page.on('pageerror',err=>errors.push(err.message));
  const routes=['index.html','szkoly.html','gry-na-zamowienie.html','firmy.html','misja.html','kontakt.html'];
  await fs.mkdir('artifacts',{recursive:true});
  for(const [width,height] of [[1920,1080],[1536,864],[1500,900],[1366,768],[1024,768],[900,768],[768,1024],[600,800],[390,844],[320,740]]){
   await page.setViewportSize({width,height});
+  const scales=[];
   for(const route of routes){
    const response=await page.goto('http://127.0.0.1:4173/'+route);
    assert.equal(response.status(),200,route);
@@ -48,6 +49,10 @@ const assert = require('node:assert/strict');
     })),`${route} card text overlaps an arrow or its column at ${width}`);
    }
    if(route!=='index.html') {
+    scales.push(await page.evaluate(()=>{
+     const hero=document.querySelector('.subpage-hero'),h1=document.querySelector('main h1');
+     return {font:getComputedStyle(h1).fontSize,left:h1.getBoundingClientRect().left,top:h1.getBoundingClientRect().top,hero:hero.offsetHeight,header:document.querySelector('.header').offsetHeight,lead:getComputedStyle(document.querySelector('.subpage-intro p')).fontSize};
+    }));
     assert.ok(await page.evaluate(()=>[...document.querySelectorAll('main h1, main h2, .steps h3, .steps p, .benefits .feature > span:not(.crop), .supplemental p')].every(text=>text.scrollWidth<=text.clientWidth+1)),`${route} text exceeds its column at ${width}`);
     assert.ok(await page.evaluate(()=>[...document.querySelectorAll('.company-photo > .crop, .custom-photo > .crop')].every(crop=>{
      const rect=crop.getBoundingClientRect();
@@ -62,6 +67,14 @@ const assert = require('node:assert/strict');
     }),`Custom introduction overlaps the process at ${width}`);
    }
    await page.screenshot({path:`artifacts/${route.replace('.html','')}-${width}.png`,fullPage:true});
+  }
+  for(const scale of scales){
+   assert.equal(scale.font,scales[0].font,`Subpage H1 sizes differ at ${width}`);
+   assert.equal(scale.lead,scales[0].lead,`Subpage lead sizes differ at ${width}`);
+   assert.equal(scale.header,scales[0].header,`Subpage headers differ at ${width}`);
+   assert.equal(scale.top,scales[0].top,`Subpage titles start at different heights at ${width}`);
+   assert.equal(scale.left,scales[0].left,`Subpage margins differ at ${width}`);
+   if(width>=900) assert.equal(scale.hero,scales[0].hero,`Subpage first sections differ at ${width}`);
   }
  }
  await page.setViewportSize({width:1536,height:1024});
@@ -118,6 +131,6 @@ const assert = require('node:assert/strict');
  assert.equal(descriptions.size,6,'Every page has a unique description');
  await plain.close();
  assert.deepEqual(errors,[]);
- console.log('PASS: 6 routes × 10 viewports; desktop fit, card arrows separated from text, correct photo crops, readable process and footer, mobile CTA, images, carousel, search, dialogs, menu, unique SEO metadata and content without JavaScript.');
+ console.log('PASS: 6 routes × 10 viewports; consistent subpage heading sizes, margins and desktop hero heights, desktop fit, card arrows, crops, process, mobile CTA, images, interactions and static SEO content.');
  await browser.close();
 })().catch(err=>{console.error(err);process.exit(1)});

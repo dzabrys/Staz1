@@ -1,0 +1,113 @@
+/* A shared scale for every subpage; long content remains in normal flow. */
+body:not(.page-home) {
+  --page-gutter: clamp(16px, 3vw, 48px);
+  --page-gap: 32px;
+  --heading-large: clamp(36px, 4vw, 60px);
+  --heading-medium: clamp(26px, 2.2vw, 32px);
+  --heading-small: 21px;
+  --text-lead: 19px;
+  --text-body: 17px;
+}
+body:not(.page-home) .header #navigation > a { font-weight: 700; }
+body:not(.page-home) #app { min-height: 100dvh; }
+body:not(.page-home) .supplemental { padding: 0; }
+body:not(.page-home) main .subpage-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  grid-template-rows: 32px 1fr;
+  gap: 0 var(--page-gap);
+  min-height: 520px;
+  height: auto;
+  padding: 0 var(--page-gutter) 32px;
+  align-items: start;
+}
+body:not(.page-home) .subpage-hero .breadcrumb { grid-column: 1 / -1; padding: 12px 0 0; font-size: 16px; line-height: 1.25; }
+body:not(.page-home) main .subpage-intro { padding: 28px 0 0; width: auto; min-width: 0; }
+body:not(.page-home) main .subpage-intro h1 {
+  font-size: var(--heading-large); line-height: 1.08; letter-spacing: -.035em;
+  margin: 0 0 24px; white-space: normal;
+}
+body:not(.page-home) main .subpage-intro h1 em { font-size: inherit; line-height: inherit; }
+body:not(.page-home) main .subpage-intro h2 {
+  font-size: var(--heading-medium); line-height: 1.2; margin: 0 0 16px;
+}
+body:not(.page-home) main .subpage-intro p {
+  font-size: var(--text-lead); line-height: 1.45; font-weight: 400;
+  margin: 0 0 24px; max-width: 58ch; letter-spacing: 0;
+}
+body:not(.page-home) main .subpage-aside { margin: 28px 0 0; }
+body:not(.page-home) main .school-offer h2 { font-size: var(--heading-medium); line-height: 1.2; }
+body:not(.page-home) main .school-offer p { font-size: var(--text-body); line-height: 1.45; margin-top: 24px; }
+body:not(.page-home) main .subpage-visual {
+  width: 100%; height: 360px; aspect-ratio: auto; object-fit: cover; border-radius: 24px;
+}
+body:not(.page-home) main .contact-note { font-size: 16px; line-height: 1.4; margin: 16px 0 0; }
+body:not(.page-home) main .handwritten { align-self: center; justify-self: center; margin: 28px 0 0; }
+body:not(.page-home) :is(.games-section, .process, .benefits, .subpage-footer) {
+  padding: 32px var(--page-gutter); width: 100%; max-width: 1600px; margin-inline: auto;
+}
+body:not(.page-home) :is(.games-section, .process, .benefits, .subpage-footer) > h2 {
+  font-size: var(--heading-medium); line-height: 1.2; margin: 0 0 32px;
+}
+body:not(.page-home) :is(.game-copy, .steps) h3 { font-size: var(--heading-small); line-height: 1.2; }
+body:not(.page-home) :is(.game-copy, .steps) p { font-size: var(--text-body); line-height: 1.45; }
+body:not(.page-home) .game-copy { min-height: 148px; }
+body:not(.page-home) .steps { grid-auto-rows: 1fr; }
+body:not(.page-home) :is(.benefits-row, .subpage-footer .competencies) {
+  grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 32px;
+}
+body:not(.page-home) :is(.benefits, .subpage-footer) .feature { gap: 14px; min-height: 70px; }
+body:not(.page-home) :is(.benefits, .subpage-footer) .feature-icon { width: 54px; }
+body:not(.page-home) :is(.benefits, .subpage-footer) .feature > span:not(.crop) { font-size: 17px; line-height: 1.4; }
+body:not(.page-home) .subpage-footer { display: block; background: #ffffffed; }
+body:not(.page-home) :is(.benefits, .subpage-footer) .socials {
+  margin: 32px 0 0; display: flex; justify-content: flex-end; align-items: center; gap: 14px;
+}
+body:not(.page-home) :is(.benefits, .subpage-footer) .social-label { position: static; margin-right: 6px; font-size: 16px; }
+body:not(.page-home) :is(.benefits, .subpage-footer) .social-button { width: 48px; height: 48px; }
+body:not(.page-home) .button { font-size: 19px; min-height: 46px; padding: 12px 20px; }
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  body:not(.page-home) main .subpage-hero { min-height: 580px; }
+}
+@media (max-width: 899px) {
+  body:not(.page-home) main .subpage-hero {
+    grid-template-columns: minmax(0, 1fr); grid-template-rows: auto;
+    min-height: 0; padding-bottom: 32px;
+  }
+  body:not(.page-home) main .subpage-aside { margin: 8px 0 0; }
+  body:not(.page-home) main .subpage-visual { height: 300px; margin-top: 16px; }
+  body:not(.page-home) main .handwritten { justify-self: end; margin: 8px 16px 12px; }
+  body:not(.page-home) :is(.benefits-row, .subpage-footer .competencies) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  body:not(.page-home) { --heading-large: 36px; --heading-medium: 26px; --text-lead: 18px; --text-body: 17px; }
+  body:not(.page-home) .subpage-hero .breadcrumb { font-size: 14px; }
+  body:not(.page-home) main .subpage-intro h1 em { margin-top: 0; }
+  body:not(.page-home) main .subpage-visual { height: 240px; }
+  body:not(.page-home) :is(.benefits-row, .subpage-footer .competencies) { grid-template-columns: minmax(0, 1fr); }
+  body:not(.page-home) :is(.benefits, .subpage-footer) .socials { justify-content: flex-start; gap: 12px; flex-wrap: wrap; }
+  body:not(.page-home) .game-copy { min-height: 148px; }
+  body:not(.page-home) .steps { grid-auto-rows: auto; }
+  body:not(.page-home) .button { font-size: 18px; }
+}
+
+/* Motion enhances visible HTML. There is no hidden state waiting for JS. */
+.button, .game-more, .social-button, .game-card, .steps li {
+  transition: transform 240ms cubic-bezier(.16,1,.3,1), background-color 200ms ease, box-shadow 240ms ease;
+}
+.button svg, .game-more svg, .header #navigation > a svg { transition: transform 240ms cubic-bezier(.16,1,.3,1); }
+.button:active, .game-more:active, .social-button:active { transform: scale(.97); }
+@media (hover: hover) and (pointer: fine) {
+  .game-card:hover, .steps li:hover { transform: translateY(-5px); box-shadow: 0 12px 26px #062b7810; }
+  .button:hover svg, .game-more:hover svg { transform: translateX(3px); }
+  .social-button:hover { transform: translateY(-4px) rotate(-4deg); }
+  .header #navigation > a:hover svg { transform: translateY(-3px) rotate(-4deg); }
+}
+@keyframes draw-underline { from { transform: scaleX(.1) rotate(-3deg); } to { transform: scaleX(1) rotate(-3deg); } }
+@keyframes dialog-enter { from { opacity: .4; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+.motion-arrived .underline:after, h2.motion-arrived.underline:after { transform-origin: left center; animation: draw-underline 650ms cubic-bezier(.16,1,.3,1) both; }
+dialog[open] { animation: dialog-enter 240ms cubic-bezier(.16,1,.3,1); }
+@media (prefers-reduced-motion: reduce) {
+  *, *:before, *:after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

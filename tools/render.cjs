@@ -43,7 +43,9 @@ for (const [file, title, description] of pages) {
   <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="responsive.css">
+  <link rel="stylesheet" href="experience.css">
   <script src="app.js" defer></script>
+  <script src="motion.js" defer></script>
 </head>
 <body class="${context.document.body.className}">
   <a class="skip-link" href="#main">Przejdź do treści</a>
