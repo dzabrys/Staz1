@@ -39,13 +39,9 @@ const assert = require('node:assert/strict');
    }
    if(['szkoly.html','firmy.html'].includes(route)) {
     assert.ok(await page.evaluate(()=>document.querySelector('.school-offer').getBoundingClientRect().bottom<=document.querySelector('.games-section').getBoundingClientRect().top+1),`${route} offer overlaps the games at ${width}`);
-    assert.ok(await page.evaluate(()=>[...document.querySelectorAll('.game-copy')].every(copy=>{
-     const button=copy.querySelector('.game-more').getBoundingClientRect();
-     return [...copy.querySelectorAll('h3,p')].every(text=>{
-      const rect=text.getBoundingClientRect();
-      const overlaps=rect.left<button.right-1&&rect.right>button.left+1&&rect.top<button.bottom-1&&rect.bottom>button.top+1;
-      return !overlaps&&text.scrollWidth<=text.clientWidth+1;
-     });
+    assert.ok(await page.evaluate(()=>[...document.querySelectorAll('.game-card')].every(card=>{
+     const button=card.querySelector('.game-more').getBoundingClientRect();
+     return [...card.querySelectorAll('.game-copy h3,.game-copy p')].every(text=>text.getBoundingClientRect().bottom<=button.top+1&&text.scrollWidth<=text.clientWidth+1);
     })),`${route} card text overlaps an arrow or its column at ${width}`);
    }
    if(route!=='index.html') {
@@ -80,7 +76,7 @@ const assert = require('node:assert/strict');
  await page.setViewportSize({width:1536,height:1024});
  await page.goto('http://127.0.0.1:4173/');
  await page.getByRole('button',{name:'Następny slajd'}).click();
- assert.ok(await page.locator('.hero-copy .button').innerText().then(t=>t.includes('Poznaj gry dla szkół')));
+ assert.ok(await page.locator('.hero-copy .button').innerText().then(t=>t.includes('Poznaj gry dla firm')));
  await page.getByRole('button',{name:'Pokaż slajd 3'}).click();
  assert.equal(await page.locator('[data-slide="2"]').getAttribute('aria-pressed'),'true');
  const heading=await page.locator('.hero-copy h1').innerText();
@@ -92,19 +88,17 @@ const assert = require('node:assert/strict');
  assert.ok(alignment.every(a=>a.centerOffset<1&&!a.outside),'Arrows must be centered and contained');
  await page.getByRole('button',{name:'Otwórz wyszukiwarkę'}).click();
  await page.getByRole('searchbox').fill('wody');
- assert.equal(await page.locator('#search-results button').count(),1);
- await page.locator('#search-results button').click();
- await page.waitForURL('**/szkoly.html?gra=0');
- assert.ok(await page.locator('#detail-dialog').isVisible());
- await page.keyboard.press('Escape');
- assert.equal(await page.locator('#detail-dialog').isVisible(),false);
+ assert.equal(await page.locator('#search-results a').count(),1);
+ await page.locator('#search-results a').click();
+ await page.waitForURL('**/szkoly.html#gra-obieg-zamkniety-wody');
+ assert.equal(await page.locator('[data-game="0"]').evaluate(e=>e.open),true);
  await page.goto('http://127.0.0.1:4173/firmy.html');
- await page.locator('[data-company-game="3"]').click();
- assert.ok(await page.getByRole('heading',{name:'Komunikacja i współpraca',exact:true}).last().isVisible());
- await page.keyboard.press('Escape');
+ await page.locator('[data-company-game="3"] summary').click();
+ assert.equal(await page.locator('[data-company-game="3"]').evaluate(e=>e.open),true);
+ await page.locator('[data-company-game="3"] summary').click();
  await page.setViewportSize({width:390,height:844});
  await page.getByRole('button',{name:'Menu'}).click();
- await page.getByRole('navigation').getByRole('link',{name:'Szkoły',exact:true}).click();
+ await page.getByRole('navigation',{name:'Nawigacja główna'}).getByRole('link',{name:'Szkoły',exact:true}).click();
  await page.waitForURL('**/szkoly.html');
  await page.setViewportSize({width:320,height:740});
  await page.goto('http://127.0.0.1:4173/');
@@ -129,6 +123,11 @@ const assert = require('node:assert/strict');
  }
  assert.equal(titles.size,6,'Every page has a unique title');
  assert.equal(descriptions.size,6,'Every page has a unique description');
+ await htmlPage.setViewportSize({width:390,height:844});
+ await htmlPage.goto('http://127.0.0.1:4173/szkoly.html');
+ assert.ok(await htmlPage.locator('#navigation').isVisible(),'Mobile navigation works without JS');
+ await htmlPage.locator('[data-game="0"] summary').click();
+ assert.equal(await htmlPage.locator('[data-game="0"]').evaluate(e=>e.open),true,'Native descriptions work without JS');
  await plain.close();
  assert.deepEqual(errors,[]);
  console.log('PASS: 6 routes × 10 viewports; consistent subpage heading sizes, margins and desktop hero heights, desktop fit, card arrows, crops, process, mobile CTA, images, interactions and static SEO content.');

@@ -1,86 +1,71 @@
 # Wielkie Gry Planszowe
 
-Responsywne odwzorowanie czterech dostarczonych projektów: strony głównej, oferty dla szkół, oferty dla firm i instytucji oraz gier na zamówienie. Zwykły HTML, CSS i JavaScript — bez instalowania pakietów i bez etapu budowania.
+Statyczna strona HTML, CSS i JavaScript z sześcioma podstronami. Publikacja: [dzabrys.github.io/Staz1](https://dzabrys.github.io/Staz1/). Gałąź `main`, katalog główny repozytorium; GitHub Pages publikuje aktualizacje automatycznie.
 
-## Podgląd lokalny
+## Podgląd i edycja
 
-Zainstaluj Node.js, otwórz terminal w katalogu projektu i uruchom:
+Gotowe pliki HTML działają bez instalacji pakietów. Lokalny podgląd wymaga Node.js:
 
 ```sh
 node tools/serve.cjs
 ```
 
-Otwórz <http://127.0.0.1:4173>. Zatrzymanie serwera: Ctrl+C.
+Otwórz http://127.0.0.1:4173/. Zatrzymanie: Ctrl+C.
 
-## Strona online
-
-Strona jest opublikowana przez GitHub Pages: **https://dzabrys.github.io/Staz1/**.
-
-Źródłem publikacji jest gałąź `main`, katalog główny repozytorium. Kolejne zmiany w `main` automatycznie aktualizują stronę. Repozytorium jest publiczne, więc można też udostępnić [kod projektu](https://github.com/dzabrys/Staz1).
-
-## Pliki i edycja
-
-- `index.html` — strona główna.
-- `szkoly.html` — oferta dla szkół.
-- `firmy.html` — oferta dla firm i instytucji.
-- `gry-na-zamowienie.html` — proces tworzenia gier.
-- `misja.html`, `kontakt.html` — uzupełniające widoki bez dostarczonych wzorów.
-- `app.js` — wspólne elementy, treści, karty, wyszukiwarka, karuzela i okna szczegółów.
-- `styles.css` — układ, kolory, dekoracje i wersje mobilne.
-- `responsive.css` — dopasowanie do ekranu, nagłówek, stopka i wyrównanie przycisków.
-- `experience.css` — wspólna skala podstron i animacje elementów interfejsu.
-- `motion.js` — animacje wejścia sekcji i kart podczas przewijania.
-- `tools/render.cjs` — generator pełnego HTML i metadanych podstron.
-- `sitemap.xml` — mapa sześciu publicznych podstron.
-- `assets/` — lokalne zdjęcia, grafiki, krój pisma i licencje fontów.
-
-Po zmianie szablonów treści w `app.js` lub metadanych w `tools/render.cjs` uruchom:
+Po edycji treści, stylów lub skryptów wygeneruj ponownie pliki:
 
 ```sh
-node tools/render.cjs
+npm ci
+npm run build
 ```
 
-Zapisz wygenerowane pliki HTML razem ze zmianami. Treść, nawigacja, pojedynczy nagłówek H1, unikalny tytuł, opis i adres canonical są dostępne bez uruchamiania JavaScript. JavaScript obsługuje menu, karuzelę, wyszukiwarkę i okna szczegółów. Główny H1 nie zmienia się przy przełączaniu karuzeli.
+Generator używa Lightning CSS do minifikacji wspólnego arkusza. Zapisz wygenerowane pliki HTML, `404.html`, `site.css` i `sitemap.xml` razem ze źródłami. Adresy zasobów zawierają hash zawartości; zmiana pliku aktualizuje jego adres. Strona nie wymaga Node.js na hostingu.
 
-Kopia wersji sprzed poprawek: [backup/przed-poprawkami-2026-10-11](https://github.com/dzabrys/Staz1/tree/backup/przed-poprawkami-2026-10-11).
+## Główne pliki
 
-Kopia przed poprawkami podstron: [backup/przed-poprawkami-podstron-2026-10-11](https://github.com/dzabrys/Staz1/tree/backup/przed-poprawkami-podstron-2026-10-11).
+- `app.js` — szablony treści oraz obsługa menu, karuzeli i wyszukiwarki.
+- `styles.css`, `responsive.css`, `experience.css`, `audit-fixes.css` — źródła układu, typografii, ruchu i dostępności. `site.css` jest generowanym arkuszem publikowanym.
+- `nojs.css` — widoczna nawigacja mobilna i ukrycie przycisków wymagających JS, gdy skrypty są wyłączone.
+- `motion.js` — animacje wejścia sekcji i kart przez IntersectionObserver i Web Animations API.
+- `tools/render.cjs` — generator stron, metadanych, danych WebPage/BreadcrumbList, mapy stron i strony 404.
+- Sześć plików HTML — pełna treść statyczna.
+- `assets/` — ilustracje WebP, oryginalne PNG/TTF, fonty WOFF2, licencje oraz wzór zapytania TXT.
+- `AUDIT.md` — problemy, wprowadzone zmiany, wyniki testów i rzeczy do późniejszego uzupełnienia.
 
-Kopia przed ujednoliceniem rozmiarów i animacjami: [backup/przed-ujednoliceniem-i-animacjami-2026-10-11](https://github.com/dzabrys/Staz1/tree/backup/przed-ujednoliceniem-i-animacjami-2026-10-11).
+Treść, nawigacja i opisy dziesięciu gier działają bez JavaScript. Opisy rozwija natywny element details. Każda strona ma jeden H1, unikalny tytuł i opis oraz canonical. Wyszukiwarka uwzględnia gry dla szkół i firm, również przy wpisywaniu bez polskich znaków. Wyniki prowadzą do konkretnego opisu przez fragment adresu. Obsługiwane są też starsze linki `?gra=0`–`?gra=4`.
 
-Podstrony mają wspólny nagłówek, wysokość sekcji wynikającą z treści, osobne miejsce na strzałki kart i kadry zdjęć o zachowanych proporcjach. Liczba kolumn zmienia się wraz z szerokością ekranu; na telefonie etapy realizacji tworzą pojedynczą listę z pionowymi strzałkami. Stopki i treści łamią się naturalnie, bez wymuszonych podziałów wyrazów.
+Podstrony mają tę samą skalę nagłówków, marginesy i minimalną wysokość pierwszej sekcji na komputerze (580 px). Na mniejszych ekranach wysokość wynika z treści. Karty, proces i strzałki układają się responsywnie. Strona główna mieści się w typowych oknach komputera; bardzo niskie okno może przewijać się pionowo.
 
-Wszystkie pięć podstron używa jednakowej skali H1, H2, opisów, kart i ikon oraz tych samych marginesów. Pierwsze sekcje mają wspólną minimalną wysokość na komputerze (520 px, a przy szerokościach 900–1199 px: 580 px). Na mniejszych ekranach wysokość wynika z treści. Karty gier mają wspólną minimalną wysokość części tekstowej; etapy realizacji mają równe wysokości w układzie kolumnowym.
+Animacje nie ukrywają treści przy braku JS lub IntersectionObserver. Preferencja ograniczenia ruchu wyłącza animacje i zatrzymuje efekty po zmianie ustawienia. Karuzela jest przełączana ręcznie, zachowuje fokus i stały H1; zmiana oferty jest ogłaszana przez status dostępności.
 
-Animacje obejmują wejście sekcji, kaskadę kart podczas przewijania, podkreślenia, przyciski, ikony nawigacji, przejścia karuzeli i otwieranie okien. Używają natywnych API przeglądarki, transformacji i przezroczystości, bez nowych zależności ani obsługi każdego zdarzenia przewijania. Treść jest domyślnie widoczna; brak JavaScript lub IntersectionObserver nie blokuje jej wyświetlania. Preferencja ograniczenia ruchu wyłącza animacje, także gdy zmieni się podczas korzystania ze strony.
+## Dane demonstracyjne
 
-Treści są prawdziwymi elementami HTML, a nie jednym obrazem strony. Drobne ilustracje, logo i miniatury są pokazywane jako kadry z dostarczonych wzorów przez wspólną funkcję `crop()` w `app.js`. Dzięki temu zachowują oryginalny wygląd. Przy dostępności osobnych plików źródłowych można zastąpić te kadry samodzielnymi obrazami.
+Zgodnie z decyzją właściciela dane kontaktowe i szczegółowe opisy pozostają testowe. Adres `kontakt@example.com` jest oznaczonym przykładem, telefon `+48 XXX XXX XXX` jest makietą. Strona nie wysyła formularzy. Dostępny jest rzeczywisty plik TXT do przygotowania zapytania. Oficjalne profile, dane firmy, zdjęcia realizacji i parametry gier należy dodać później. Nie dodano fikcyjnych opinii, ocen, certyfikatów ani danych firmy w schema.org.
 
-### Zakres działania
+## Grafiki i fonty
 
-Nawigacja między sześcioma widokami, mobilne menu, trzy ręcznie przełączane slajdy, wyszukiwarka stron i gier dla szkół, szczegóły dziesięciu gier, zamykanie okien klawiszem Escape, obsługa klawiatury i lokalne fonty.
+Cztery pliki `reference-*.png` pochodzą od użytkownika. Logo, ikony i część fotografii są kadrami z tych wzorów, z zachowanymi proporcjami. Dla strony przygotowano lżejsze wersje WebP. Po otrzymaniu osobnych zdjęć i logo można zastąpić kadry niezależnymi zasobami.
 
-Brakujące dane kontaktowe i oficjalne adresy profili społecznościowych są jawnie oznaczone do uzupełnienia. Przyciski społecznościowe otwierają taką informację. Nie wymyślano numerów telefonu, adresów e-mail ani kont. Opisy w oknach szczegółów i uzupełniających widokach są przykładowymi treściami redakcyjnymi do akceptacji właściciela; cztery główne widoki odtwarzają tekst ze wzorów.
+Główna ilustracja `hero.png` została wcześniej wygenerowana przez ImageGen; nie jest dokumentacją realizacji. Warianty WebP 768/1536 px pozwalają przeglądarce dobrać rozmiar. Fonty Lato i Caveat przekonwertowano z TTF na WOFF2 bez zmiany kroju. Oryginały i licencje SIL Open Font License pozostały w `assets/`. Wszystkie zasoby są lokalne.
 
-### Grafiki
+## Kopie poprzednich wersji
 
-Źródła `reference-*.png`: cztery obrazy dostarczone przez użytkownika. Fotografia `assets/hero.png` została wygenerowana wbudowanym narzędziem ImageGen; pozostałe zdjęcia pochodzą z referencji. To odwzorowanie wizualne, nie matematycznie identyczny zrzut: główne zdjęcie, odręczne dekoracje i część ikon nawigacji mogą się różnić.
-
-Prompt obrazu głównego: „Natural landscape photograph of a girl in a white rainbow T-shirt and light blue jeans and a boy in a royal blue hoodie stepping on a giant blue, green and yellow educational board game in a sunny school courtyard; oversized yellow foam dice in the right foreground; other children, trees, modern school and a blue canopy in the background; pair on the right, dark trees on the left for a text overlay; no text or watermark.”
-
-Fonty Lato i Caveat z Google Fonts, licencje SIL Open Font License zapisano w `assets/LICENSE-lato.txt` i `assets/LICENSE-caveat.txt`. Fonty i grafiki są lokalne; strona nie potrzebuje zewnętrznych CDN.
+- [Przed audytem](https://github.com/dzabrys/Staz1/tree/backup/przed-audytem-2026-10-11)
+- [Przed ujednoliceniem i animacjami](https://github.com/dzabrys/Staz1/tree/backup/przed-ujednoliceniem-i-animacjami-2026-10-11)
+- [Przed poprawkami podstron](https://github.com/dzabrys/Staz1/tree/backup/przed-poprawkami-podstron-2026-10-11)
+- [Przed pierwszymi poprawkami](https://github.com/dzabrys/Staz1/tree/backup/przed-poprawkami-2026-10-11)
 
 ## Weryfikacja
 
-Test obejmuje sześć widoków w dziesięciu szerokościach: 1920, 1536, 1500, 1366, 1024, 900, 768, 600, 390 i 320 px. Sprawdza brak poziomego przewijania, dopasowanie strony głównej, nieobcięte karty, rozdzielenie strzałek i tekstu, proporcje kadrów, brak nakładania sekcji, przycisk trzeciego slajdu na telefonie, zdjęcia, nawigację, wyszukiwarkę, karuzelę, szczegóły gier i brak błędów JavaScript. Sprawdza także treść oraz unikalne metadane z wyłączonym JavaScript. Zrzuty wszystkich podstron w katalogu `artifacts/` są lokalne i wyłączone z repozytorium.
-
-Opcjonalny test wymaga Playwright i przeglądarki Microsoft Edge:
+Opcjonalne testy wymagają pakietu Playwright i Microsoft Edge. Uruchom je przy działającym serwerze:
 
 ```sh
 node tools/check.cjs <ścieżka-do-pakietu-playwright>
 node tools/motion-check.cjs <ścieżka-do-pakietu-playwright>
+node tools/audit-check.cjs <ścieżka-do-pakietu-playwright>
 ```
 
-Można wskazać inny kanał przeglądarki zmienną `BROWSER_CHANNEL`. Test wymaga działającego serwera pod adresem wskazanym powyżej.
+Test układu obejmuje sześć stron w dziesięciu szerokościach 320–1920 px, zdjęcia, kadry, strzałki, nakładanie sekcji, spójność skali, wyszukiwarkę, opisy i metadane bez JS. Test ruchu sprawdza uruchamianie i wyłączanie animacji, stałość układu oraz brak wsparcia IntersectionObserver. Test audytu sprawdza linki, schema, wyszukiwanie bez polskich znaków, fokus, zamykanie menu, cele 44 px, błędy 404, mapę i kontakt testowy.
 
-Test układu sprawdza również jednakowe rozmiary H1, opisów, nagłówków strony, marginesów i pierwszych sekcji podstron na komputerze. Test animacji sprawdza rzeczywiste uruchamianie efektów podczas przewijania, stałość wymiarów układu, ograniczenie ruchu, brak wsparcia dla IntersectionObserver oraz widoczną treść bez JavaScript. Można podać adres publicznej strony jako trzeci argument testu animacji.
+Test animacji i audytu przyjmuje adres strony jako trzeci argument, np. `https://dzabrys.github.io/Staz1/`. Czwarty argument testu audytu może wskazywać `axe-core/axe.min.js`, aby sprawdzić otwarte opisy i wyszukiwarkę. Testy układu oraz audytu przyjmują kanał przeglądarki przez `BROWSER_CHANNEL`. Zrzuty w `artifacts/` są wyłączone z repozytorium.
+

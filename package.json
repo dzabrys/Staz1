@@ -1,0 +1,12 @@
+{
+  "name": "wielkie-gry-planszowe",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node tools/render.cjs",
+    "start": "node tools/serve.cjs"
+  },
+  "devDependencies": {
+    "lightningcss": "^1.33.0"
+  }
+}

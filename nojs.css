@@ -1,0 +1,7 @@
+/* Provide useful navigation and remove JS-only controls when scripting is off. */
+body .header { height: auto !important; min-height: 88px; flex-wrap: wrap; }
+body .header .brand { max-width: 100% !important; margin: 0 auto 12px !important; }
+body .header #navigation { display: grid !important; position: static; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; height: auto !important; flex-basis: 100%; box-shadow: none; padding: 0; gap: 8px; }
+body .header #navigation > a { min-height: 80px; height: auto !important; border: 0; }
+body .header .menu-toggle, body .header .search-toggle, .carousel-prev, .carousel-next, .carousel-dots { display: none !important; }
+@media (max-width: 600px) { body .header #navigation { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
