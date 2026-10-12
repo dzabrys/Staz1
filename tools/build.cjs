@@ -6,7 +6,7 @@ const base=process.env.SITE_URL||'https://dzabrys.github.io/Staz1/';
 const robots=process.env.SITE_INDEX==='0'?'noindex,follow':'index,follow';
 const used=new Set(['assets/favicon.svg','assets/font-1.woff2','assets/font-2.woff2','assets/font-3.woff2','assets/font-4.woff2','assets/LICENSE-caveat.txt','assets/LICENSE-lato.txt','assets/hero-768.webp','assets/hero-1536.webp','assets/wzor-zapytania.txt']);
 const esc=s=>s.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;');
-const crop=(s,x,y,w,h,cls='',label='')=>{const name=`assets/${s}-${x}-${y}-${w}-${h}.webp`;used.add(name);return `<img class="crop ${cls}" src="${name}" width="${w}" height="${h}" alt="${esc(label)}" loading="${y<160?'eager':'lazy'}" decoding="async">`;};
+const crop=(s,x,y,w,h,cls='',label='')=>{const name=`assets/${s}-${x}-${y}-${w}-${h}.webp`;used.add(name);return `<img class="crop ${cls}" src="${name}" width="${w}" height="${h}" alt="${esc(label)}" loading="${y<160||cls==='feature-icon'?'eager':'lazy'}" decoding="async">`;};
 const context=file=>vm.createContext({assetCrop:crop,location:{pathname:new URL(base).pathname+file},document:{body:{}}});
 const ctx=context('index.html');vm.runInContext(source,ctx);
 const data=JSON.parse(vm.runInContext('JSON.stringify({games,companyGames,pages,steps})',ctx));
