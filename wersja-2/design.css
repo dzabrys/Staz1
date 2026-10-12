@@ -49,3 +49,39 @@ h1{overflow-wrap:anywhere}.game-hero>*{min-width:0}.carousel-prev,.carousel-next
 .underline:after{bottom:0}
 .subpage-intro h1 .underline{display:inline-block}
 .custom-intro h1 .underline:after{bottom:0}
+
+/* Smaller type and more breathing room, with fully visible audience photos. */
+
+:root{--gutter:clamp(24px,4.5vw,64px);--h1:clamp(36px,3.9vw,58px);--h2:clamp(23px,1.95vw,29px)}
+body{font-size:16px;line-height:1.45}#app{max-width:1440px}
+.header{height:100px;gap:22px}.brand{flex:0 0 23%;width:280px}.header nav{height:62px}.header nav>a{font-size:14px;gap:8px}.header svg{width:32px;height:32px}.search-toggle{width:46px;height:46px}
+.button{font-size:16px;padding:11px 20px;gap:12px;min-height:44px}
+.subpage-hero{padding-bottom:38px;margin-bottom:24px;gap:0 48px}.subpage-intro{padding-top:24px}
+.company-hero,.supplemental .subpage-hero,.game-hero{min-height:370px;padding-bottom:38px;gap:0 48px}
+.subpage-intro h1,.company-intro h1,.supplemental .subpage-intro h1,.game-hero .subpage-intro h1,.custom-intro h1{font-size:var(--h1);line-height:1.08;margin-bottom:24px}
+.subpage-intro p,.company-intro p,.supplemental .subpage-intro p,.game-hero .subpage-intro>p{font-size:18px;line-height:1.45;max-width:58ch}
+.subpage-intro h2,.supplemental .subpage-intro h2{font-size:26px;line-height:1.2;margin-bottom:15px}
+.school-offer p,.company-offer p,.mission-offer p,.game-aside>p{font-size:16px;line-height:1.5}
+.school-offer h2,.company-offer h2,.mission-offer h2,.contact-card h2,.game-aside h2{font-size:var(--h2);line-height:1.2}
+.handwritten{font-size:35px}.mission-note{font-size:31px}
+.games-section,.content-section,.process{padding-top:32px;padding-bottom:38px;margin-bottom:24px}
+.games-grid{gap:20px}.game-copy{padding:15px 15px 20px;min-height:114px}.game-copy h3{font-size:17px;margin-bottom:9px}.game-copy p{font-size:15px;line-height:1.4}
+.steps{gap:20px}.steps li{padding:12px 18px 22px}.steps h3{font-size:17px;line-height:1.25;margin:8px 0 10px}.steps p{font-size:15px;line-height:1.45}.step-number{font-size:51px}
+.mission-values,.brief-list{gap:28px}.mission-values h3,.brief-list h3{font-size:21px}.mission-values p,.brief-list p{font-size:16px;line-height:1.5}.brief-number{font-size:49px}
+.game-description h3{font-size:22px}.game-description p{font-size:16px;line-height:1.55}
+.benefits,.home-footer{padding-top:32px;padding-bottom:32px}.benefits h2,.subpage-footer>h2{font-size:26px}
+.home-main{grid-template-columns:minmax(0,39%) minmax(0,1fr);height:auto;min-height:0;gap:28px;margin:16px var(--gutter) 32px}
+.audiences{display:grid;grid-template-columns:1fr;gap:20px}
+.audience{display:grid;grid-template-columns:minmax(0,55%) minmax(0,45%);align-items:center;min-height:186px;flex:none;background:#fff;border:1px solid #d9edfa}
+.audience:after{content:none;background:none}
+.card-photo{position:static;inset:auto;grid-column:2;grid-row:1;width:100%;height:auto;z-index:auto;opacity:1;padding:8px}
+.card-photo img{width:100%;height:auto;object-fit:contain;border-radius:14px}
+.audience-copy{grid-column:1;grid-row:1;padding:20px 12px 20px 20px;min-width:0}
+.audience h2{font-size:24px;line-height:1.15;min-height:0;margin-bottom:12px}
+.audience p{font-size:15px;line-height:1.4;min-height:0;margin-bottom:15px;max-width:none}
+.audience .button{font-size:14px;line-height:1.2;padding:10px 13px;gap:9px;min-height:44px}
+.hero-carousel{min-height:520px;height:auto}.hero-copy{padding:40px 32px}.hero-copy h1{font-size:clamp(40px,4.1vw,60px);line-height:1.08}.hero-copy p{font-size:21px;line-height:1.4}.hero-copy .button{font-size:16px}
+@media(max-width:1100px){.header{gap:14px}.header nav>a{font-size:12px;padding-inline:7px}.brand{flex-basis:25%}.audience h2{font-size:22px}.audience-copy{padding:18px 10px 18px 16px}.audience p{font-size:14px}.audience .button{font-size:13px;padding-inline:10px;gap:7px}}
+@media(max-width:1000px){.brand{flex:0 1 290px;max-width:65%}.header{height:94px}.header nav{height:auto}.home-main{gap:28px}.hero-carousel{height:420px;min-height:0}.audience{grid-template-columns:minmax(0,52%) minmax(0,48%);min-height:190px}.audience h2{font-size:25px}.audience p{font-size:16px;max-width:32ch}.audience-copy{padding:24px}.audience .button{font-size:14px}.card-photo{padding:12px}.card-photo img{max-height:220px}.subpage-hero,.company-hero,.supplemental .subpage-hero,.game-hero{gap:0 28px}}
+@media(max-width:700px){:root{--gutter:24px;--h1:clamp(30px,7.9vw,40px);--h2:25px}.header{height:84px;padding-inline:20px}.brand{flex:0 1 250px}.header nav>a{font-size:13px}.header svg{width:28px;height:28px}.search-toggle{width:39px;height:39px}.subpage-hero,.company-hero,.supplemental .subpage-hero,.game-hero{min-height:0;padding-bottom:30px;margin-bottom:24px;gap:0}.subpage-intro,.company-intro,.supplemental .subpage-intro,.game-hero .subpage-intro{padding-top:24px}.subpage-intro p,.company-intro p,.supplemental .subpage-intro p,.game-hero .subpage-intro>p{font-size:17px}.subpage-intro h2,.supplemental .subpage-intro h2{font-size:23px}.school-offer h2,.company-offer h2,.mission-offer h2,.contact-card h2,.game-aside h2{font-size:25px}.school-offer p,.company-offer p,.mission-offer p{font-size:16px;line-height:1.5}.home-main{margin-inline:20px;margin-top:12px}.hero-carousel{height:420px}.hero-copy{padding:32px 24px}.hero-copy h1{font-size:38px}.hero-copy p{font-size:19px}.audience{min-height:185px}.audience-copy{padding:20px 10px 20px 18px}.audience h2{font-size:22px}.audience p{font-size:14px}.audience .button{font-size:13px;padding-inline:11px}.card-photo{padding:8px}.games-grid{gap:18px}.game-copy{padding:14px 12px 50px}.game-copy h3{font-size:17px}.game-copy p{font-size:14px}.steps{gap:24px 18px}.steps li{padding-inline:16px}.mission-values h3,.brief-list h3{font-size:21px}.mission-values p,.brief-list p{font-size:16px}.feature>span{font-size:14px}.benefits h2,.subpage-footer>h2{font-size:24px}}
+@media(max-width:370px){:root{--gutter:20px}.home-main{margin-inline:16px}.audience{grid-template-columns:minmax(0,56%) minmax(0,44%)}.audience h2{font-size:20px}.audience-copy{padding-left:14px}.audience .button{font-size:12px;padding-inline:9px}.header{padding-inline:16px}.hero-copy h1{font-size:34px}}
