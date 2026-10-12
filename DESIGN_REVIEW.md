@@ -32,3 +32,7 @@ Zmiany dotyczą głównego serwisu. Oddzielny katalog `wersja-2/` pozostaje osob
 Kontrola w przeglądarce obejmuje sześć głównych podstron przy 320, 390, 768, 1536 i 1920 px oraz strony ofertowe i główną przy 1366 px. Sprawdzono wspólną wielkość H1, brak poziomego przepełnienia, brak obciętych tekstów i treści kafli, mobilne otwarcie Team building, zamknięcie poprzedniego opisu po wyborze kolejnej gry oraz panel opisu na komputerze. Wykonano build, kontrolę składni `app.js` i `git diff --check`.
 
 Porównanie jest wizualne. Zdjęcia pozostają materiałami przykładowymi, a dane kontaktowe demonstracyjne.
+
+## Logo
+
+Kostkę w `assets/logo.svg` odtworzono według dodatkowej referencji: zaokrąglona biała góra i przód, granatowy bok, pomarańczowe łuki oraz kropki odwzorowujące perspektywę każdej ścianki. Kropki korzystają z symetrycznych współrzędnych lokalnych i osobnego przycięcia do ściany, więc nie mogą wystawać poza kostkę. Napisy są obrysami z dołączonych fontów Lato Black/Bold, dzięki czemu wygląd logo nie zależy od fontów urządzenia. Tło poza znakiem pozostaje przezroczyste. Sprawdzono render SVG oraz logo w nagłówku na komputerze i przy szerokości 390 px; generator odświeża hash logo na wszystkich sześciu stronach.
