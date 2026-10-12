@@ -9,7 +9,7 @@ const root = path.resolve(__dirname, '..');
 const source = fs.readFileSync(path.join(root, 'app.js'), 'utf8').split('/* Hydrate the published HTML;')[0];
 const base = 'https://dzabrys.github.io/Staz1/';
 const assetUrl = file => file+'?v='+crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex').slice(0,12);
-const css = ['assets/fonts.css','styles.css','responsive.css','experience.css','audit-fixes.css'].map(file=>{
+const css = ['assets/fonts.css','styles.css','responsive.css','experience.css','audit-fixes.css','reference-layout.css'].map(file=>{
   let content=fs.readFileSync(path.join(root,file),'utf8');
   if(file==='assets/fonts.css') content=content.replace(/url\(([^)]+)\)/g,(_,font)=>'url('+assetUrl('assets/'+font)+')');
   return content;
