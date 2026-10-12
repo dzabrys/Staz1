@@ -1,0 +1,320 @@
+/* Shared reference scale. These rules own layout; earlier sheets retain behaviour. */
+:root {
+  --canvas-width: 1920px;
+  --page-gutter: clamp(18px, 3.2vw, 48px);
+  --section-space: clamp(18px, 1.4vw, 22px);
+  --card-gap: clamp(12px, 1.2vw, 18px);
+  --card-radius: 24px;
+  --heading-large: clamp(38px, 4.8vw, 76px);
+  --heading-medium: clamp(26px, 2.25vw, 36px);
+  --heading-small: clamp(18px, 1.25vw, 20px);
+  --text-lead: clamp(18px, 1.45vw, 23px);
+  --text-body: clamp(16px, 1.1vw, 18px);
+  --accent: #ff6508;
+  --orange: #f45600;
+  --surface-blue: #e4f5fc;
+  --surface-peach: #fff0e3;
+  --line: #b9deed;
+}
+body {
+  background: radial-gradient(ellipse at 85% 15%, #e8f7fd 0%, transparent 65%),
+    linear-gradient(160deg, #fbfdff 0%, #f4fbff 55%, #def3fc 100%);
+  background-attachment: scroll;
+}
+body:not(.page-home) {
+  --page-gutter: clamp(18px, 3.2vw, 48px);
+  --heading-large: clamp(38px, 4.8vw, 76px);
+  --heading-medium: clamp(26px, 2.25vw, 36px);
+  --heading-small: clamp(18px, 1.25vw, 20px);
+  --text-lead: clamp(18px, 1.45vw, 23px);
+  --text-body: clamp(16px, 1.1vw, 18px);
+}
+body .header, body:not(.page-home) .header {
+  height: clamp(96px, 8.3vw, 128px);
+  padding: 10px var(--page-gutter);
+  background: linear-gradient(100deg, #ffffffed, #ffffffa6);
+}
+body .header .brand, body:not(.page-home) .header .brand {
+  width: clamp(250px, 27vw, 410px);
+  max-width: 29%;
+  margin-right: clamp(20px, 4vw, 64px);
+}
+body .header #navigation, body:not(.page-home) .header #navigation { height: 72px; }
+body .header #navigation > a { font-size: clamp(13px, 1.12vw, 18px); font-weight: 700; }
+body .header #navigation > a svg { width: 42px; height: 42px; }
+body .header .search-toggle, body:not(.page-home) .header .search-toggle { width: 56px; height: 56px; margin-left: 22px; }
+.underline:after { background: var(--accent); height: 5px; bottom: -7px; }
+.button, body:not(.page-home) .button {
+  min-height: 44px;
+  padding: 10px 20px;
+  font-size: clamp(16px, 1.3vw, 20px);
+  background: linear-gradient(120deg, #ff9500, #ff7900);
+}
+
+/* Photos and the white fade are clipped by each card's rounded silhouette. */
+.page-home .home-main { gap: 20px; padding-inline: var(--page-gutter); }
+.page-home .audiences { gap: var(--card-gap); }
+.page-home .audience {
+  border-radius: var(--card-radius);
+  background: var(--surface-blue);
+  box-shadow: 0 3px 12px #062b780c;
+  border: 1px solid #cde7f2;
+}
+.page-home .audience:after {
+  background: linear-gradient(90deg, #e8f6fd 2%, #e8f6fded 34%, #e8f6fdb3 49%, transparent 80%);
+}
+.page-home .card-photo { width: 80%; }
+.page-home .audience-copy { padding: 18px 20px; }
+.page-home .audience h2 {
+  max-width: 90%;
+  font-size: var(--heading-medium);
+  line-height: 1.08;
+  margin: 0 0 16px;
+}
+.page-home .audience p { max-width: 65%; line-height: 1.23; font-size: var(--text-body); }
+.page-home .audience .button { font-size: 17px; padding: 9px 16px; }
+.page-home .hero-carousel { border-radius: var(--card-radius); min-height: 480px; }
+.page-home .hero-copy h1 { font-size: var(--heading-large); line-height: 1.04; }
+.hero-shade { background: linear-gradient(90deg, #00255cbb, #00255c55 52%, #00255c08); }
+.page-home .home-footer { padding-inline: var(--page-gutter); background: #ffffffb8; }
+
+/* A narrow offer column preserves the reference composition and reduces blank space. */
+body:not(.page-home) main .subpage-hero {
+  min-height: 0;
+  height: auto;
+  grid-template-columns: minmax(0, 1fr) minmax(290px, 24%);
+  grid-template-rows: auto auto;
+  gap: 0 clamp(24px, 3vw, 48px);
+  padding: 0 var(--page-gutter) 24px;
+}
+body:not(.page-home) .subpage-hero .breadcrumb { padding: 10px 0 0; font-size: 15px; }
+body:not(.page-home) main .subpage-intro { padding: 20px 0 0; }
+body:not(.page-home) main .subpage-intro h1 {
+  font-size: var(--heading-large);
+  line-height: 1.02;
+  letter-spacing: -.035em;
+  margin: 0 0 20px;
+  color: var(--navy);
+}
+body:not(.page-home) main .subpage-intro h1 em { font-size: inherit; line-height: inherit; }
+body:not(.page-home) main .subpage-intro h2 {
+  font-size: var(--heading-medium);
+  line-height: 1.16;
+  margin: 0 0 10px;
+}
+body:not(.page-home) main .subpage-intro p {
+  font-size: var(--text-lead);
+  line-height: 1.3;
+  max-width: 48ch;
+  margin: 0;
+}
+body:not(.page-home) main .subpage-intro > .button { margin-top: 18px; }
+body:not(.page-home) main .subpage-aside { margin: 20px 0 0; }
+body:not(.page-home) main .school-offer h2 { font-size: var(--heading-medium); line-height: 1.12; }
+body:not(.page-home) main .school-offer p {
+  font-size: var(--text-body);
+  line-height: 1.3;
+  margin-top: 18px;
+}
+body:not(.page-home) main :is(.schools-hero, .company-hero, .custom-hero) {
+  min-height: clamp(320px, 25vw, 400px);
+}
+.schools-main .school-hero-photo { width: 77%; right: 5%; height: 100%; opacity: 0; object-fit: contain; object-position: 55% 52%; }
+.schools-main .school-scene {
+  display: block; left: auto; right: 22%; top: 0; width: 37%; height: 100%;
+  container-type: size; z-index: -3;
+  mask-image: linear-gradient(90deg, transparent, #000 16%, #000 86%, transparent);
+}
+.schools-main .school-scene > .crop {
+  position: absolute; top: 50%; left: 50%;
+  width: calc(100cqh * var(--crop-ratio));
+  height: auto; transform: translate(-50%, -50%);
+  mask-image: linear-gradient(90deg, transparent, #000 15%, #000 88%, transparent);
+}
+.schools-main .school-fade, .company-main .company-fade {
+  background: linear-gradient(90deg, #fbfdff 0%, #fbfdfff0 21%, #fbfdff24 46%, #fbfdff1a 60%, #fbfdffe8 79%, #fbfdfffa),
+    linear-gradient(0deg, #f4fbff 0%, transparent 18%);
+}
+.company-main .company-photo { width: 61%; right: 17%; height: 100%; }
+.custom-main .custom-photo { width: 75%; height: 100%; }
+.custom-main .custom-fade {
+  background: linear-gradient(90deg, #fbfdff 0%, #fbfdfff2 26%, #fbfdff7a 43%, #ffffff10 68%, #ffffff5c),
+    linear-gradient(0deg, #f4fbff, transparent 25%);
+}
+.custom-main .custom-intro { max-width: 620px; }
+.custom-main .custom-intro p { max-width: 46ch; }
+body:not(.page-home) main .handwritten {
+  justify-self: end;
+  align-self: center;
+  font-size: clamp(34px, 3vw, 48px);
+  margin: 60px 10px 0 0;
+}
+
+/* Five compact cards above a soft wave, like the school and company references. */
+body:not(.page-home) :is(.games-section, .process, .benefits, .subpage-footer) {
+  padding: var(--section-space) var(--page-gutter);
+}
+body:not(.page-home) :is(.games-section, .process, .benefits, .subpage-footer) > h2 {
+  margin: 0 0 22px;
+  font-size: var(--heading-medium);
+  line-height: 1.16;
+}
+body:not(.page-home) .games-section {
+  background: linear-gradient(120deg, #e1f5fd, #eaf8fe);
+  border-radius: 30px 22% 24% 18% / 30px 9% 7% 7%;
+}
+body:not(.page-home) .games-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--card-gap); }
+body:not(.page-home) .game-card { border-radius: 20px; background: #ffffffed; }
+body:not(.page-home) .game-image { aspect-ratio: 2.1; overflow: hidden; container-type: size; }
+body:not(.page-home) .game-image > .crop {
+  position: absolute; top: 50%; left: 50%;
+  aspect-ratio: var(--crop-ratio) !important;
+  width: max(100cqw, calc(100cqh * var(--crop-ratio)));
+  height: auto; transform: translate(-50%, -50%);
+}
+.game-details-panel-media > .crop { aspect-ratio: var(--crop-ratio) !important; }
+body:not(.page-home) .game-copy {
+  display: grid; grid-template-columns: minmax(0, 1fr) 40px;
+  grid-template-rows: auto auto; gap: 6px 8px; min-height: 0; padding: 10px 14px 12px;
+}
+body:not(.page-home) :is(.game-copy, .steps) h3 { font-size: var(--heading-small); line-height: 1.15; }
+body:not(.page-home) :is(.game-copy, .steps) p { font-size: var(--text-body); line-height: 1.3; }
+body:not(.page-home) .game-copy h3 { grid-column: 1 / -1; margin: 0; }
+body:not(.page-home) .game-copy > p { grid-column: 1; grid-row: 2; }
+.game-details-toggle {
+  grid-column: 2; grid-row: 2; align-self: center; min-height: 44px; margin: 0; font-size: 15px; gap: 0;
+}
+.game-details-toggle > span:first-child {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.game-card-detail { grid-column: 1 / -1; }
+body:not(.page-home) .game-more { width: 40px; height: 40px; flex-basis: 40px; background: var(--accent); }
+.game-details-toggle > span:first-child { text-decoration: none; }
+.game-details-toggle:hover > span:first-child { text-decoration: underline; text-underline-offset: 3px; }
+.game-details-panel:not([hidden]) { margin-top: 18px; padding: 24px; gap: 28px; }
+
+/* All six stages on desktop; pastel silhouettes are the cards, not an outer white box. */
+.custom-main .process { background: transparent; border-radius: 0; }
+body.page-custom .process { padding-top: 8px; }
+.custom-main .steps { grid-template-columns: 1.1fr 1.12fr 1.17fr 1.05fr .9fr 1fr; gap: var(--card-gap); grid-auto-rows: 1fr; }
+.custom-main .steps li {
+  padding: 4px 14px 16px;
+  background: linear-gradient(135deg, #e6f7fe, #dff2fb);
+  border-radius: 40% 46% 25% 35% / 24% 29% 16% 17%;
+}
+.custom-main .steps li:nth-child(even) { background: linear-gradient(135deg, #fff4eb, #ffecdd); }
+.custom-main .step-number { font-size: clamp(52px, 4.5vw, 70px); margin: 0 0 4px; color: #377ac6; }
+.custom-main .steps li:nth-child(even) .step-number { color: #d85814; }
+.custom-main .steps h3 { margin-bottom: 6px; }
+.custom-main .steps p { line-height: 1.25; }
+.custom-main .steps li .step-arrow { display: block; right: -19px; top: 22px; width: 30px; height: 30px; }
+.custom-main .steps li:last-child .step-arrow { display: none; }
+
+/* Benefit rows use the same compact scale and common gutters on every route. */
+body:not(.page-home) .benefits {
+  background: #ffffffb8;
+  border-radius: 12% 18% 24% 14% / 7% 12% 15% 12%;
+}
+body:not(.page-home) .benefits:before { display: none; }
+body:not(.page-home) :is(.benefits-row, .subpage-footer .competencies) {
+  grid-template-columns: repeat(5, minmax(0, 1fr)) auto;
+  gap: 16px;
+  align-items: center;
+}
+body.page-custom :is(.benefits-row, .subpage-footer .competencies) { grid-template-columns: repeat(6, minmax(0, 1fr)) auto; }
+body:not(.page-home) .benefits-row > .feature {
+  gap: 10px;
+  padding-right: 12px;
+  border-right: 1px solid var(--line);
+  min-height: 66px;
+}
+body:not(.page-home) :is(.benefits, .subpage-footer) .feature-icon { width: clamp(40px, 3.6vw, 56px); }
+body:not(.page-home) :is(.benefits, .subpage-footer) .feature > span:not(.crop) {
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.3;
+}
+body:not(.page-home) .benefits .socials { grid-column: auto; margin: 0; align-items: flex-start; justify-self: end; }
+.benefits .footer-contact { font-size: 14px; max-width: 150px; }
+.benefits .demo-label { font-size: 12px; }
+body:not(.page-home) .subpage-footer { background: #ffffffb8; }
+body:not(.page-home) .subpage-footer .competencies { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
+body:not(.page-home) .subpage-footer .socials { margin-top: 18px; }
+body:not(.page-home) .supplemental { padding: 0; }
+body:not(.page-home) .supplemental .subpage-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 40%);
+  padding-bottom: 24px;
+}
+body:not(.page-home) main .subpage-visual { height: 300px; }
+body:not(.page-home) .supplemental > .content-section { padding: var(--section-space) var(--page-gutter); }
+.mission-values { gap: 22px 32px; }
+.mission-values article { padding: 22px; background: var(--surface-blue); border-radius: var(--card-radius); }
+.mission-values article:nth-child(even) { background: var(--surface-peach); }
+body:not(.page-home) .mission-values p { font-size: var(--text-body); line-height: 1.4; }
+
+@media (max-width: 1200px) {
+  body .header, body:not(.page-home) .header { height: 100px; }
+  body .header .brand, body:not(.page-home) .header .brand { width: 300px; max-width: 65%; margin-right: 0; }
+  body .header .search-toggle, body:not(.page-home) .header .search-toggle { margin-left: 0; }
+  body:not(.page-home) .games-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .custom-main .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .custom-main .steps li:nth-child(3n) .step-arrow { display: none; }
+  body:not(.page-home) :is(.benefits-row, .subpage-footer .competencies), body.page-custom :is(.benefits-row, .subpage-footer .competencies) { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  body:not(.page-home) .benefits .socials { justify-self: start; }
+  body:not(.page-home) .subpage-footer .competencies { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 899px) {
+  body:not(.page-home) main .subpage-hero,
+  body:not(.page-home) .supplemental .subpage-hero {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+    gap: 0;
+    padding-bottom: 24px;
+  }
+  body:not(.page-home) main .subpage-aside { margin-top: 20px; }
+  body:not(.page-home) main .school-offer p { max-width: 65ch; }
+  .schools-main .school-fade, .company-main .company-fade, .custom-main .custom-fade {
+    background: linear-gradient(90deg, #fbfdfff5, #fbfdffcc), linear-gradient(0deg, #f4fbff 2%, transparent 80%);
+  }
+  .schools-main .school-hero-photo, .company-main .company-photo, .custom-main .custom-photo { width: 100%; right: 0; height: 100%; }
+  .schools-main .school-scene { display: none; }
+  .schools-main .school-hero-photo { opacity: .3; }
+  .custom-main .custom-intro { max-width: none; }
+  body:not(.page-home) main .handwritten { margin: 18px 14px 4px 0; font-size: 34px; }
+  body:not(.page-home) .games-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .page-home .audience-copy { padding: 18px; }
+  .page-home .audience p { max-width: 75%; }
+}
+@media (max-width: 700px) {
+  body:not(.page-home) .games-grid { grid-template-columns: minmax(0, 1fr); }
+  .game-card-detail:not([hidden]) { margin-top: 10px; padding-top: 12px; }
+  body:not(.page-home) .game-card-detail-description { font-size: 17px; line-height: 1.5; }
+}
+@media (max-width: 600px) {
+  body .header, body:not(.page-home) .header { height: 88px; padding: 10px var(--page-gutter); }
+  body .header .brand, body:not(.page-home) .header .brand { width: 229px; max-width: 65%; }
+  body .header .search-toggle, body:not(.page-home) .header .search-toggle { width: 42px; height: 42px; }
+  body:not(.page-home) main .subpage-intro { padding-top: 18px; }
+  body:not(.page-home) main .subpage-intro h1 { margin-bottom: 18px; }
+  body:not(.page-home) main .subpage-intro h1 em { margin-top: 0; }
+  body:not(.page-home) main .subpage-intro p { line-height: 1.4; }
+  body:not(.page-home) main .school-offer p { font-size: 17px; line-height: 1.4; }
+  body:not(.page-home) :is(.games-section, .process, .benefits, .subpage-footer) > h2 { margin-bottom: 20px; }
+  body:not(.page-home) .games-section { border-radius: 24px; }
+  body:not(.page-home) .game-copy { padding: 14px 16px; }
+  body:not(.page-home) .game-copy h3, .custom-main .steps h3 { font-size: 21px; }
+  body:not(.page-home) .game-copy > p, .custom-main .steps p { font-size: 17px; }
+  .custom-main .steps { grid-template-columns: minmax(0, 1fr); gap: 20px; grid-auto-rows: auto; }
+  .custom-main .steps li { padding: 14px 20px 22px; border-radius: 32px 48px 32px 40px; }
+  .custom-main .steps li .step-arrow { display: none; }
+  body:not(.page-home) :is(.benefits-row, .subpage-footer .competencies), body.page-custom :is(.benefits-row, .subpage-footer .competencies) { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  body:not(.page-home) .benefits-row > .feature { border: 0; min-height: 52px; }
+  body:not(.page-home) :is(.benefits, .subpage-footer) .feature > span:not(.crop) { font-size: 16px; }
+  body:not(.page-home) .benefits .socials { justify-self: start; }
+  .benefits .footer-contact { max-width: none; font-size: 16px; }
+  .page-home .home-main { padding-inline: var(--page-gutter); gap: 16px; }
+  .page-home .audience { min-height: 210px; }
+  .page-home .audience h2 { max-width: 85%; }
+  .page-home .audience p { max-width: 70%; font-size: 17px; }
+  .page-home .hero-carousel { min-height: 430px; }
+  .page-home .hero-copy h1 { font-size: var(--heading-large); }
+}
