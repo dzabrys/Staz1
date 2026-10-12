@@ -79,39 +79,75 @@ if(gameTriggers.length){
  gameDetailPanel.innerHTML='<div class="game-details-panel-media"></div><div class="game-details-panel-copy"><button class="game-details-close" type="button" aria-label="Zamknij opis gry">×</button><p class="game-details-panel-age"></p><h3 class="game-details-panel-title" tabindex="-1"></h3><p class="game-details-panel-description"></p><p class="demo-label">Przykładowy opis — szczegóły oferty wymagają potwierdzenia.</p><a class="button game-details-contact" href="kontakt.html"><span class="button-label">Zapytaj o tę grę</span>'+arrows+'</a></div>';
  grid.after(gameDetailPanel);
  const mobileGameLayout=matchMedia('(max-width: 700px)');
- const placeGamePanel=trigger=>{
-  if(mobileGameLayout.matches)trigger.closest('.game-card').after(gameDetailPanel);
-  else grid.after(gameDetailPanel);
- };
- const closeGameDetails=returnFocus=>{
-  if(!activeGameTrigger)return;
-  activeGameTrigger.setAttribute('aria-expanded','false');
-  const previous=activeGameTrigger;
-  activeGameTrigger=null;
-  gameDetailPanel.hidden=true;
-  if(returnFocus)previous.focus();
- };
- const showGameDetails=(trigger,focusPanel=false)=>{
-  if(activeGameTrigger===trigger){closeGameDetails(false);return;}
-  if(activeGameTrigger)activeGameTrigger.setAttribute('aria-expanded','false');
-  activeGameTrigger=trigger;
-  trigger.setAttribute('aria-expanded','true');
-  placeGamePanel(trigger);
+ const getGameData=trigger=>{
   const company=trigger.hasAttribute('data-company-game');
   const source=company?'company':'schools';
   const index=Number(trigger.dataset[company?'companyGame':'game']);
-  const game=(company?companyGames:games)[index];
+  return {company,source,index,game:(company?companyGames:games)[index]};
+ };
+ const getInlineDetails=trigger=>{
+  const card=trigger.closest('.game-card');
+  let details=card.querySelector('.game-card-detail');
+  if(!details){
+   const data=getGameData(trigger);
+   details=document.createElement('div');
+   details.className='game-card-detail';
+   details.id='game-card-detail-'+data.source+'-'+data.index;
+   details.hidden=true;
+   details.innerHTML='<p class="game-card-detail-description"></p>';
+   trigger.after(details);
+  }
+  return details;
+ };
+ const renderGameDetails=trigger=>{
+  const {company,source,game}=getGameData(trigger);
+  const inlineDetails=getInlineDetails(trigger);
+  if(mobileGameLayout.matches){
+   gameDetailPanel.hidden=true;
+   trigger.setAttribute('aria-controls',inlineDetails.id);
+   inlineDetails.querySelector('.game-card-detail-description').textContent=game.detail;
+   inlineDetails.hidden=false;
+   return;
+  }
+  grid.after(gameDetailPanel);
+  inlineDetails.hidden=true;
+  trigger.setAttribute('aria-controls',gameDetailPanel.id);
   gameDetailPanel.querySelector('.game-details-panel-media').innerHTML=crop(source,...game.crop,'',game.title);
   gameDetailPanel.querySelector('.game-details-panel-age').textContent=(company?'Dla uczestników: ':'Klasy: ')+game.age;
   gameDetailPanel.querySelector('.game-details-panel-title').textContent=game.title;
   gameDetailPanel.querySelector('.game-details-panel-description').textContent=game.detail;
   gameDetailPanel.querySelector('.game-details-contact').href='kontakt.html?temat='+encodeURIComponent(game.title);
   gameDetailPanel.hidden=false;
-  if(focusPanel)gameDetailPanel.querySelector('.game-details-panel-title').focus({preventScroll:true});
-  if(focusPanel||!mobileGameLayout.matches)gameDetailPanel.scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+ };
+ const closeGameDetails=returnFocus=>{
+  if(!activeGameTrigger)return;
+  const previous=activeGameTrigger;
+  previous.setAttribute('aria-expanded','false');
+  getInlineDetails(previous).hidden=true;
+  gameDetailPanel.hidden=true;
+  activeGameTrigger=null;
+  if(returnFocus)previous.focus();
+ };
+ const showGameDetails=(trigger,focusPanel=false)=>{
+  if(activeGameTrigger===trigger){closeGameDetails(false);return;}
+  if(activeGameTrigger){
+   activeGameTrigger.setAttribute('aria-expanded','false');
+   getInlineDetails(activeGameTrigger).hidden=true;
+  }
+  activeGameTrigger=trigger;
+  trigger.setAttribute('aria-expanded','true');
+  renderGameDetails(trigger);
+  if(focusPanel){
+   const focusTarget=mobileGameLayout.matches?getInlineDetails(trigger):gameDetailPanel.querySelector('.game-details-panel-title');
+   if(mobileGameLayout.matches)focusTarget.setAttribute('tabindex','-1');
+   focusTarget.focus({preventScroll:true});
+   focusTarget.scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  }else if(!mobileGameLayout.matches){
+   gameDetailPanel.scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  }
  };
  gameTriggers.forEach(trigger=>trigger.addEventListener('click',()=>showGameDetails(trigger)));
- mobileGameLayout.addEventListener('change',()=>{if(activeGameTrigger)placeGamePanel(activeGameTrigger);});
+ mobileGameLayout.addEventListener('change',()=>{if(activeGameTrigger)renderGameDetails(activeGameTrigger);});
  gameDetailPanel.querySelector('.game-details-close').addEventListener('click',()=>closeGameDetails(true));
  window.showGameDetails=(source,index)=>{
   const attr=source==='company'?'company-game':'game';

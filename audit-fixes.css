@@ -116,7 +116,15 @@ body:not(.page-home) .game-card { order: initial; min-width: 0; }
   transition: transform 180ms ease;
 }
 .game-details-toggle[aria-expanded="true"] .game-more { transform: rotate(90deg); }
+.game-card-detail[hidden] { display: none !important; }
 .game-details-panel[hidden] { display: none !important; }
+.game-card-detail:not([hidden]) {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #c5e3f0;
+
+}
+.game-card-detail-description { font-size: 16px; line-height: 1.5; }
 .game-details-panel:not([hidden]) {
   grid-column: 1 / -1;
   display: grid;
@@ -159,8 +167,7 @@ body:not(.page-home) .game-card { order: initial; min-width: 0; }
   body:not(.page-home) .games-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 }
 @media (max-width: 700px) {
-  .game-details-panel:not([hidden]) { grid-template-columns: minmax(0, 1fr); gap: 18px; }
-  .game-details-panel-media > .crop { aspect-ratio: 2.1 !important; }
+  .game-details-panel:not([hidden]) { display: none !important; }
 }
 @media (max-width: 600px) {
   body:not(.page-home) .games-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
