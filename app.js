@@ -16,7 +16,7 @@ const current = location.pathname.split('/').pop() || 'index.html';
 const page = pages.find(item => item[0]===current) || pages[0];
 const isHome = page[2] === 'home';
 document.body.className = `page-${page[2]}`;
-const header = `<header class="header"><a href="./" class="brand" aria-label="Wielkie Gry Planszowe — strona główna">${crop('home',43,12,469,139)}</a><button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navigation">☰ <span>Menu</span></button><nav id="navigation" aria-label="Nawigacja główna">${pages.map(([url,label,id]) => `<a href="${url}" ${id===page[2]?'aria-current="page"':''}>${icon(id)}<span>${label}</span></a>`).join('')}</nav><button class="search-toggle" aria-label="Otwórz wyszukiwarkę">${icon('search')}</button></header>`;
+const header = `<header class="header"><a href="./" class="brand" aria-label="Wielkie Gry Planszowe — strona główna"><img class="brand-mark" src="assets/logo.svg" alt=""></a><button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navigation">☰ <span>Menu</span></button><nav id="navigation" aria-label="Nawigacja główna">${pages.map(([url,label,id]) => `<a href="${url}" ${id===page[2]?'aria-current="page"':''}>${icon(id)}<span>${label}</span></a>`).join('')}</nav><button class="search-toggle" aria-label="Otwórz wyszukiwarkę">${icon('search')}</button></header>`;
 const button = (text,href,cls='') => `<a class="button ${cls}" href="${href}"><span class="button-label">${text}</span>${arrows}</a>`;
 const breadcrumb = title => `<nav class="breadcrumb" aria-label="Ścieżka nawigacji"><ol><li><a href="./">Strona główna</a></li><li aria-current="page">${title}</li></ol></nav>`;
 const social = (home=false) => `<div class="socials ${home?'socials-home':''}"><a class="footer-contact" href="kontakt.html">Kontakt i dane testowe ${arrows}</a><span class="demo-label">Wersja demonstracyjna</span></div>`;
@@ -39,7 +39,7 @@ const companyGames = [
  {title:'Kreatywne myślenie',desc:'Innowacyjność,<br>podejmowanie decyzji',age:'14+',crop:[1215,573,281,124],detail:'Przestrzeń do szukania pomysłów, odkrywania nowych perspektyw i podejmowania wspólnych decyzji.'}
 ];
 const slug = text => text.toLocaleLowerCase('pl').normalize('NFD').replace(/\p{M}/gu,'').replaceAll('ł','l').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-const gameCard = (game,i,source) => `<article class="game-card"><div class="game-image">${crop(source,...game.crop,'',game.title)}<span class="age" aria-label="${source==='schools'?'Klasy':'Wiek'} ${game.age}">${game.age}</span></div><div class="game-copy"><h3>${game.title}</h3><p>${game.desc.replaceAll('<br>',' ')}</p></div><details class="game-details" data-${source==='schools'?'game':'company-game'}="${i}"><summary aria-label="Opis gry: ${game.title}"><span>Opis gry</span><span class="game-more" aria-hidden="true">${arrows}</span></summary><div class="game-detail-body" id="gra-${slug(game.title)}"><p>${game.detail}</p><p class="demo-label">Przykładowy opis — szczegóły oferty wymagają potwierdzenia.</p>${button('Zapytaj o tę grę','kontakt.html?temat='+encodeURIComponent(game.title))}</div></details></article>`;
+const gameCard = (game,i,source) => `<article class="game-card"><div class="game-image">${crop(source,...game.crop,'',game.title)}<span class="age" aria-label="${source==='schools'?'Klasy':'Wiek'} ${game.age}">${game.age}</span></div><div class="game-copy"><h3>${game.title}</h3><p>${game.desc.replaceAll('<br>',' ')}</p><button class="game-details-toggle" type="button" data-${source==='schools'?'game':'company-game'}="${i}" aria-expanded="false" aria-controls="game-details"><span>Opis gry</span><span class="game-more" aria-hidden="true">${arrows}</span></button></div></article>`;
 const company = () => `<main id="main" class="company-main"><section class="company-hero subpage-hero"><div class="company-photo">${crop('company',650,106,538,444)}</div><div class="company-fade"></div>${breadcrumb('Firmy i instytucje')}<div class="company-intro subpage-intro"><h1>Wielkie gry<br><em class="underline">dla firm i instytucji</em></h1><p>Tworzymy angażujące gry wielkoformatowe, które wspierają<br class="desktop-break"> rozwój kompetencji, integrują zespoły i ułatwiają komunikację.</p>${button('Zapytaj o ofertę','kontakt.html')}</div><aside class="school-offer company-offer subpage-aside"><h2>Nasza oferta<br><em class="underline">dla firm i instytucji</em></h2><p>Proponujemy gotowe programy<br class="desktop-break"> i scenariusze zajęć dostosowane do potrzeb Twojej organizacji. Grywalizacja to skuteczne narzędzie budowania zaangażowania, wzmacniania kompetencji i integracji zespołu. Dzięki połączeniu zabawy z nauką uczestnicy rozwijają umiejętności współpracy, komunikacji, kreatywnego myślenia<br class="desktop-break"> oraz podejmowania decyzji.</p></aside></section><section class="games-section"><h2 class="underline">Polecane gry dla firm i instytucji</h2><div class="games-grid">${companyGames.map((game,i)=>gameCard(game,i,'company')).join('')}</div></section></main><footer class="benefits"><h2>Dlaczego warto <span>wybrać</span> nasze gry?</h2><div class="benefits-row">${['Nowoczesna<br>forma edukacji','Rozwijają<br>kompetencje<br>przyszłości','Integrują<br>zespoły<br>i budują relacje','Wspierają CSR<br>i zrównoważony<br>rozwój','Wspólna aktywność<br>i rozmowa<br>uczestników'].map((text,i)=>`<div class="feature">${featureIcon([[49,891,65,65],[291,889,66,70],[493,890,73,67],[756,889,62,71],[1021,890,65,71]][i],'schools')}<span>${text.replaceAll('<br>',' ')}</span></div>`).join('')}${social()}</div></footer>`;
 const benefits = (type) => {
  const school=type==='school';
@@ -65,7 +65,53 @@ const supplemental = () => {
 const renderPage = () => header + (isHome ? home() : page[2]==='school' ? schools() : page[2]==='custom' ? custom() : page[2]==='company' ? company() : supplemental());
 /* Hydrate the published HTML; rendering is also used by tools/render.cjs. */
 if (!$('#app').hasChildNodes()) $('#app').innerHTML = renderPage();
-const menuButton=$('.menu-toggle'),navigation=$('#navigation');
+const gameTriggers=[...document.querySelectorAll('.games-section .game-details-toggle')];
+let activeGameTrigger=null, gameDetailPanel=null;
+if(gameTriggers.length){
+ const grid=gameTriggers[0].closest('.games-grid');
+ gameDetailPanel=document.createElement('section');
+ gameDetailPanel.className='game-details-panel';
+ gameDetailPanel.id='game-details';
+ gameDetailPanel.setAttribute('role','region');
+ gameDetailPanel.setAttribute('aria-live','polite');
+ gameDetailPanel.setAttribute('aria-label','Opis wybranej gry');
+ gameDetailPanel.hidden=true;
+ gameDetailPanel.innerHTML='<div class="game-details-panel-media"></div><div class="game-details-panel-copy"><button class="game-details-close" type="button" aria-label="Zamknij opis gry">×</button><p class="game-details-panel-age"></p><h3 class="game-details-panel-title" tabindex="-1"></h3><p class="game-details-panel-description"></p><p class="demo-label">Przykładowy opis — szczegóły oferty wymagają potwierdzenia.</p><a class="button game-details-contact" href="kontakt.html"><span class="button-label">Zapytaj o tę grę</span>'+arrows+'</a></div>';
+ grid.after(gameDetailPanel);
+ const closeGameDetails=returnFocus=>{
+  if(!activeGameTrigger)return;
+  activeGameTrigger.setAttribute('aria-expanded','false');
+  const previous=activeGameTrigger;
+  activeGameTrigger=null;
+  gameDetailPanel.hidden=true;
+  if(returnFocus)previous.focus();
+ };
+ const showGameDetails=(trigger,focusPanel=false)=>{
+  if(activeGameTrigger===trigger){closeGameDetails(false);return;}
+  if(activeGameTrigger)activeGameTrigger.setAttribute('aria-expanded','false');
+  activeGameTrigger=trigger;
+  trigger.setAttribute('aria-expanded','true');
+  const company=trigger.hasAttribute('data-company-game');
+  const source=company?'company':'schools';
+  const index=Number(trigger.dataset[company?'companyGame':'game']);
+  const game=(company?companyGames:games)[index];
+  gameDetailPanel.querySelector('.game-details-panel-media').innerHTML=crop(source,...game.crop,'',game.title);
+  gameDetailPanel.querySelector('.game-details-panel-age').textContent=(company?'Dla uczestników: ':'Klasy: ')+game.age;
+  gameDetailPanel.querySelector('.game-details-panel-title').textContent=game.title;
+  gameDetailPanel.querySelector('.game-details-panel-description').textContent=game.detail;
+  gameDetailPanel.querySelector('.game-details-contact').href='kontakt.html?temat='+encodeURIComponent(game.title);
+  gameDetailPanel.hidden=false;
+  if(focusPanel)gameDetailPanel.querySelector('.game-details-panel-title').focus({preventScroll:true});
+  gameDetailPanel.scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+ };
+ gameTriggers.forEach(trigger=>trigger.addEventListener('click',()=>showGameDetails(trigger)));
+ gameDetailPanel.querySelector('.game-details-close').addEventListener('click',()=>closeGameDetails(true));
+ window.showGameDetails=(source,index)=>{
+  const attr=source==='company'?'company-game':'game';
+  const trigger=document.querySelector('[data-'+attr+'="'+index+'"]');
+  if(trigger)showGameDetails(trigger,true);
+ };
+}const menuButton=$('.menu-toggle'),navigation=$('#navigation');
 const setMenu = open => {menuButton.setAttribute('aria-expanded',String(open));navigation.classList.toggle('open',open);};
 menuButton.addEventListener('click',()=>setMenu(menuButton.getAttribute('aria-expanded')!=='true'));
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&navigation.classList.contains('open')){setMenu(false);menuButton.focus();}});
@@ -93,13 +139,14 @@ $('.search-toggle').addEventListener('click',()=>{$('#search-dialog').showModal(
 $('#search-input').addEventListener('input',renderSearch);
 $('#search-results').addEventListener('click',event=>{const link=event.target.closest('a');if(!link)return;$('#search-dialog').close();if(new URL(link.href).pathname===location.pathname)setTimeout(revealLinkedGame,0);});
 const revealLinkedGame = () => {
- let target;
- try {target=document.getElementById(decodeURIComponent(location.hash.slice(1)));} catch {return;}
- if(!target){const game=new URLSearchParams(location.search).get('gra');if(game!==null&&/^\d$/.test(game))target=$(`[data-${page[2]==='company'?'company-game':'game'}="${game}"] .game-detail-body`);}
- const detail=target?.closest('.game-details');
- if(detail){detail.open=true;detail.scrollIntoView({block:'start'});detail.querySelector('summary').focus({preventScroll:true});}
-};
-revealLinkedGame();window.addEventListener('hashchange',revealLinkedGame);
+ const source=page[2]==='company'?'company':'schools';
+ const list=source==='company'?companyGames:games;
+ let index=-1;
+ const hash=decodeURIComponent(location.hash.slice(1));
+ if(hash.startsWith('gra-'))index=list.findIndex(game=>'gra-'+slug(game.title)===hash);
+ if(index<0){const query=new URLSearchParams(location.search).get('gra');if(query!==null&&/^\d$/.test(query))index=Number(query);}
+ if(index>=0&&typeof window.showGameDetails==='function')window.showGameDetails(source,index);
+};revealLinkedGame();window.addEventListener('hashchange',revealLinkedGame);
 if(isHome){
  let active=0;
  const carouselMotion=matchMedia('(prefers-reduced-motion: reduce)');

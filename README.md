@@ -32,7 +32,7 @@ Generator używa Lightning CSS do minifikacji wspólnego arkusza. Zapisz wygener
 - `assets/` — ilustracje WebP, oryginalne PNG/TTF, fonty WOFF2, licencje oraz wzór zapytania TXT.
 - `AUDIT.md` — problemy, wprowadzone zmiany, wyniki testów i rzeczy do późniejszego uzupełnienia.
 
-Treść, nawigacja i opisy dziesięciu gier działają bez JavaScript. Opisy rozwija natywny element details. Każda strona ma jeden H1, unikalny tytuł i opis oraz canonical. Wyszukiwarka uwzględnia gry dla szkół i firm, również przy wpisywaniu bez polskich znaków. Wyniki prowadzą do konkretnego opisu przez fragment adresu. Obsługiwane są też starsze linki `?gra=0`–`?gra=4`.
+Treść i nawigacja są generowane jako statyczny HTML. Opisy dziesięciu gier otwierają się we wspólnym, szerokim panelu pod kartami; wybór kolejnej gry zastępuje poprzedni opis. Każda strona ma jeden H1, unikalny tytuł i opis oraz canonical. Wyszukiwarka uwzględnia gry dla szkół i firm, również przy wpisywaniu bez polskich znaków. Wyniki prowadzą do konkretnego opisu przez fragment adresu. Obsługiwane są też starsze linki `?gra=0`–`?gra=4`.
 
 Podstrony mają tę samą skalę nagłówków, marginesy i minimalną wysokość pierwszej sekcji na komputerze (580 px). Na mniejszych ekranach wysokość wynika z treści. Karty, proces i strzałki układają się responsywnie. Strona główna mieści się w typowych oknach komputera; bardzo niskie okno może przewijać się pionowo.
 
@@ -44,7 +44,7 @@ Zgodnie z decyzją właściciela dane kontaktowe i szczegółowe opisy pozostaj�
 
 ## Grafiki i fonty
 
-Cztery pliki `reference-*.png` pochodzą od użytkownika. Logo, ikony i część fotografii są kadrami z tych wzorów, z zachowanymi proporcjami. Dla strony przygotowano lżejsze wersje WebP. Po otrzymaniu osobnych zdjęć i logo można zastąpić kadry niezależnymi zasobami.
+Cztery pliki `reference-*.png` pochodzą od użytkownika. Logo jest wektorowe i ma przezroczyste tło; ikony i część fotografii są kadrami z tych wzorów, z zachowanymi proporcjami. Dla strony przygotowano lżejsze wersje WebP. Po otrzymaniu osobnych zdjęć i logo można zastąpić kadry niezależnymi zasobami.
 
 Główna ilustracja `hero.png` została wcześniej wygenerowana przez ImageGen; nie jest dokumentacją realizacji. Warianty WebP 768/1536 px pozwalają przeglądarce dobrać rozmiar. Fonty Lato i Caveat przekonwertowano z TTF na WOFF2 bez zmiany kroju. Oryginały i licencje SIL Open Font License pozostały w `assets/`. Wszystkie zasoby są lokalne.
 

@@ -1,7 +1,7 @@
 /* Content must fit its container without clipping or a hidden page scrollbar. */
 body .header {
   width: 100%;
-  max-width: 1600px;
+  max-width: 1920px;
   height: clamp(96px, 7.8vw, 128px);
   padding: 12px clamp(16px, 2.4vw, 38px);
   margin-inline: auto;
@@ -39,7 +39,7 @@ body .header .search-toggle { width: 50px; height: 50px; margin-left: 18px; }
 .page-home .home-main {
   flex: 1;
   width: 100%;
-  max-width: 1600px;
+  max-width: 1920px;
   height: auto;
   max-height: none;
   grid-template-columns: minmax(300px, .54fr) minmax(0, 1fr);
@@ -91,7 +91,7 @@ body .header .search-toggle { width: 50px; height: 50px; margin-left: 18px; }
   grid-template-columns: auto minmax(0, 1fr);
   gap: 24px;
   width: 100%;
-  max-width: 1600px;
+  max-width: 1920px;
   min-height: 96px;
   padding: 14px clamp(16px, 2.4vw, 38px);
   margin-inline: auto;
@@ -180,7 +180,7 @@ body:not(.page-home) .header .brand {
 }
 body:not(.page-home) .header .search-toggle { width: 50px; height: 50px; margin-left: 18px; }
 body:not(.page-home) :is(.schools-main, .company-main, .custom-main, .supplemental, .benefits) {
-  width: 100%; max-width: 1600px; margin-inline: auto;
+  width: 100%; max-width: 1920px; margin-inline: auto;
 }
 .schools-main .schools-hero, .company-main .company-hero {
   display: grid;

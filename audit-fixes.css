@@ -66,3 +66,104 @@ body:not(.page-home) .supplemental > .content-section { display: block; max-widt
   .contact-card { padding: 22px; }
   .content-section p, .brief-list { font-size: 17px; }
 }
+
+/* Roomier layout and one shared description panel for the game cards. */
+body {
+  background-color: #eaf6fb;
+  background-image: linear-gradient(128deg, #ffffff 0%, #f4faff 45%, #e3f4fa 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+body:not(.page-home) :is(.header, .schools-main, .company-main, .custom-main, .supplemental, .benefits),
+.page-home :is(.header, .home-main, .home-footer) {
+  width: 100%;
+  max-width: 1920px;
+  margin-inline: auto;
+}
+body:not(.page-home) .supplemental > .content-section { max-width: 1920px; }
+.brand-mark { display: block; width: 100%; height: auto; }
+body:not(.page-home) .games-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: 20px;
+}
+body:not(.page-home) .game-card { order: initial; min-width: 0; }
+.game-details-toggle {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+  padding: 0;
+  background: transparent;
+  color: var(--navy);
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
+}
+.game-details-toggle > span:first-child { text-decoration: underline; text-underline-offset: 3px; }
+.game-more {
+  display: grid;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 50%;
+  background: #ff6508;
+  color: #fff;
+  transition: transform 180ms ease;
+}
+.game-details-toggle[aria-expanded="true"] .game-more { transform: rotate(90deg); }
+.game-details-panel[hidden] { display: none !important; }
+.game-details-panel:not([hidden]) {
+  display: grid;
+  grid-template-columns: minmax(280px, .9fr) minmax(0, 1.1fr);
+  gap: clamp(22px, 4vw, 56px);
+  align-items: center;
+  margin-top: 24px;
+  padding: clamp(20px, 3vw, 44px);
+  border: 1px solid #c5e3f0;
+  border-radius: 28px;
+  background: linear-gradient(120deg, #ffffff 0%, #f2faff 100%);
+  box-shadow: 0 14px 38px #062b7812;
+}
+.game-details-panel-media { min-width: 0; overflow: hidden; border-radius: 18px; }
+.game-details-panel-media > .crop { width: 100%; aspect-ratio: 1.9 !important; }
+.game-details-panel-copy { position: relative; min-width: 0; padding-right: 34px; }
+.game-details-panel-age { margin-bottom: 8px; color: #c94800; font-weight: 700; }
+.game-details-panel-title { margin-bottom: 14px; font-size: clamp(26px, 3vw, 38px); line-height: 1.15; }
+.game-details-panel-description { max-width: 66ch; margin-bottom: 18px; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; }
+.game-details-panel .demo-label { margin: 0 0 20px; font-size: 14px; line-height: 1.4; }
+.game-details-panel .button { width: fit-content; max-width: 100%; white-space: normal; }
+.game-details-close {
+  position: absolute;
+  top: -12px;
+  right: -8px;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid #c5e3f0;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 28px;
+  line-height: 1;
+}
+@media (min-width: 1500px) {
+  body:not(.page-home) .games-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; }
+}
+@media (max-width: 1200px) {
+  body:not(.page-home) .games-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+}
+@media (max-width: 700px) {
+  .game-details-panel:not([hidden]) { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .game-details-panel-media > .crop { aspect-ratio: 2.1 !important; }
+}
+@media (max-width: 600px) {
+  body:not(.page-home) .games-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .game-details-panel:not([hidden]) { padding: 18px; border-radius: 20px; }
+  .game-details-panel-copy { padding-right: 24px; }
+  .game-details-close { right: -4px; }
+}

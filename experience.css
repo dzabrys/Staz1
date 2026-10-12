@@ -44,7 +44,7 @@ body:not(.page-home) main .subpage-visual {
 body:not(.page-home) main .contact-note { font-size: 16px; line-height: 1.4; margin: 16px 0 0; }
 body:not(.page-home) main .handwritten { align-self: center; justify-self: center; margin: 28px 0 0; }
 body:not(.page-home) :is(.games-section, .process, .benefits, .subpage-footer) {
-  padding: 32px var(--page-gutter); width: 100%; max-width: 1600px; margin-inline: auto;
+  padding: 32px var(--page-gutter); width: 100%; max-width: 1920px; margin-inline: auto;
 }
 body:not(.page-home) :is(.games-section, .process, .benefits, .subpage-footer) > h2 {
   font-size: var(--heading-medium); line-height: 1.2; margin: 0 0 32px;

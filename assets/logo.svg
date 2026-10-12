@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 140" role="img" aria-labelledby="title">
+  <title id="title">Wielkie Gry Planszowe — wielka gra, ważne kompetencje</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 45C42 5 91-3 124 24M12 92C39 133 101 137 129 103" stroke="#ff6a05" stroke-width="8"/>
+    <path d="M27 32 80 14l48 30-8 57-50 23-46-34z" fill="#fff" stroke="#082f83" stroke-width="7"/>
+    <path d="m27 32 43 30 50-18M70 62v62" stroke="#082f83" stroke-width="5"/>
+  </g>
+  <g fill="#082f83">
+    <circle cx="49" cy="38" r="5"/><circle cx="82" cy="27" r="5"/><circle cx="108" cy="45" r="5"/>
+    <circle cx="50" cy="80" r="5"/><circle cx="89" cy="76" r="5"/><circle cx="111" cy="91" r="5"/>
+  </g>
+  <circle cx="51" cy="105" r="5" fill="#ff7900"/>
+  <g font-family="Arial,Helvetica,sans-serif" font-weight="900" letter-spacing="-1.4">
+    <text x="145" y="48" font-size="36" fill="#082f83">WIELKIE</text>
+    <text x="304" y="48" font-size="39" fill="#ff6508">GRY</text>
+    <text x="145" y="87" font-size="39" fill="#082f83">PLANSZOWE</text>
+  </g>
+  <text x="145" y="115" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="700" fill="#082f83">wielka gra,</text>
+  <text x="242" y="115" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="700" fill="#ff6508">ważne kompetencje.</text>
+  <path d="M143 124Q251 131 380 122" fill="none" stroke="#ff7900" stroke-width="3.5" stroke-linecap="round"/>
+</svg>
