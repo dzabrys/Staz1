@@ -190,3 +190,18 @@ body{font-size:16px;line-height:1.45}#app{max-width:1440px}
 @media(max-width:700px){.page-school .school-scene{left:39%;width:61%;aspect-ratio:auto}.page-school .games-section{background:#e8f7ff}.page-school .games-section:before{display:none}}
 @media(max-width:700px){.feature>span{min-width:0;overflow-wrap:anywhere;hyphens:auto}.page-school .feature-icon{width:44px;height:48px}}
 @media(max-width:700px){.page-school .game-copy{min-height:0;padding-bottom:42px}.page-school .game-link{display:flex;flex-direction:column}.page-school .game-copy{flex:1}}
+
+
+/* Reference photo treatment: a white text zone, vivid full-bleed photography. */
+.audience{background:#fff}
+.card-photo{width:100%;height:100%;inset:0;padding:0;opacity:1;filter:none}
+.card-photo .tile-wide-photo{display:block;width:100%;height:100%}
+.card-photo .tile-mobile-photo{display:none}
+.audience-company .tile-wide-photo{transform:none}
+.audience:after{background:linear-gradient(90deg,#fff 0%,#fffffff2 29%,#ffffff66 39%,#ffffff00 48%)}
+@media(max-width:1000px){.card-photo{inset:0 0 0 auto;width:70%;height:100%;max-width:450px;opacity:1}.card-photo .tile-wide-photo{display:none}.card-photo .tile-mobile-photo{display:block;width:100%;height:100%;max-height:none;object-fit:cover;object-position:right top}.audience:after{background:linear-gradient(90deg,#fff 0%,#fffffff5 30%,#ffffffad 39%,#ffffff00 53%)}}
+@media(max-width:700px){.card-photo{width:74%}.audience:after{background:linear-gradient(90deg,#fff 0%,#fffffff5 28%,#ffffffb3 38%,#ffffff00 54%)}}
+
+@media(max-width:700px){.card-photo{width:64%}.audience h2{font-size:clamp(28px,8.2vw,36px)}.audience:after{background:linear-gradient(90deg,#fff 0%,#fff 35%,#fffffff2 43%,#ffffff55 54%,#ffffff00 63%)}}
+
+.audience p{width:66%}
