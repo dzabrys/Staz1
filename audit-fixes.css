@@ -118,6 +118,7 @@ body:not(.page-home) .game-card { order: initial; min-width: 0; }
 .game-details-toggle[aria-expanded="true"] .game-more { transform: rotate(90deg); }
 .game-details-panel[hidden] { display: none !important; }
 .game-details-panel:not([hidden]) {
+  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: minmax(280px, .9fr) minmax(0, 1.1fr);
   gap: clamp(22px, 4vw, 56px);

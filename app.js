@@ -78,6 +78,11 @@ if(gameTriggers.length){
  gameDetailPanel.hidden=true;
  gameDetailPanel.innerHTML='<div class="game-details-panel-media"></div><div class="game-details-panel-copy"><button class="game-details-close" type="button" aria-label="Zamknij opis gry">×</button><p class="game-details-panel-age"></p><h3 class="game-details-panel-title" tabindex="-1"></h3><p class="game-details-panel-description"></p><p class="demo-label">Przykładowy opis — szczegóły oferty wymagają potwierdzenia.</p><a class="button game-details-contact" href="kontakt.html"><span class="button-label">Zapytaj o tę grę</span>'+arrows+'</a></div>';
  grid.after(gameDetailPanel);
+ const mobileGameLayout=matchMedia('(max-width: 700px)');
+ const placeGamePanel=trigger=>{
+  if(mobileGameLayout.matches)trigger.closest('.game-card').after(gameDetailPanel);
+  else grid.after(gameDetailPanel);
+ };
  const closeGameDetails=returnFocus=>{
   if(!activeGameTrigger)return;
   activeGameTrigger.setAttribute('aria-expanded','false');
@@ -91,6 +96,7 @@ if(gameTriggers.length){
   if(activeGameTrigger)activeGameTrigger.setAttribute('aria-expanded','false');
   activeGameTrigger=trigger;
   trigger.setAttribute('aria-expanded','true');
+  placeGamePanel(trigger);
   const company=trigger.hasAttribute('data-company-game');
   const source=company?'company':'schools';
   const index=Number(trigger.dataset[company?'companyGame':'game']);
@@ -102,9 +108,10 @@ if(gameTriggers.length){
   gameDetailPanel.querySelector('.game-details-contact').href='kontakt.html?temat='+encodeURIComponent(game.title);
   gameDetailPanel.hidden=false;
   if(focusPanel)gameDetailPanel.querySelector('.game-details-panel-title').focus({preventScroll:true});
-  gameDetailPanel.scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+  if(focusPanel||!mobileGameLayout.matches)gameDetailPanel.scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
  };
  gameTriggers.forEach(trigger=>trigger.addEventListener('click',()=>showGameDetails(trigger)));
+ mobileGameLayout.addEventListener('change',()=>{if(activeGameTrigger)placeGamePanel(activeGameTrigger);});
  gameDetailPanel.querySelector('.game-details-close').addEventListener('click',()=>closeGameDetails(true));
  window.showGameDetails=(source,index)=>{
   const attr=source==='company'?'company-game':'game';
