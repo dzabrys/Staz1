@@ -2,7 +2,13 @@
 
 Aktualna strona: https://dzabrys.github.io/Staz1/
 
-28 statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, runtime.js i animations.js. Zasady stylistyki: STYLE_GUIDE.md.
+28 statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, runtime.js i animations.js. Zasady stylistyki: STYLE_GUIDE.md.
+
+## Warianty do porównania
+
+Osobna alternatywa hero z mniejszym navbarem: https://dzabrys.github.io/Staz1/1/
+
+Cztery propozycje nagłówków oferty: https://dzabrys.github.io/Staz1/oferta-propozycje/a.html (biały pasek), b.html (granatowy pasek), c.html (biała etykieta), d.html (nazwa nad zdjęciem). Są budowane przez tools/build-offer-options.cjs. Warianty mają noindex,follow i canonical do głównego widoku.
 
 ## Budowanie
 

@@ -1,0 +1,64 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'..');
+const out=path.join(root,'oferta-propozycje');
+fs.mkdirSync(out,{recursive:true});
+const original=fs.readFileSync(path.join(root,'oferta.html'),'utf8').replace(/name="robots" content="[^"]+"/, 'name="robots" content="noindex,follow"');
+const styles=`
+/* Four local choices. No shared production file is changed. */
+.page-offer .selection-card{display:grid;grid-template-rows:auto minmax(0,1fr)}
+.page-offer .selection-heading{position:static;inset:auto;z-index:auto;padding:24px 32px 16px;background:#fff}
+.page-offer .selection-heading h2{color:var(--navy)}
+.page-offer .selection-media{background:#fff}
+.page-offer .selection-media:after{content:none}
+.page-offer .selection-heading h2:after{content:none}
+.page-offer .selection-media img{mask-image:none;filter:none}
+
+/* A: compact single-line white title strip. */
+.variant-a .selection-heading{padding:24px 28px}
+.variant-a .selection-heading h2{font-size:clamp(24px,2vw,34px);line-height:1.15;letter-spacing:-.025em}
+.variant-a .selection-heading br{display:none}
+
+/* B: a restrained navy title band, matching the brand. */
+.variant-b .selection-heading{background:var(--navy);padding:24px 30px}
+.variant-b .selection-heading h2{color:#fff;font-size:clamp(28px,2.4vw,40px);line-height:1.1}
+.variant-b .selection-heading br{display:none}
+
+/* C: a small opaque label on the photograph. */
+.variant-c .selection-card{display:block}
+.variant-c .selection-media{height:100%}
+.variant-c .selection-heading{position:absolute;top:24px;left:24px;z-index:2;max-width:calc(100% - 48px);padding:18px 22px;background:#fff;border-radius:14px;box-shadow:0 2px 8px #1024780a}
+.variant-c .selection-heading h2{font-size:clamp(28px,2.4vw,40px);line-height:1.08}
+
+/* D: a separate heading above the rounded photograph. */
+.variant-d .selection-card{border:0;border-radius:0;overflow:visible;box-shadow:none;background:transparent}
+.variant-d .selection-heading{padding:0 0 22px;background:transparent}
+.variant-d .selection-heading h2{font-size:clamp(28px,2.3vw,38px);line-height:1.1}
+.variant-d .selection-heading br{display:none}
+.variant-d .selection-media{border-radius:24px;box-shadow:0 2px 8px #10247808,0 10px 24px #10247812}
+.variant-d .selection-card:hover{box-shadow:none}
+.variant-d .selection-card:focus-visible{outline-offset:8px}
+
+@media(max-width:760px){
+ .variant-a .selection-heading{padding:22px 20px}
+ .variant-a .selection-heading h2{font-size:clamp(23px,6.3vw,30px)}
+ .variant-b .selection-heading{padding:22px 24px}
+ .variant-b .selection-heading h2{font-size:clamp(25px,7vw,32px)}
+ .variant-c .selection-heading{top:18px;left:18px;max-width:calc(100% - 36px);padding:16px 18px}
+ .variant-c .selection-heading h2{font-size:clamp(26px,7.5vw,34px)}
+ .variant-d .selection-heading{padding-bottom:18px}
+ .variant-d .selection-heading h2{font-size:clamp(25px,7vw,32px)}
+}
+`;
+fs.writeFileSync(path.join(out,'variants.css'),styles);
+for(const id of ['a','b','c','d']){
+ const html=original.replace('<head>','<head><base href="../">')
+ .replace('class="page-offer"',`class="page-offer variant-${id}"`)
+ .replace('</head>','<link rel="stylesheet" href="oferta-propozycje/variants.css?v=1"></head>')
+ .replace(/(<meta property="og:url" content=")[^"]+/, '$1'+(process.env.SITE_URL||'https://dzabrys.github.io/Staz1/')+'oferta-propozycje/'+id+'.html')
+ .replaceAll('Wielkie gry<br>planszowe','Wielkie gry<br> planszowe')
+ .replaceAll('Inne gry<br>customowe','Inne gry<br> customowe');
+ assert.ok(html.includes('variant-'+id));
+ assert.equal((html.match(/class="selection-card[ "]/g)||[]).length,2);
+ fs.writeFileSync(path.join(out,id+'.html'),html);
+}
+console.log('Built 4 local offer heading alternatives: /Staz1/oferta-propozycje/{a,b,c,d}.html');
