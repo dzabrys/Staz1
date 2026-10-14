@@ -24,7 +24,7 @@ const pages=[...data.pages,...data.offerRoutes].map(([file,label])=>{
 });
 gameData.forEach(g=>pages.push({file:'gra-'+slug(g.title)+'.html',label:g.title,title:g.title+' — '+(g.group==='custom'?'gra na zamówienie':'gra wielkoformatowa')+' | Wielkie Gry Planszowe',desc:g.title+': '+g.desc.replaceAll('<br>',' ')+'. Poznaj grę i porozmawiaj z nami o swojej grupie.',game:g}));
 fs.mkdirSync(out,{recursive:true});fs.mkdirSync(path.join(out,'assets'),{recursive:true});
-const rawCSS=['design.css','offer.css','offer-landing.css','home-refinement.css','school-refinement.css','site-refinement.css'].map(file=>fs.readFileSync(path.join(root,file),'utf8')).join('\n');
+const rawCSS=['design.css','offer.css','offer-landing.css','home-refinement.css','school-refinement.css','site-refinement.css','layout-refinement.css'].map(file=>fs.readFileSync(path.join(root,file),'utf8')).join('\n');
 fs.writeFileSync(path.join(out,'site.css'),cssLib.transform({filename:'site.css',code:Buffer.from(rawCSS),minify:true}).code);
 for(const file of ['runtime.js','animations.js','design.css','templates.js'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 const hash=file=>crypto.createHash('sha256').update(fs.readFileSync(path.join(out,file))).digest('hex').slice(0,12);
@@ -47,11 +47,11 @@ fs.writeFileSync(path.join(out,'README.md'),`# Wielkie Gry Planszowe
 
 Aktualna strona: ${base}
 
-${pages.length} statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, runtime.js i animations.js. Zasady stylistyki: STYLE_GUIDE.md.
+${pages.length} statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, layout-refinement.css, runtime.js i animations.js. Zasady stylistyki: STYLE_GUIDE.md.
 
 ## Warianty do porównania
 
-Osobna alternatywa hero z mniejszym navbarem: ${base}1/
+Osobna alternatywa hero z większą przestrzenią po bokach i mniejszym navbarem: ${base}1/. Jest budowana z aktualnej strony głównej przez tools/build-hero-alternative.cjs.
 
 Cztery propozycje nagłówków oferty: ${base}oferta-propozycje/a.html (biały pasek), b.html (granatowy pasek), c.html (biała etykieta), d.html (nazwa nad zdjęciem). Są budowane przez tools/build-offer-options.cjs. Warianty mają noindex,follow i canonical do głównego widoku.
 
@@ -65,9 +65,10 @@ Domyślny adres canonical: https://dzabrys.github.io/Staz1/. Można zmienić SIT
 
 ## Materiały do uzupełnienia
 
-Brakujące parametry i ceny należy ustalić indywidualnie. Oznaczenia demonstracyjne i fikcyjne dane kontaktowe nie są publikowane. Źródła plansz i inspiracji opisano w OFFER_DESIGN.md.
+Ceny oznaczone jako poglądowe są przykładowe (1 490 zł i 1 990 zł). Rzeczywiste ceny i brakujące parametry należy ustalić indywidualnie. Oznaczenia demonstracyjne i fikcyjne dane kontaktowe nie są publikowane. Źródła plansz i inspiracji opisano w OFFER_DESIGN.md.
 `);
 fs.mkdirSync(path.join(out,'tools'),{recursive:true});
 fs.writeFileSync(path.join(out,'tools/serve.cjs'),`const http=require('http'),fs=require('fs'),path=require('path');const root=path.resolve(__dirname,'..'),types={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'application/javascript','.webp':'image/webp','.svg':'image/svg+xml','.woff2':'font/woff2'};http.createServer((req,res)=>{let file;try{const url=new URL(req.url,'http://localhost');let p=decodeURIComponent(url.pathname);p=p.replace(/^\\/Staz1(?=\\/)/,'');file=path.resolve(root,'.'+p)}catch{res.writeHead(400).end();return}if(file!==root&&!file.startsWith(root+path.sep)){res.writeHead(403).end();return}if(fs.existsSync(file)&&fs.statSync(file).isDirectory())file=path.join(file,'index.html');fs.readFile(file,(err,data)=>{res.writeHead(err?404:200,{'Content-Type':types[path.extname(file)]||'application/octet-stream'}).end(err?'Nie znaleziono strony':data)})}).listen(4175,'127.0.0.1',()=>console.log('http://127.0.0.1:4175/Staz1/'));`);
 require('./build-offer-options.cjs');
+require('./build-hero-alternative.cjs');
 console.log(`Built ${pages.length} static pages and ${used.size} assets in ${out}. Preview robots: ${robots}`);

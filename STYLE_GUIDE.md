@@ -155,3 +155,31 @@
 - Automatyczne wejścia są wyłączone przy prefers-reduced-motion; drobne interakcje wskaźnika zachowują uzgodnione łagodne przejścia.
 - PASS 28 stron / 853 lokalne odnośniki i zasoby, poprawna składnia animations.js. Podgląd szkół: skala 1.01 i granatowa akcja, 1920×1080 bez przewijania; gry na zamówienie również mieszczą się w tym widoku. Produkt 390 px bez przewijania poziomego, CTA w pełni widoczne na wysokości 660 px; rzeczywisty hover daje granat i biały tekst przez 400 ms.
 - Kopia poprzednich źródeł: backups/przed-animacjami-v45. Bez publikacji GitHub. Archiwalne porównania i niezależne warianty pozostają osobnymi kopiami.
+
+## Wdrożenie zaakceptowanej wizualizacji v48 — lokalnie
+- Wdrożono punkty 2, 3, 4, 7, 8, 9 i 10 audytu v46. Nowy plik `layout-refinement.css` dołączony na końcu wspólnego CSS w `tools/build.cjs`.
+- Telefon: karty Oferty 400 px, hero 380 px, zwarte kafle odbiorców oraz polecane gry szkół i firm jako poziome karty listy. Parametry produktu mają dwie kolumny i większą przestrzeń na temat. Układ podobnych produktów przechodzi na jedną kolumnę poniżej 371 px.
+- Produkty i katalogi mają wyraźnie oznaczone ceny poglądowe: 1 490 zł / 1 990 zł. Nie dodano niepotwierdzonych wymiarów, materiałów, VAT ani dostępności. Powiększenie zdjęcia korzysta z natywnego dialogu i przywraca fokus. Podobne produkty pochodzą z tej samej grupy.
+- Etapy tworzenia gry mają krótki opis oraz natywnie rozwijane szczegóły. Zachowano łączniki procesu. Menu telefonu ma animowane SVG przechodzące w X, kontrolki kropek karuzeli mają 44×44 px.
+- Zachowano wspólne animacje v45 i zaakceptowane hovery oferty / produktów. Nowe dialogi, rozwijane treści, menu i kontrolki mają krótkie przejścia CSS/WAAPI. Bez nowych bibliotek, pętli animacji i nasłuchu scroll/mousemove. Przy ograniczeniu ruchu automatyczne wejścia pozostają wyłączone, a dialogi i szczegóły stosują krótkie przejście opacity.
+- Sprawdzono: natywne powiększenie zdjęcia i przywrócenie fokusu; otwieranie i zamykanie szczegółów; filtrowanie wyszukiwarki; menu i animowane ścieżki SVG; przejście karuzeli 1→2→1 i przyciski kropek 44×44 px. Szkoły 1920×1080 bez przewijania, wybrane widoki telefonu 390×844 bez poziomego przewijania. Karty Oferty mają po 400 px, karty szkół po 135 px.
+- Kontrola statyczna PASS: 28 stron / 843 lokalne odnośniki i zasoby / 20 produktów. Nie wykonywano pełnego pomiaru Lighthouse. Kopia źródeł: `backups/przed-wdrozeniem-v48/`. Wizualizacja v47 pozostaje zamrożonym porównaniem. Bez publikacji GitHub.
+
+## Typografia stron odbiorców v49 — lokalnie
+- Wspólne zmienne typograficzne w końcowej sekcji `layout-refinement.css`, ograniczone do `.page-school`, `.page-company`, `.page-custom`. H1 desktop: clamp(42px,3.9vw,68px) / 1.06; tytuł sekcji 32 px / 1.2; wstęp 21 px / 1.4; tytuł boczny 30 px / 1.2 i opis 19 px / 1.5; korzyści 28 px / 1.2.
+- Tablet 701–1000 px: wspólny H1 clamp(40px,6.5vw,62px), tytuł sekcji 30 px, tytuł boczny 28 px. Telefon do 700 px zachowuje zaakceptowane H1 clamp(34px,9vw,44px) / 1.08, wstęp 18 px / 1.5, tytuł sekcji 27 px / 1.2.
+- Tytuły etapów desktop 21 px / 1.2; krótki opis 17 px / 1.45. Mobilne kompaktowe karty gier i etapy pozostają osobnymi rolami tekstu. Menu i przyciski miały spójne parametry — bez zmiany.
+- Sekcja gier firm: desktopowe odstępy pionowe 22 px jak w szkołach. Wszystkie trzy strony mieszczą się w 1920×1080 przy zamkniętych szczegółach. Sprawdzono 15 widoków (3 strony × 5 szerokości 1920/1366/768/390/320); brak poziomego przewijania.
+- PASS 28 stron / 843 lokalne odnośniki i zasoby. Animacje i zamrożona wizualizacja v47 zachowane. Raport: `outputs/raport-typografii-v49.md`; pomiary przed/po w plikach JSON. Kopia CSS: `backups/przed-typografia-v49/`. Bez publikacji GitHub.
+
+## Powierzchnie hero i kropki v50 — lokalnie
+- Trzy kafle odbiorców i główny obraz hero mają wspólny miękki cień oparty na `--card-shadow`, z dodatkową warstwą 0 14px 28px #1423580a. Zamiast błękitnego borderu użyto subtelnej wewnętrznej krawędzi 1 px w kolorze `--surface-edge`, jak w pozostałych kartach. Krawędź jest na warstwie bez obsługi wskaźnika, więc obrazy jej nie przykrywają i nie blokuje przycisków.
+- Komputer od 1001 px: wizualna podkładka kropek 108×28 px zamiast 142×48 px, kropki 10 px, pola przycisków 32×44 px. Podkładka oddzielona od pól kliknięcia przez pseudo-element. Fokus klawiatury ma biały obrys. Telefon i tablet zachowują pola dotykowe 44×44 px.
+- Zachowano skalowanie kafli, reakcje CTA, zdjęcia i kropek. Brak nowych skryptów, fontów i bibliotek. Główna kompozycja nadal mieści się w 1920×1080; przy 390 px brak poziomego przewijania. Sprawdzono przejście karuzeli 1→2→1.
+- PASS 28 stron / 843 lokalne odnośniki i zasoby. Kopia źródeł: `backups/przed-hero-v50/`. Zrzuty: `outputs/v50-hero-komputer.png` i `outputs/v50-hero-telefon.png`. Bez publikacji GitHub.
+
+## Aktualizacja wariantu hero i publikacja v51
+- `/1/` jest teraz generowane z aktualnej strony głównej przez `tools/build-hero-alternative.cjs`, wywoływane po głównym budowaniu. Wspólne treści, SVG menu, nawigacja, animacje, cienie, obramowania i kropki trafiają do obu wersji.
+- Od 1201 px wariant zachowuje 90% szerokości głównej kompozycji: 1476 px przy 1920 px i około 1106 px przy 1366 px. Navbar ma tę samą szerokość, wysokość 92 px, logo do 260 px i ikony 28 px. Układ telefonu jest wspólny.
+- Wariant ma `noindex,follow` i canonical do głównej strony; główne 28 stron produkcyjnych ma `index,follow` oraz publiczne adresy canonical. Archiwalne lokalne porównanie v47 i kopie zapasowe nie są publikowane.
+- Sprawdzono wariant 1920×1080, 1366×768 i 390×844: brak poziomego przewijania, przyciski mieszczą się w kaflach, menu i karuzela działają. Wariant mieści się na ekranie 1920×1080. Publikacja obejmuje zatwierdzone zmiany v48–v50 oraz aktualizację `/1/`.

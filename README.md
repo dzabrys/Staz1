@@ -2,11 +2,11 @@
 
 Aktualna strona: https://dzabrys.github.io/Staz1/
 
-28 statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, runtime.js i animations.js. Zasady stylistyki: STYLE_GUIDE.md.
+28 statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, layout-refinement.css, runtime.js i animations.js. Zasady stylistyki: STYLE_GUIDE.md.
 
 ## Warianty do porównania
 
-Osobna alternatywa hero z mniejszym navbarem: https://dzabrys.github.io/Staz1/1/
+Osobna alternatywa hero z większą przestrzenią po bokach i mniejszym navbarem: https://dzabrys.github.io/Staz1/1/. Jest budowana z aktualnej strony głównej przez tools/build-hero-alternative.cjs.
 
 Cztery propozycje nagłówków oferty: https://dzabrys.github.io/Staz1/oferta-propozycje/a.html (biały pasek), b.html (granatowy pasek), c.html (biała etykieta), d.html (nazwa nad zdjęciem). Są budowane przez tools/build-offer-options.cjs. Warianty mają noindex,follow i canonical do głównego widoku.
 
@@ -20,4 +20,4 @@ Domyślny adres canonical: https://dzabrys.github.io/Staz1/. Można zmienić SIT
 
 ## Materiały do uzupełnienia
 
-Brakujące parametry i ceny należy ustalić indywidualnie. Oznaczenia demonstracyjne i fikcyjne dane kontaktowe nie są publikowane. Źródła plansz i inspiracji opisano w OFFER_DESIGN.md.
+Ceny oznaczone jako poglądowe są przykładowe (1 490 zł i 1 990 zł). Rzeczywiste ceny i brakujące parametry należy ustalić indywidualnie. Oznaczenia demonstracyjne i fikcyjne dane kontaktowe nie są publikowane. Źródła plansz i inspiracji opisano w OFFER_DESIGN.md.

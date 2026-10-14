@@ -1,8 +1,10 @@
 /* Local homepage refinement: smaller audience tiles with room on both sides. */
-.page-home{background:#fff}
+.page-home{background:#fff;--hero-card-shadow:var(--card-shadow),0 14px 28px #1423580a}
+.page-home :is(.audience,.hero-carousel){border:0;box-shadow:var(--hero-card-shadow)}
+.page-home :is(.audience,.hero-carousel):before{content:'';position:absolute;inset:0;z-index:4;border-radius:inherit;box-shadow:inset 0 0 0 1px var(--surface-edge);pointer-events:none}
 /* Pointer feedback uses small transforms; text and layout remain static HTML. */
 .page-home .audience{transform-origin:center;transition:transform .6s cubic-bezier(.25,.1,.25,1)}
-.page-home .audience:hover{box-shadow:0 4px 14px #12376f0d}
+.page-home .audience:hover{box-shadow:var(--hero-card-shadow)}
 .page-home .hero-photo{transition:transform .9s cubic-bezier(.25,.1,.25,1)}
 .page-home .button{transition:transform .4s ease,background-color .4s ease,color .4s ease}
 .page-home .button:hover{box-shadow:none;transform:none}
