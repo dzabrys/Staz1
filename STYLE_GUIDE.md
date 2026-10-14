@@ -25,3 +25,10 @@
 
 
 - Wybrany do publikacji wariant oferty: duże białe nazwy bezpośrednio w lewym górnym rogu zdjęć, subtelne przyciemnienie pod tekstem, bez szkła, białych nagłówków i podkreśleń. Pozostałe cztery propozycje pozostają osobnymi podglądami.
+
+## Aktualny układ — październik 2026
+- Wspólna skala nagłówka: 96 px na komputerze i 88 px na telefonie. Wspólne logo, przyciski i stopka.
+- Katalog ma białe tło, białe karty z delikatnym cieniem oraz okrągłe pomarańczowe strzałki. Na telefonie boczne marginesy katalogu wynoszą 30 px.
+- Nazwa gry i podsumowanie poprzedzają parametry oraz zapytanie. Na telefonie zapytanie jest przed pełnym opisem.
+- Wstępy szkół, firm i zamówień są krótsze. Sekcje mają regularne zaokrąglenia; etapy bez ozdobnych strzałek i odręcznego hasła.
+- site-refinement.css jest wspólną warstwą wykończenia, kompilowaną na końcu listy CSS. Zachować istniejące dane produktów do czasu ich potwierdzenia.
