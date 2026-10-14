@@ -2,4 +2,12 @@
 /* Comparison 1: keep the local homepage composition, narrow its content by 10%. */
 @media(min-width:1201px){
  .page-home .home-main,.page-home .home-footer{width:calc(90% - clamp(64.8px,9vw,172.8px));max-width:1476px}
+ .page-home #app .header{width:calc(90% - clamp(64.8px,9vw,172.8px));max-width:1476px;height:92px;margin-inline:auto;padding:8px 0;gap:20px}
+ .page-home .header .brand{flex:0 0 clamp(240px,18vw,300px);height:100%;display:flex;align-items:center}
+ .page-home .header .brand-mark{width:100%;height:100%;object-fit:contain;object-position:left center}
+ .page-home .header nav{height:60px}
+ .page-home .header nav>a{font-size:clamp(13px,.9vw,15px);padding-inline:7px;gap:6px}
+ .page-home .header nav svg{width:34px;height:34px}
+ .page-home .header .search-toggle{width:46px;height:46px}
+ .page-home .header .search-toggle svg{width:28px;height:28px}
 }
