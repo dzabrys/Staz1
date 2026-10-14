@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "node tools/build.cjs",
-    "start": "node tools/serve.cjs"
+    "start": "node tools/serve.cjs",
+    "check:offer": "node tools/offer-check.cjs"
   },
   "devDependencies": {
     "lightningcss": "^1.33.0"
