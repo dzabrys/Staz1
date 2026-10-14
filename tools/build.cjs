@@ -24,7 +24,7 @@ const pages=[...data.pages,...data.offerRoutes].map(([file,label])=>{
 });
 gameData.forEach(g=>pages.push({file:'gra-'+slug(g.title)+'.html',label:g.title,title:g.title+' — '+(g.group==='custom'?'gra na zamówienie':'gra wielkoformatowa')+' | Wielkie Gry Planszowe',desc:g.title+': '+g.desc.replaceAll('<br>',' ')+'. Poznaj grę i porozmawiaj z nami o swojej grupie.',game:g}));
 fs.mkdirSync(out,{recursive:true});fs.mkdirSync(path.join(out,'assets'),{recursive:true});
-const rawCSS=fs.readFileSync(path.join(root,'design.css'),'utf8')+'\n'+fs.readFileSync(path.join(root,'offer.css'),'utf8');
+const rawCSS=fs.readFileSync(path.join(root,'design.css'),'utf8')+'\n'+fs.readFileSync(path.join(root,'offer.css'),'utf8')+'\n'+fs.readFileSync(path.join(root,'offer-landing.css'),'utf8');
 fs.writeFileSync(path.join(out,'site.css'),cssLib.transform({filename:'site.css',code:Buffer.from(rawCSS),minify:true}).code);
 for(const file of ['runtime.js','animations.js','design.css','templates.js'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 const hash=file=>crypto.createHash('sha256').update(fs.readFileSync(path.join(out,file))).digest('hex').slice(0,12);
@@ -47,7 +47,7 @@ fs.writeFileSync(path.join(out,'README.md'),`# Wielkie Gry Planszowe
 
 Aktualna strona: ${base}
 
-${pages.length} statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, runtime.js i animations.js.
+${pages.length} statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, runtime.js i animations.js. Zasady stylistyki: STYLE_GUIDE.md.
 
 ## Budowanie
 

@@ -32,7 +32,7 @@ for (const file of files) {
 }
 assert.equal((read('wielkie-gry-planszowe.html').match(/class="catalog-card"/g)||[]).length, 15);
 assert.equal((read('inne.html').match(/class="catalog-card"/g)||[]).length, 5);
-assert.equal((read('oferta.html').match(/class="offer-category[ "]/g)||[]).length, 2);
+assert.equal((read('oferta.html').match(/class="selection-card[ "]/g)||[]).length, 2);
 assert.ok(read('misja.html').includes('content="0;url=oferta.html"'));
 assert.ok(!read('sitemap.xml').includes('misja.html'));
 console.log(`PASS: ${files.length} pages, ${checkedLinks} local links/assets, 2 categories, 20 product routes and legacy redirect.`);
