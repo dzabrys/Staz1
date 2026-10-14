@@ -2,7 +2,7 @@
 
 Aktualna strona: https://dzabrys.github.io/Staz1/
 
-16 statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, design.css, runtime.js i animations.js.
+28 statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, runtime.js i animations.js.
 
 ## Budowanie
 
@@ -14,4 +14,4 @@ Domyślny adres canonical: https://dzabrys.github.io/Staz1/. Można zmienić SIT
 
 ## Materiały do uzupełnienia
 
-Dane kontaktowe, profile społecznościowe, parametry i ceny gier oraz zdjęcia realizacji są nadal testowe. Nie dodano fikcyjnych opinii.
+Brakujące parametry i ceny należy ustalić indywidualnie. Oznaczenia demonstracyjne i fikcyjne dane kontaktowe nie są publikowane. Źródła plansz i inspiracji opisano w OFFER_DESIGN.md.
