@@ -8,7 +8,7 @@ const urls = [...read('sitemap.xml').matchAll(/<loc>(.*?)<\/loc>/g)].map(m => ne
 const files = urls.map(url => url.pathname.split('/').pop() || 'index.html');
 assert.equal(new Set(files).size, files.length, 'Duplicate sitemap page');
 assert.equal(files.length, 28);
-const base = new URL('https://dzabrys.github.io/Staz1/');
+const base = new URL(process.env.SITE_URL || 'http://127.0.0.1:4180/Staz1/');
 let checkedLinks = 0;
 for (const file of files) {
   const html = read(file);
@@ -27,7 +27,7 @@ for (const file of files) {
   }
   if (file.startsWith('gra-')) {
     assert.ok(html.includes('class="product-layout"'), file+' product layout');
-    assert.ok(html.includes('Oferta</span></a>'), file+' active offer header');
+    assert.match(html, /<a href="oferta\.html"\s+aria-current="page">[\s\S]*?<span[^>]*>Oferta<\/span>[\s\S]*?<\/a>/, file+' active offer header');
   }
 }
 assert.equal((read('wielkie-gry-planszowe.html').match(/class="catalog-card"/g)||[]).length, 15);

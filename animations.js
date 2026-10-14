@@ -1,1 +1,38 @@
-(()=>{const pref=matchMedia('(prefers-reduced-motion:reduce)');if(pref.matches||!Element.prototype.animate)return;const running=new Set();const animate=(el,delay=0)=>{const base=getComputedStyle(el).transform;const a=el.animate([{opacity:.4,transform:`translateY(18px) ${base==='none'?'':base}`},{opacity:1,transform:base}],{duration:620,delay,easing:'cubic-bezier(.16,1,.3,1)'});running.add(a);a.finished.then(()=>running.delete(a)).catch(()=>running.delete(a))};document.querySelectorAll('.subpage-intro,.hero-copy').forEach(el=>animate(el));if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting){observer.unobserve(e.target);if(!pref.matches)animate(e.target,Math.min([...e.target.parentElement.children].indexOf(e.target)*60,240))}},{threshold:.08});document.querySelectorAll('.game-card,.steps>li,.mission-values>article,.brief-list>li').forEach(el=>observer.observe(el));pref.addEventListener('change',()=>{if(pref.matches){observer.disconnect();running.forEach(a=>a.cancel());running.clear()}})}})();
+(() => {
+  const pref = matchMedia('(prefers-reduced-motion:reduce)');
+  if (pref.matches || !Element.prototype.animate) return;
+  const running = new Set();
+  const track = animation => {
+    running.add(animation);
+    animation.finished.then(() => running.delete(animation)).catch(() => running.delete(animation));
+  };
+  const animate = (el, delay = 0) => {
+    const base = getComputedStyle(el).transform;
+    track(el.animate([
+      {transform:`translateY(8px) ${base === 'none' ? '' : base}`},
+      {transform:base}
+    ], {duration:480, delay, easing:'cubic-bezier(.22,.61,.36,1)'}));
+  };
+  // Text moves once; images, links and headings are never hidden behind JS.
+  document.querySelectorAll('.hero-copy,.audience-copy,.subpage-intro,.subpage-aside,.offer-heading,.selection-heading,.product-heading').forEach((el, index) => {
+    animate(el, Math.min(index * 45, 135));
+  });
+  let observer;
+  if ('IntersectionObserver' in window) {
+    observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        observer.unobserve(entry.target);
+        if (!pref.matches) animate(entry.target);
+      }
+    }, {threshold:.08});
+    // Animate card contents so entrance and card hover never fight over transform.
+    document.querySelectorAll('.game-copy,.catalog-copy,.product-copy,.steps>li,.mission-values>article,.brief-list>li,.benefits h2,.home-footer .competencies').forEach(el => observer.observe(el));
+  }
+  pref.addEventListener('change', () => {
+    if (!pref.matches) return;
+    observer?.disconnect();
+    running.forEach(animation => animation.cancel());
+    running.clear();
+  });
+})();
