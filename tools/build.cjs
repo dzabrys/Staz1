@@ -24,7 +24,7 @@ const pages=[...data.pages,...data.offerRoutes].map(([file,label])=>{
 });
 gameData.forEach(g=>pages.push({file:'gra-'+slug(g.title)+'.html',label:g.title,title:g.title+' — '+(g.group==='custom'?'gra na zamówienie':'gra wielkoformatowa')+' | Wielkie Gry Planszowe',desc:g.title+': '+g.desc.replaceAll('<br>',' ')+'. Poznaj grę i porozmawiaj z nami o swojej grupie.',game:g}));
 fs.mkdirSync(out,{recursive:true});fs.mkdirSync(path.join(out,'assets'),{recursive:true});
-const rawCSS=['design.css','offer.css','offer-landing.css','home-refinement.css','school-refinement.css','site-refinement.css','layout-refinement.css'].map(file=>fs.readFileSync(path.join(root,file),'utf8')).join('\n');
+const rawCSS=['design.css','offer.css','offer-landing.css','home-refinement.css','school-refinement.css','site-refinement.css','layout-refinement.css','viewport-fixes.css'].map(file=>fs.readFileSync(path.join(root,file),'utf8')).join('\n');
 fs.writeFileSync(path.join(out,'site.css'),cssLib.transform({filename:'site.css',code:Buffer.from(rawCSS),minify:true}).code);
 for(const file of ['runtime.js','animations.js','design.css','templates.js'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 const hash=file=>crypto.createHash('sha256').update(fs.readFileSync(path.join(out,file))).digest('hex').slice(0,12);

@@ -190,3 +190,11 @@
 - Polecane gry szkół i firm: maksymalna szerokość sekcji 1640 px, wewnętrzne odstępy 24 px; dolny przebieg niebieskiej fali podniesiono tak, aby obejmował dolne narożniki kart. Mobilna lista zachowana.
 - Logo zastąpiono dostarczonym plikiem Wielkie_Gry_Planszowe_logo_wektorowe.svg. Ścieżki i kolory bez zmian; viewBox ograniczono do 81 192 1612 485, aby usunąć puste marginesy oryginalnego arkusza. Zasób ma wersjonowany URL, jest wspólny dla strony i wariantu /1/.
 - Kopia źródeł sprzed zmiany: backups/przed-v52. Lokalny eksperyment sklepu dla więcej niż pięciu produktów jest osobnym podglądem i nie należy do tej publikacji.
+
+
+## Poprawki z ekranów użytkownika — 15.10.2026
+- Bieżąca prośba zastępuje wcześniejsze zwężanie strony i kafli: główna strona, nagłówek oraz podstrony korzystają z pełnej dostępnej szerokości z regularnym marginesem wewnętrznym. Nie blokujemy przewijania ani nie obcinamy treści. Gdy zawartość jest wyższa od widoku, pozostaje naturalny scroll.
+- Nowe nadpisania w viewport-fixes.css, na końcu wspólnej kompilacji. Punkt powrotu w Git: f75f7fa69ee64a804747d90ffafd328c2e9e1521.
+- Kafle odbiorców mają przyciski jednakowego rozmiaru, przy dolnej krawędzi. Karty szkół/firm mają uporządkowany tekst i cenę wyrównaną w dole. Wzmocniony miękki cień dotyczy także kart zapytania.
+- Rozwijanie etapów: ikona i w kółku oraz dotychczasowa strzałka, pełna nazwa dostępna dla czytników. Klawiatura i natywne details pozostają obsługiwane.
+- Kontakt: biuro@wielkiegryplanszowe.pl, +48 600 894 644, Lubelska 37D, 10-408 Olsztyn. Dane zweryfikowane na https://wielkiegryplanszowe.pl/ dnia 15.10.2026. Bez przywracania fikcyjnego e-maila, numeru ani oznaczeń demonstracyjnych.

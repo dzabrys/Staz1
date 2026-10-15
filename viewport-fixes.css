@@ -1,0 +1,175 @@
+/* Shared full-width composition, without fixed-height clipping. */
+:root {
+  --card-shadow: 0 5px 12px #1024780d, 0 16px 34px #1024781a;
+}
+#app { width: 100%; max-width: none; }
+#app > .header,
+.schools-main, .company-main, .custom-main, .supplemental,
+.product-main, .catalog-main, .page-offer .selection-main,
+.benefits { width: 100%; max-width: none; }
+.brief-list li, .brief-list li:nth-child(even) {
+  box-shadow: var(--card-shadow), inset 0 0 0 1px var(--surface-edge);
+}
+.content-section.contact-process { padding-block: 30px 38px; }
+.contact-card address { display: grid; gap: 8px; font-style: normal; }
+.contact-card address > span { font-size: 14px; color: #536076; }
+.contact-card address > a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-size: clamp(18px, 1.25vw, 24px); font-weight: 700;
+  text-decoration: underline; text-underline-offset: 5px;
+  overflow-wrap: anywhere; max-width: 100%;
+}
+.contact-card address > a + span { margin-top: 12px; }
+.contact-card address > p { font-size: 18px; line-height: 1.5; margin: 0; }
+.page-home .audience-copy {
+  display: flex; flex-direction: column; align-items: flex-start;
+  height: 100%; box-sizing: border-box;
+}
+.page-home .audience h2 { flex-shrink: 0; }
+.page-home .audience .button {
+  width: 176px; max-width: 100%; min-height: 46px;
+  justify-content: space-between; margin-top: auto; flex-shrink: 0;
+}
+.page-home .audience .button svg { flex-shrink: 0; }
+.page-custom .steps > li { display: flex; flex-direction: column; }
+.page-custom .steps .step-details { margin-top: auto; padding-top: 10px; }
+.page-custom .step-details summary {
+  min-height: 44px; padding: 3px 2px; color: var(--navy);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.step-info {
+  display: grid; place-items: center; width: 26px; height: 26px;
+  border: 1.5px solid currentColor; border-radius: 50%;
+  font: 700 17px/1 Lato, Arial, sans-serif;
+}
+.page-custom .step-details summary:focus-visible {
+  outline: 3px solid var(--navy); outline-offset: 3px; border-radius: 6px;
+}
+@media (min-width: 1001px) {
+  :root { --gutter: clamp(24px, 2.4vw, 56px); }
+  #app > .header { padding-inline: var(--gutter); }
+  .page-home #app {
+    min-height: 100dvh; height: auto;
+    grid-template-rows: 96px minmax(0, 1fr) auto;
+  }
+  .page-home .home-main, .page-home .home-footer {
+    width: calc(100% - 2 * var(--gutter)); max-width: none;
+  }
+  .page-home .home-main { padding-block: 18px; min-height: 600px; }
+  .page-home .audiences, .page-home .hero-carousel {
+    height: 100%; max-height: none; align-self: stretch;
+  }
+  .page-home .audiences { grid-template-rows: repeat(3, minmax(0, 1fr)); }
+  .page-home .audience-copy { width: 62%; padding: 18px 0 18px 22px; }
+  .page-home .audience h2 {
+    font-size: clamp(28px, 3.5dvh, 40px); line-height: 1.05;
+    min-height: 2.1em; margin-bottom: 10px;
+  }
+  .page-home .audience p { font-size: 17px; line-height: 1.3; margin-bottom: 14px; }
+  :is(.page-school, .page-company, .page-custom) #app {
+    display: flex; flex-direction: column; min-height: 100dvh;
+  }
+  :is(.page-school, .page-company, .page-custom) #app > .header {
+    flex-shrink: 0; height: clamp(88px, 10.5dvh, 116px);
+  }
+  :is(.schools-main, .company-main, .custom-main) {
+    flex: 1; display: grid; grid-template-rows: minmax(min-content, 1fr) auto;
+  }
+  :is(.page-school, .page-company, .page-custom) .subpage-hero {
+    min-height: clamp(260px, 31dvh, 400px);
+    grid-template-rows: 32px 1fr; padding-bottom: 24px;
+  }
+  :is(.page-school, .page-company, .page-custom) .subpage-intro {
+    padding-top: 18px; max-width: 960px;
+  }
+  :is(.page-school, .page-company, .page-custom) .subpage-intro h1 {
+    font-size: clamp(44px, 3.7vw, 72px); line-height: 1.06;
+    margin-bottom: 18px;
+  }
+  :is(.page-school, .page-company, .page-custom) .subpage-intro > p {
+    font-size: clamp(19px, 1.18vw, 23px); line-height: 1.4;
+  }
+  .page-custom .custom-intro > p { max-width: 820px; }
+  :is(.page-school, .page-company) .subpage-hero {
+    grid-template-columns: minmax(0, 1fr) clamp(300px, 25vw, 430px);
+    gap: 0 36px;
+  }
+  :is(.page-school, .page-company) .subpage-aside { padding-top: 20px; }
+  :is(.page-school, .page-company) .subpage-aside h2 { font-size: 30px; }
+  :is(.page-school, .page-company) .subpage-aside p { font-size: 19px; line-height: 1.5; }
+  .page-school .school-scene { left: 42%; width: auto; aspect-ratio: 450 / 430; right: auto; height: 100%; }
+  .page-school .school-scene img { object-fit: contain; object-position: center; }
+  :is(.page-school, .page-company) .games-section {
+    width: calc(100% - 2 * var(--gutter)); max-width: none;
+    margin: 0 auto; padding: 20px 24px;
+  }
+  :is(.page-school, .page-company) .games-section > h2 { font-size: 30px; margin-bottom: 22px; }
+  :is(.page-school, .page-company) .game-image img { aspect-ratio: 2.1; }
+  :is(.page-school, .page-company) .game-link { height: 100%; }
+  :is(.page-school, .page-company) .game-copy {
+    display: flex; flex-direction: column; padding: 16px 16px 18px;
+  }
+  :is(.page-school, .page-company) .game-copy h3 {
+    font-size: clamp(17px, 1.15vw, 22px); line-height: 1.2; min-height: 1.2em;
+  }
+  :is(.page-school, .page-company) .game-copy > p {
+    font-size: 17px; line-height: 1.4; padding-right: 0; margin-bottom: 10px;
+  }
+  :is(.page-school, .page-company) .game-copy .price-block { margin-top: auto; padding-top: 4px; }
+  :is(.page-school, .page-company, .page-custom) .benefits {
+    flex-shrink: 0; padding: 18px var(--gutter) 20px;
+  }
+  :is(.page-school, .page-company, .page-custom) .benefits > h2 { font-size: 28px; margin-bottom: 22px; }
+  .page-custom .process { padding: 18px var(--gutter) 24px; }
+  .page-custom .steps > li { padding: 18px 20px; }
+  .page-custom .steps h3 { min-height: 2.4em; font-size: 21px; }
+  .page-custom .steps > li > p { font-size: 17px; line-height: 1.45; }
+  .page-custom .step-number { font-size: 48px; }
+}
+@media (min-width: 1201px) {
+  :is(.page-school, .page-company) .games-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  :is(.page-school, .page-company) .benefits-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px; }
+  .page-custom .benefits-row { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; }
+  :is(.page-school, .page-company, .page-custom) .benefits-row > .feature { gap: 10px; min-width: 0; }
+  :is(.page-school, .page-company, .page-custom) .benefits .feature-icon { width: 42px; height: 46px; }
+  :is(.page-school, .page-company, .page-custom) .benefits .feature > span:not(.crop) { font-size: 15px; line-height: 1.35; }
+}
+@media (min-width: 1281px) {
+  .page-custom .steps { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; }
+  .page-custom .steps > li:nth-child(3) .process-connector { display: block; }
+}
+@media (min-width: 1001px) and (max-height: 900px) {
+  .page-home .audience-copy { padding-block: 12px; }
+  .page-custom .steps > li { padding: 16px; }
+  .page-custom .steps h3 { font-size: 18px; }
+  .page-custom .steps > li > p { font-size: 16px; }
+  .page-custom .step-number { font-size: 40px; }
+}
+@media (min-width: 1001px) and (max-height: 800px) {
+  .page-home .home-main { min-height: 530px; padding-block: 12px; }
+  .page-home .audience-copy { padding-block: 12px; }
+  .page-home .audience h2 { font-size: 26px; margin-bottom: 7px; }
+  .page-home .audience p { font-size: 15px; line-height: 1.2; margin-bottom: 9px; }
+}
+@media (max-width: 1000px) {
+  .page-home .audience { min-height: 228px; }
+  .page-home .audience-copy { width: 65%; padding: 18px; }
+  .page-home .audience.audience-custom .audience-copy { width: 65%; }
+  .page-home .audience h2 { min-height: 2.1em; }
+  .page-home .audience p { width: 100%; margin-bottom: 14px; }
+  .page-custom .steps > li { display: flex; }
+}
+@media (max-width: 700px) {
+  .page-home .audience h2 { font-size: 28px; }
+  .page-home .audience p { font-size: 16px; line-height: 1.35; }
+  .page-home .audience .button { width: 166px; font-size: 15px; }
+  .page-custom .step-details summary { min-height: 44px; }
+  .contact-card address > a { font-size: clamp(19px, 5.1vw, 25px); }
+  .content-section.contact-process { padding: 26px 18px 32px; }
+}
+@media (max-width: 350px) {
+  .page-home .audience-copy { width: 76%; padding-left: 16px; }
+  .page-home .audience.audience-custom .audience-copy { width: 76%; }
+  .page-home .audience h2 { font-size: 25px; }
+  .page-home .audience p { font-size: 15px; }
+}
