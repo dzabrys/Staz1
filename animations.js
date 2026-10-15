@@ -14,7 +14,7 @@
     ], {duration:480, delay, easing:'cubic-bezier(.22,.61,.36,1)'}));
   };
   // Text moves once; images, links and headings are never hidden behind JS.
-  document.querySelectorAll('.hero-copy,.audience-copy,.subpage-intro,.subpage-aside,.offer-heading,.selection-heading,.product-heading').forEach((el, index) => {
+  document.querySelectorAll('.hero-copy,.audience-copy,.subpage-intro,.subpage-aside,.offer-heading,.selection-heading,.product-heading,.proposal-intro').forEach((el, index) => {
     animate(el, Math.min(index * 45, 135));
   });
   let observer;
@@ -27,7 +27,7 @@
       }
     }, {threshold:.08});
     // Animate card contents so entrance and card hover never fight over transform.
-    document.querySelectorAll('.game-copy,.catalog-copy,.product-copy,.steps>li,.mission-values>article,.brief-list>li,.benefits h2,.home-footer .competencies').forEach(el => observer.observe(el));
+    document.querySelectorAll('.game-copy,.catalog-copy,.product-copy,.steps>li,.mission-values>article,.brief-list>li,.benefits h2,.home-footer .competencies,.proposal-format-copy,.proposal-section-heading,.proposal-contact').forEach(el => observer.observe(el));
   }
   pref.addEventListener('change', () => {
     if (!pref.matches) return;

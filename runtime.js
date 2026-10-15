@@ -60,6 +60,7 @@
   });
 
   const dialog = $('#search-dialog'), input = $('#search-input');
+  if (dialog && input && $('.search-toggle')) {
   const normalize = value => value.toLocaleLowerCase('pl').normalize('NFD').replace(/\p{M}/gu,'').replaceAll('ł','l');
   const items = JSON.parse($('#search-data').textContent);
   const search = () => {
@@ -72,6 +73,7 @@
   $('.search-toggle').addEventListener('click', () => {dialog.showModal();search();input.focus();openSurface(dialog)});
   input.addEventListener('input', search);
   installDialog(dialog, $('.close-dialog'));
+  }
 
   if($('.hero-carousel')){
     const slides=[
@@ -102,7 +104,7 @@
     imageDialog.addEventListener('close',()=>imageTrigger.focus({preventScroll:true}));
   }
 
-  document.querySelectorAll('.step-details,.product-detail-faq details').forEach(details=>{
+  document.querySelectorAll('.step-details,.product-detail-faq details,.proposal-faq details').forEach(details=>{
     const summary=details.querySelector('summary'), content=details.querySelector('.details-content');
     if(!content || !content.animate)return;
     let desiredOpen=details.open, running;

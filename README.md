@@ -2,7 +2,7 @@
 
 Aktualna strona: https://dzabrys.github.io/Staz1/
 
-28 statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, layout-refinement.css, viewport-fixes.css, home-index-layout.css, subpage-frame.css, runtime.js i animations.js. Strzałka kontaktu na komputerze: contact-guide.css i contact-guide.js, ładowane tylko na stronie Kontakt. Zasady stylistyki: STYLE_GUIDE.md.
+28 statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, layout-refinement.css, viewport-fixes.css, home-index-layout.css, subpage-frame.css, runtime.js i animations.js. Strzałka kontaktu na komputerze: contact-guide.css i contact-guide.js. Strona gier na zamówienie: custom-proposal.js i custom-proposal.css. Dane firmy i usługi: tools/site-entities.cjs. Zasady stylistyki: STYLE_GUIDE.md.
 
 ## Warianty do porównania
 
@@ -25,6 +25,12 @@ npm run build
 npm start
 
 Domyślny adres canonical: https://dzabrys.github.io/Staz1/. Można zmienić SITE_URL. Główna wersja ma index,follow; SITE_INDEX=0 wyłącza indeksowanie. Kopia /wersja-2/ ma noindex,follow.
+
+## Treści i dane uporządkowane
+
+Wyszukiwarka jest obecnie ukryta (searchEnabled=false). Strona zamówień pokazuje formaty z istniejącego katalogu, etapy, FAQ i przycisk e-mail ze szkicem briefu. Organization i WebSite są powiązane z każdą stroną. Service i FAQPage występują na podstronie gier na zamówienie; FAQ pochodzi z tego samego źródła co widoczne odpowiedzi. To nie gwarantuje cytowania przez AI.
+
+Kontakt z formularzem w wariancie /3/ jest odtwarzany przez tools/build-contact-alternative.cjs.
 
 ## Materiały do uzupełnienia
 

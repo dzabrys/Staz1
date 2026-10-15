@@ -226,3 +226,8 @@
 - Telefon, tablet i wskaźnik dotykowy: bez strzałki i bez przechwytywania kliknięcia; standardowy anchor do sekcji, z odstępem scroll-margin 20 px. Na komputerze, gdy instrukcja jest już widoczna, nie przesuwa strony. Bez JS pozostaje zwykły anchor. SVG dekoracyjne, poza układem, bez blokowania wskaźnika. Animacja krótsza przy ograniczeniu ruchu.
 - Etapy zamówienia: align-items:start usuwa rozciąganie zamkniętych kart przez rozwiniętego sąsiada. Usunięto margin-top:auto z kontrolek. Wspólna minimalna wysokość krótkiego opisu wyrównuje kontrolki w stanie zamkniętym (trzy wiersze desktop / cztery na laptopie). Każda karta rozwija się do wysokości własnej treści. Ikony informacji są stałymi SVG 26×26 bez zależności od kształtu litery i kurczenia flex.
 - Sprawdzono 1920×1080: wszystkie kontrolki na 217 px względem karty; rozwinięcie pierwszych trzech nie zmienia wysokości pozostałych (275 px). Laptop 1366×768: różnica położenia kontrolek poniżej 0,1 px. Telefon 390×844: strzałka display:none, brak aktywnej animacji po kliknięciu, normalny #zapytanie i brak poziomego przewijania.
+
+
+## v58 — strona zamówień i dane oferty
+
+Wyszukiwarka wyłączona w szablonie, bez pustego miejsca w nagłówku. Karty formatów mają subtelny cień; układ i kolory zachowują Lato, granat i pomarańcz. Etapy rozwijają się niezależnie, na laptopie tworzą trzy kolumny, na telefonie jedną. Widoczny podpis Szczegóły etapu zastępuje samą ikonę. FAQ i kontakt kończą ścieżkę na stronie. Animacje respektują prefers-reduced-motion i nie ukrywają treści przed wykonaniem JavaScriptu. Dane firmy, usługi i FAQ powstają w HTML podczas budowania; nie dodajemy fikcyjnych realizacji, opinii, cen ani parametrów.
