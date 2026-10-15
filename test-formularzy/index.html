@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,follow">
+<title>Test Formspree i Static Forms</title>
+<style>
+*{box-sizing:border-box}body{font:16px/1.5 system-ui,sans-serif;background:#f5f6f8;color:#202631;margin:0;padding:32px 20px}main{max-width:1000px;margin:auto}h1{font-size:26px;margin:0 0 8px}h2{font-size:22px;margin:0}p{color:#566173}header{margin-bottom:24px}.forms{display:grid;grid-template-columns:1fr 1fr;gap:24px}form{background:white;border:1px solid #dce0e6;border-radius:12px;padding:24px}label{display:block;font-weight:600;margin-top:16px}input,textarea,button{font:inherit;width:100%;border-radius:6px}input,textarea{padding:10px 12px;border:1px solid #b9c2cf;margin-top:6px}textarea{resize:vertical;min-height:140px}small{display:block;color:#566173;margin-top:6px;font-size:13px}button{margin-top:22px;background:#2457d6;color:white;border:0;padding:12px;cursor:pointer;font-weight:600}button:hover{background:#1c43a5}a{color:#2457d6}.hint{font-size:14px;margin:10px 0 0}.trap{display:none}@media(max-width:700px){.forms{grid-template-columns:1fr}body{padding:20px 12px}form{padding:20px}}
+</style>
+<main>
+<header><h1>Dwa formularze do testów</h1><p>Wklej dane swojego formularza u usługodawcy, uzupełnij wiadomość i wyślij. Odpowiedź usługi otworzy się w nowej karcie.</p></header>
+<div class="forms">
+<form id="formspree" method="post" target="_blank" rel="noopener">
+<h2>Formspree</h2>
+<p class="hint"><a href="https://formspree.io/register" target="_blank" rel="noopener">Załóż konto</a>, utwórz formularz i skopiuj endpoint z zakładki Integration.</p>
+<label for="fs-endpoint">Endpoint Formspree</label>
+<input id="fs-endpoint" type="url" placeholder="https://formspree.io/f/xxxxxxxx" required autocomplete="off">
+<label for="fs-to">Do kogo — adres ustawiony w Formspree</label>
+<input id="fs-to" name="recipient" type="email" placeholder="odbiorca@example.com" required>
+<small>Ten adres jest polem informacyjnym w zgłoszeniu. Faktycznego odbiorcę ustaw i zweryfikuj w panelu Formspree.</small>
+<label for="fs-email">Twój e-mail (do odpowiedzi)</label>
+<input id="fs-email" name="email" type="email" autocomplete="email" required>
+<label for="fs-subject">Temat</label><input id="fs-subject" name="subject" required>
+<label for="fs-message">Wiadomość</label><textarea id="fs-message" name="message" required></textarea>
+<input class="trap" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+<button type="submit">Wyślij przez Formspree</button>
+</form>
+<form id="staticforms" method="post" target="_blank" rel="noopener">
+<h2>Static Forms</h2>
+<p class="hint"><a href="https://www.staticforms.dev/" target="_blank" rel="noopener">Otwórz Static Forms</a>, utwórz formularz i skopiuj jego publiczny API key z zakładki General.</p>
+<label for="sf-key">Publiczny API key formularza</label>
+<input id="sf-key" placeholder="Wklej klucz formularza" required autocomplete="off" spellcheck="false">
+<label for="sf-to">Do kogo — adres ustawiony w Static Forms</label>
+<input id="sf-to" name="recipient" type="email" placeholder="odbiorca@example.com" required>
+<small>Ten adres jest polem informacyjnym w zgłoszeniu. Faktycznego odbiorcę ustaw w panelu Static Forms (Delivery).</small>
+<label for="sf-email">Twój e-mail (do odpowiedzi)</label>
+<input id="sf-email" name="email" type="email" autocomplete="email" required>
+<label for="sf-subject">Temat</label><input id="sf-subject" name="subject" required>
+<label for="sf-message">Wiadomość</label><textarea id="sf-message" name="message" required></textarea>
+<input class="trap" name="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+<button type="submit">Wyślij przez Static Forms</button>
+</form>
+</div>
+<p><small>Do testów z localhost sprawdź ograniczenia domeny i ustawienia CAPTCHA w panelu wybranej usługi. Dane formularzy nie są zapisywane przez lokalny serwer. Przyjęcie zgłoszenia przez usługę nie potwierdza dostarczenia e-maila — sprawdź skrzynkę i spam.</small></p>
+</main>
+<script src="forms.js"></script>
+</html>

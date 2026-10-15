@@ -24,7 +24,7 @@ const pages=[...data.pages,...data.offerRoutes].map(([file,label])=>{
 });
 gameData.forEach(g=>pages.push({file:'gra-'+slug(g.title)+'.html',label:g.title,title:g.title+' — '+(g.group==='custom'?'gra na zamówienie':'gra wielkoformatowa')+' | Wielkie Gry Planszowe',desc:g.title+': '+g.desc.replaceAll('<br>',' ')+'. Poznaj grę i porozmawiaj z nami o swojej grupie.',game:g}));
 fs.mkdirSync(out,{recursive:true});fs.mkdirSync(path.join(out,'assets'),{recursive:true});
-const rawCSS=['design.css','offer.css','offer-landing.css','home-refinement.css','school-refinement.css','site-refinement.css','layout-refinement.css','viewport-fixes.css','home-index-layout.css'].map(file=>fs.readFileSync(path.join(root,file),'utf8')).join('\n');
+const rawCSS=['design.css','offer.css','offer-landing.css','home-refinement.css','school-refinement.css','site-refinement.css','layout-refinement.css','viewport-fixes.css','home-index-layout.css','subpage-frame.css'].map(file=>fs.readFileSync(path.join(root,file),'utf8')).join('\n');
 fs.writeFileSync(path.join(out,'site.css'),cssLib.transform({filename:'site.css',code:Buffer.from(rawCSS),minify:true}).code);
 for(const file of ['runtime.js','animations.js','design.css','templates.js'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 const hash=file=>crypto.createHash('sha256').update(fs.readFileSync(path.join(out,file))).digest('hex').slice(0,12);
@@ -47,7 +47,7 @@ fs.writeFileSync(path.join(out,'README.md'),`# Wielkie Gry Planszowe
 
 Aktualna strona: ${base}
 
-${pages.length} statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, layout-refinement.css, viewport-fixes.css, home-index-layout.css, runtime.js i animations.js. Zasady stylistyki: STYLE_GUIDE.md.
+${pages.length} statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, layout-refinement.css, viewport-fixes.css, home-index-layout.css, subpage-frame.css, runtime.js i animations.js. Zasady stylistyki: STYLE_GUIDE.md.
 
 ## Warianty do porównania
 
@@ -56,6 +56,12 @@ Osobna alternatywa hero z większą przestrzenią po bokach i mniejszym navbarem
 Katalog z rozwijanymi kategoriami: ${base}2/. Pierwsze pięć kart i kolejne rozwijane w dół osobno w każdej kategorii. Wariant ma noindex,follow i canonical do głównego katalogu.
 
 Cztery propozycje nagłówków oferty: ${base}oferta-propozycje/a.html (biały pasek), b.html (granatowy pasek), c.html (biała etykieta), d.html (nazwa nad zdjęciem). Są budowane przez tools/build-offer-options.cjs. Warianty mają noindex,follow i canonical do głównego widoku.
+
+## Podglądy projektu
+
+Wszystkie podglądy: ${base}podglady/. Porównanie układów na telefonie: ${base}mobile-propozycje/. Strona Kontakt z formularzem: ${base}test-formularzy/kontakt-podglad.html. Porównanie usług formularzy: ${base}test-formularzy/.
+
+Warianty mobilne buduje tools/build-mobile-options.cjs ze wspólnych stron. Wcześniejszy wygląd zachowano w mobile-propozycje/przed-*.html i przed.css. Formularz kontaktowy pozostaje osobnym podglądem; generuje go test-formularzy/build-contact-example.cjs. Strony porównawcze mają noindex,follow.
 
 ## Budowanie
 
@@ -74,4 +80,6 @@ fs.writeFileSync(path.join(out,'tools/serve.cjs'),`const http=require('http'),fs
 require('./build-offer-options.cjs');
 require('./build-hero-alternative.cjs');
 require('./build-catalog-alternative.cjs');
+require('./build-mobile-options.cjs');
+require('../test-formularzy/build-contact-example.cjs');
 console.log(`Built ${pages.length} static pages and ${used.size} assets in ${out}. Preview robots: ${robots}`);
