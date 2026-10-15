@@ -1,0 +1,12 @@
+.page-contact .supplemental{position:relative}
+.inquiry-guide{position:absolute;z-index:4;display:block;overflow:visible;pointer-events:none;opacity:0;color:var(--action)}
+.inquiry-guide.is-active{opacity:1}
+.inquiry-guide path{fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1}
+#zapytanie{scroll-margin-top:72px}
+#zapytanie h2{width:fit-content;max-width:100%}
+#zapytanie h2:focus{outline:none}
+#zapytanie h2:focus-visible{outline:2px solid var(--navy);outline-offset:6px;border-radius:4px}
+@media(max-width:1000px),(hover:none),(pointer:coarse){
+ .inquiry-guide{display:none}
+ #zapytanie{scroll-margin-top:20px}
+}

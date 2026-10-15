@@ -2,7 +2,7 @@
 
 Aktualna strona: https://dzabrys.github.io/Staz1/
 
-28 statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, layout-refinement.css, viewport-fixes.css, home-index-layout.css, subpage-frame.css, runtime.js i animations.js. Zasady stylistyki: STYLE_GUIDE.md.
+28 statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, layout-refinement.css, viewport-fixes.css, home-index-layout.css, subpage-frame.css, runtime.js i animations.js. Strzałka kontaktu na komputerze: contact-guide.css i contact-guide.js, ładowane tylko na stronie Kontakt. Zasady stylistyki: STYLE_GUIDE.md.
 
 ## Warianty do porównania
 

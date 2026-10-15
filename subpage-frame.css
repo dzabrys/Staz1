@@ -223,3 +223,16 @@
   .page-custom .steps > li > p { line-height: 1.35; }
   :is(.page-school, .page-company, .page-custom) .benefits-row > .feature { padding-right: 0; gap: 6px; }
 }
+
+/* Expanding one step must never stretch the unopened neighbouring cards. */
+.page-custom .steps { align-items: start; }
+.page-custom .steps .step-details { margin-top: 12px; padding-top: 0; }
+@media (min-width: 1001px) {
+  .page-custom .steps > li > p { min-height: 4.2em; min-block-size: 3lh; }
+}
+@media (min-width: 1001px) and (max-width: 1440px) {
+  .page-custom .steps > li > p { min-height: 5.6em; min-block-size: 4lh; }
+}
+@media (max-width: 1000px) {
+  .page-custom .steps .step-details { margin-top: 8px; }
+}
