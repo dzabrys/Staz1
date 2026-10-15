@@ -11,7 +11,7 @@ const canonical = original.match(/rel="canonical" href="([^"]+)"/)[1];
 const css = fs.readFileSync(path.join(root, 'site.css'), 'utf8')
  .replace(/url\((["']?)assets\//g, 'url($1../assets/');
 const hash = crypto.createHash('sha256').update(css).digest('hex').slice(0, 12);
-const html = original.replace('<head>', '<head><base href="../">').replace(/href="#([^"]+)"/g,'href="1/#$1"')
+const html = original.replace('<head>', '<head><base href="../">')
  .replace(/name="robots" content="[^"]+"/, 'name="robots" content="noindex,follow"')
  .replace(/href="site\.css\?v=[a-f0-9]+"/, `href="1/site.css?v=${hash}"`)
  .replace(/(<meta property="og:url" content=")[^"]+/, '$1' + canonical + '1/');

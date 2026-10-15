@@ -11,7 +11,7 @@ fs.writeFileSync(path.join(out, 'warianty.css'), css);
 for (const page of ['firmy', 'szkoly']) {
   const source = fs.readFileSync(path.join(root, page + '.html'), 'utf8');
   for (const variant of ['siatka', 'karuzela']) {
-    const html = source.replace('<head>', '<head><base href="../">').replace(/href="#([^"]+)"/g,`href="mobile-propozycje/${variant}-${page}.html#$1"`)
+    const html = source.replace('<head>', '<head><base href="../">')
       .replace(/name="robots" content="[^"]+"/, 'name="robots" content="noindex,follow"')
       .replace('</head>', `<link rel="stylesheet" href="mobile-propozycje/warianty.css?v=${hash}"></head>`)
       .replace(/<body class="([^"]+)"/, `<body class="$1 mobile-${variant}"`)

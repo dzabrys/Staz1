@@ -34,6 +34,6 @@ html = html.replace('class="page-contact"', 'class="page-contact contact-variant
 html = html.replace('href="#main"', 'href="3/#main"');
 html = html.replace('Przygotuj zapytanie', 'Napisz do nas');
 html = html.replace(/name="robots" content="[^"]+"/, 'name="robots" content="noindex,follow"');
-html = html.replace(/property="og:url" content="[^"]+"/, 'property="og:url" content="'+new URL('3/',html.match(/rel="canonical" href="([^"]+)/)[1]).href+'"');
+html = html.replace(/property="og:url" content="[^"]+"/, 'property="og:url" content="https://dzabrys.github.io/Staz1/3/"');
 fs.writeFileSync(path.join(out, 'index.html'), html);
 console.log('Created /3/ contact form variant');

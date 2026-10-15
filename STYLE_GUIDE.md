@@ -234,7 +234,3 @@ Wyszukiwarka wyłączona w szablonie, bez pustego miejsca w nagłówku. Karty fo
 
 ## v59 — głębia kart i połączenia etapów
 Kafle formatów mają dwa miękkie cienie, subtelny rant oraz akcent pod strzałką. Etapy zachowują kolory naprzemienne i niezależne wysokości, z lekkim cieniem i separatorem nad szczegółami. Łączniki SVG są dekoracyjne: w prawo w rzędzie, w dół na telefonie; nie wychodzą poza koniec rzędu. Hover jest płynny i respektuje prefers-reduced-motion.
-
-
-## v60 — spójność stron i kontakt
-Wspólna typografia szkół i firm, tematyczne SVG opisane jako ilustracje, czytelne etykiety wieku i klas. Kontakt ma jeden formularz z trzema wymaganymi polami i zachowuje temat produktu. Statyczna treść pozostaje dostępna bez animacji. Warianty /1/, /2/ i /3/ zachowane.

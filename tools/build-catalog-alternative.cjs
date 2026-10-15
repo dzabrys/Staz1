@@ -31,7 +31,7 @@ const css=`
 @media(prefers-reduced-motion:reduce){.catalog-more-content{animation:none!important}.catalog-more summary,.catalog-more summary svg{transition:none!important}.catalog-more summary{transform:none!important}}
 `;
 const hash=crypto.createHash('sha256').update(css).digest('hex').slice(0,12);
-html=html.replace('<head>','<head><base href="../">').replace(/href="#([^"]+)"/g,'href="2/#$1"').replace(/name="robots" content="[^"]+"/,'name="robots" content="noindex,follow"')
+html=html.replace('<head>','<head><base href="../">').replace(/name="robots" content="[^"]+"/,'name="robots" content="noindex,follow"')
  .replace('</head>',`<link rel="stylesheet" href="2/catalog.css?v=${hash}"></head>`)
  .replace(/(<meta property="og:url" content=")[^"]+/, '$1'+new URL('2/',canonical).href)
  .replace('<div class="offer-heading">','<p class="catalog-variant-note">Wariant katalogu · <a href="wielkie-gry-planszowe.html">Wróć do wersji głównej</a></p><div class="offer-heading">');
