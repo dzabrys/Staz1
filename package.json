@@ -5,7 +5,9 @@
   "scripts": {
     "build": "node tools/build.cjs",
     "start": "node tools/serve.cjs",
-    "check:offer": "node tools/offer-check.cjs"
+    "check:offer": "node tools/offer-check.cjs",
+    "check:site": "python tools/site-audit.py",
+    "check:inquiry": "node tools/inquiry-check.cjs"
   },
   "devDependencies": {
     "lightningcss": "^1.33.0"

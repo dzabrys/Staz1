@@ -2,7 +2,11 @@
 
 Aktualna strona: https://dzabrys.github.io/Staz1/
 
-28 statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, layout-refinement.css, viewport-fixes.css, home-index-layout.css, subpage-frame.css, runtime.js i animations.js. Strzałka kontaktu na komputerze: contact-guide.css i contact-guide.js. Strona gier na zamówienie: custom-proposal.js i custom-proposal.css. Dane firmy i usługi: tools/site-entities.cjs. Zasady stylistyki: STYLE_GUIDE.md.
+28 statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, layout-refinement.css, viewport-fixes.css, home-index-layout.css, subpage-frame.css, runtime.js i animations.js. Wersja v60: website-refresh.js, website-refresh.css, inquiry.js, tools/build-topic-art.cjs i assets/topics/. Dane strukturalne: tools/site-entities.cjs. Zasady stylistyki: STYLE_GUIDE.md.
+
+## Weryfikacja v60
+
+Audyt stron: python tools/site-audit.py. Test formularza bez wysyłania wiadomości: node tools/inquiry-check.cjs. Zmiany: CHANGES_V60.md. Porównanie przed / po pozostaje w lokalnej kopii roboczej.
 
 ## Warianty do porównania
 
@@ -16,7 +20,7 @@ Cztery propozycje nagłówków oferty: https://dzabrys.github.io/Staz1/oferta-pr
 
 Wszystkie podglądy: https://dzabrys.github.io/Staz1/podglady/. Porównanie układów na telefonie: https://dzabrys.github.io/Staz1/mobile-propozycje/. Strona Kontakt z formularzem: https://dzabrys.github.io/Staz1/test-formularzy/kontakt-podglad.html. Porównanie usług formularzy: https://dzabrys.github.io/Staz1/test-formularzy/.
 
-Warianty mobilne buduje tools/build-mobile-options.cjs ze wspólnych stron. Wcześniejszy wygląd zachowano w mobile-propozycje/przed-*.html i przed.css. Formularz kontaktowy pozostaje osobnym podglądem; generuje go test-formularzy/build-contact-example.cjs. Strony porównawcze mają noindex,follow.
+Warianty mobilne buduje tools/build-mobile-options.cjs ze wspólnych stron. Wcześniejszy wygląd zachowano w mobile-propozycje/przed-*.html i przed.css. Podgląd powiela aktualny formularz kontaktowy; generuje go test-formularzy/build-contact-example.cjs. Strony porównawcze mają noindex,follow.
 
 ## Budowanie
 
@@ -25,12 +29,6 @@ npm run build
 npm start
 
 Domyślny adres canonical: https://dzabrys.github.io/Staz1/. Można zmienić SITE_URL. Główna wersja ma index,follow; SITE_INDEX=0 wyłącza indeksowanie. Kopia /wersja-2/ ma noindex,follow.
-
-## Treści i dane uporządkowane
-
-Wyszukiwarka jest obecnie ukryta (searchEnabled=false). Strona zamówień pokazuje formaty z istniejącego katalogu, etapy, FAQ i przycisk e-mail ze szkicem briefu. Organization i WebSite są powiązane z każdą stroną. Service i FAQPage występują na podstronie gier na zamówienie; FAQ pochodzi z tego samego źródła co widoczne odpowiedzi. To nie gwarantuje cytowania przez AI.
-
-Kontakt z formularzem w wariancie /3/ jest odtwarzany przez tools/build-contact-alternative.cjs.
 
 ## Materiały do uzupełnienia
 

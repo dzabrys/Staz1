@@ -13,7 +13,7 @@ const paths = {
 const icon = name => `<svg viewBox="0 0 48 48" aria-hidden="true">${paths[name] || paths.home}</svg>`;
 const pages = [ ['index.html','Strona główna','home'],['szkoly.html','Szkoły','school'],['firmy.html','Firmy i instytucje','company'],['gry-na-zamowienie.html','Gry na zamówienie','custom'],['oferta.html','Oferta','offer'],['kontakt.html','Kontakt','contact'] ];
 const current = location.pathname.split('/').pop() || 'index.html';
-const offerRoutes = [['wielkie-gry-planszowe.html','Wielkie gry planszowe','catalog'],['inne.html','Inne','other']];
+const offerRoutes = [['wielkie-gry-planszowe.html','Wielkie gry planszowe','catalog'],['inne.html','Puzzle i inne gry','other']];
 const page = [...pages,...offerRoutes].find(item => item[0]===current) || pages[0];
 const isOffer = ['offer','catalog','other'].includes(page[2]);
 const isHome = page[2] === 'home';

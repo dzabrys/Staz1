@@ -54,7 +54,7 @@
   document.addEventListener('click', event => {
     if(!event.target.closest('.header') && nav.classList.contains('open'))setMenu(false);
   });
-  matchMedia('(min-width:1001px)').addEventListener('change', event => {if(event.matches)setMenu(false)});
+  matchMedia('(min-width:1201px)').addEventListener('change', event => {if(event.matches)setMenu(false)});
   nav.addEventListener('focusout', event => {
     if(event.relatedTarget && !nav.contains(event.relatedTarget) && event.relatedTarget!==menu)setMenu(false);
   });
