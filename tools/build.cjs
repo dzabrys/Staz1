@@ -53,6 +53,8 @@ ${pages.length} statycznych stron, lokalne fonty, WebP, responsywny układ i ani
 
 Osobna alternatywa hero z większą przestrzenią po bokach i mniejszym navbarem: ${base}1/. Jest budowana z aktualnej strony głównej przez tools/build-hero-alternative.cjs.
 
+Katalog z rozwijanymi kategoriami: ${base}2/. Pierwsze pięć kart i kolejne rozwijane w dół osobno w każdej kategorii. Wariant ma noindex,follow i canonical do głównego katalogu.
+
 Cztery propozycje nagłówków oferty: ${base}oferta-propozycje/a.html (biały pasek), b.html (granatowy pasek), c.html (biała etykieta), d.html (nazwa nad zdjęciem). Są budowane przez tools/build-offer-options.cjs. Warianty mają noindex,follow i canonical do głównego widoku.
 
 ## Budowanie
@@ -71,4 +73,5 @@ fs.mkdirSync(path.join(out,'tools'),{recursive:true});
 fs.writeFileSync(path.join(out,'tools/serve.cjs'),`const http=require('http'),fs=require('fs'),path=require('path');const root=path.resolve(__dirname,'..'),types={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'application/javascript','.webp':'image/webp','.svg':'image/svg+xml','.woff2':'font/woff2'};http.createServer((req,res)=>{let file;try{const url=new URL(req.url,'http://localhost');let p=decodeURIComponent(url.pathname);p=p.replace(/^\\/Staz1(?=\\/)/,'');file=path.resolve(root,'.'+p)}catch{res.writeHead(400).end();return}if(file!==root&&!file.startsWith(root+path.sep)){res.writeHead(403).end();return}if(fs.existsSync(file)&&fs.statSync(file).isDirectory())file=path.join(file,'index.html');fs.readFile(file,(err,data)=>{res.writeHead(err?404:200,{'Content-Type':types[path.extname(file)]||'application/octet-stream'}).end(err?'Nie znaleziono strony':data)})}).listen(4175,'127.0.0.1',()=>console.log('http://127.0.0.1:4175/Staz1/'));`);
 require('./build-offer-options.cjs');
 require('./build-hero-alternative.cjs');
+require('./build-catalog-alternative.cjs');
 console.log(`Built ${pages.length} static pages and ${used.size} assets in ${out}. Preview robots: ${robots}`);

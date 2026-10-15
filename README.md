@@ -8,6 +8,8 @@ Aktualna strona: https://dzabrys.github.io/Staz1/
 
 Osobna alternatywa hero z większą przestrzenią po bokach i mniejszym navbarem: https://dzabrys.github.io/Staz1/1/. Jest budowana z aktualnej strony głównej przez tools/build-hero-alternative.cjs.
 
+Katalog z rozwijanymi kategoriami: https://dzabrys.github.io/Staz1/2/. Pierwsze pięć kart i kolejne rozwijane w dół osobno w każdej kategorii. Wariant ma noindex,follow i canonical do głównego katalogu.
+
 Cztery propozycje nagłówków oferty: https://dzabrys.github.io/Staz1/oferta-propozycje/a.html (biały pasek), b.html (granatowy pasek), c.html (biała etykieta), d.html (nazwa nad zdjęciem). Są budowane przez tools/build-offer-options.cjs. Warianty mają noindex,follow i canonical do głównego widoku.
 
 ## Budowanie
