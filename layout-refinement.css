@@ -148,6 +148,7 @@
  --audience-lead:21px;
  --audience-lead-leading:1.4;
 }
+
 :is(.page-school,.page-company,.page-custom) .subpage-intro h1{font-size:var(--audience-title);line-height:var(--audience-title-leading);margin-bottom:18px}
 :is(.page-school,.page-company,.page-custom) .subpage-intro>p{font-size:var(--audience-lead);line-height:var(--audience-lead-leading)}
 :is(.page-school,.page-company,.page-custom) :is(.games-section,.process)>h2{font-size:var(--audience-section);line-height:1.2}
@@ -166,4 +167,36 @@
  :is(.page-school,.page-company,.page-custom){--audience-title:clamp(34px,9vw,44px);--audience-title-leading:1.08;--audience-section:27px;--audience-aside:25px;--audience-lead:18px;--audience-lead-leading:1.5}
  :is(.page-school,.page-company,.page-custom) .subpage-intro h1{margin-bottom:16px}
  :is(.page-school,.page-company,.page-custom) .subpage-aside p{font-size:17px;line-height:1.5}
+}
+
+/* v52: recommendations stay within the wave; narrower cards retain breathing room. */
+@media(min-width:1001px){
+ :is(.page-school,.page-company) .games-section{width:calc(100% - 48px);max-width:1640px;margin-inline:auto;padding:24px}
+ :is(.page-school,.page-company) .games-section>h2{margin-bottom:22px}
+}
+/* Fit short desktop windows through natural sizing, never by hiding overflow. */
+@media(min-width:1441px) and (max-height:980px){
+ :is(.page-school,.page-company,.page-custom){--audience-title:clamp(44px,3.5vw,58px);--audience-title-leading:1.04;--audience-section:28px;--audience-aside:26px;--audience-lead:19px}
+ :is(.page-school,.page-company,.page-custom) #app>.header{height:88px}
+ :is(.page-school,.page-company,.page-custom) #app>.header .brand{height:72px}
+ :is(.page-school,.page-company,.page-custom) .subpage-hero{min-height:0;grid-template-rows:28px 1fr;padding-bottom:18px}
+ :is(.page-school,.page-company,.page-custom) .subpage-intro{padding-top:10px}
+ :is(.page-school,.page-company,.page-custom) .subpage-intro h1{margin-bottom:12px}
+ :is(.page-school,.page-company,.page-custom) .subpage-intro .button{margin-top:16px}
+ :is(.page-school,.page-company) .subpage-aside{padding-top:12px}
+ :is(.page-school,.page-company) .subpage-aside p{font-size:17px;line-height:1.45;margin-top:12px}
+ :is(.page-school,.page-company) .games-section{padding-block:18px 24px;margin-top:0}
+ :is(.page-school,.page-company) .games-section>h2{margin-bottom:18px}
+ :is(.page-school,.page-company) .game-image img{aspect-ratio:2.6}
+ :is(.page-school,.page-company) .game-copy{padding:12px 14px 16px}
+ :is(.page-school,.page-company) .game-copy p{font-size:16px;line-height:1.4}
+ :is(.page-school,.page-company,.page-custom) .benefits{padding-block:8px}
+ :is(.page-school,.page-company,.page-custom) .benefits>h2{font-size:26px;margin-bottom:14px}
+ :is(.page-school,.page-company,.page-custom) .feature-icon{width:42px;height:46px}
+ .page-custom .custom-intro h2{font-size:25px;margin-block:12px 10px}
+ .page-custom .custom-intro h1 br{display:none}
+ .page-custom .process{padding-block:8px 12px}
+ .page-custom .process>h2{margin-bottom:18px}
+ .page-custom .steps li{padding:14px 16px 18px}
+ .page-custom .step-number{font-size:40px}
 }

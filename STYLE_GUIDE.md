@@ -183,3 +183,10 @@
 - Od 1201 px wariant zachowuje 90% szerokości głównej kompozycji: 1476 px przy 1920 px i około 1106 px przy 1366 px. Navbar ma tę samą szerokość, wysokość 92 px, logo do 260 px i ikony 28 px. Układ telefonu jest wspólny.
 - Wariant ma `noindex,follow` i canonical do głównej strony; główne 28 stron produkcyjnych ma `index,follow` oraz publiczne adresy canonical. Archiwalne lokalne porównanie v47 i kopie zapasowe nie są publikowane.
 - Sprawdzono wariant 1920×1080, 1366×768 i 390×844: brak poziomego przewijania, przyciski mieszczą się w kaflach, menu i karuzela działają. Wariant mieści się na ekranie 1920×1080. Publikacja obejmuje zatwierdzone zmiany v48–v50 oraz aktualizację `/1/`.
+
+## Układ krótszych okien, fala i logo v52
+- Od 1441 px szerokości przy wysokości do 980 px wspólna kompozycja stron szkół, firm i zamówień ma mniejsze odstępy, dopasowane obrazy oraz wspólną skalę nagłówków. Nie użyto overflow:hidden ani blokowania kółka; rozwinięte treści i mniejsze ekrany mogą naturalnie przewijać się dalej.
+- Sprawdzono 1920×1080, 1920×945 i 1536×864. W trzech widokach 1536×864 dokument ma dokładnie 864 px; ostatnia treść mieści się odpowiednio na 780, 856 i 828 px. Telefon 390 px bez poziomego przewijania.
+- Polecane gry szkół i firm: maksymalna szerokość sekcji 1640 px, wewnętrzne odstępy 24 px; dolny przebieg niebieskiej fali podniesiono tak, aby obejmował dolne narożniki kart. Mobilna lista zachowana.
+- Logo zastąpiono dostarczonym plikiem Wielkie_Gry_Planszowe_logo_wektorowe.svg. Ścieżki i kolory bez zmian; viewBox ograniczono do 81 192 1612 485, aby usunąć puste marginesy oryginalnego arkusza. Zasób ma wersjonowany URL, jest wspólny dla strony i wariantu /1/.
+- Kopia źródeł sprzed zmiany: backups/przed-v52. Lokalny eksperyment sklepu dla więcej niż pięciu produktów jest osobnym podglądem i nie należy do tej publikacji.

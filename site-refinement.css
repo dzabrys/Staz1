@@ -27,7 +27,7 @@ body{background:#fff}
 .game-image img{border-radius:20px 20px 0 0}
 .age,.page-school .age{font-size:14px;padding:4px 10px;font-weight:700}
 .games-section,.page-school .games-section{isolation:isolate;background:transparent;border-radius:0;margin-inline:24px;padding-inline:calc(var(--gutter) - 24px)}
-.games-section:before,.page-school .games-section:before{content:'';display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 330' preserveAspectRatio='none'%3E%3Cpath fill='%23e8f7ff' d='M0 30Q0 0 32 0H490C560 0 585 62 650 62C900 78 1180 47 1440 68V307C1270 349 990 302 730 318S240 355 0 303Z'/%3E%3C/svg%3E");background-size:100% 100%;background-repeat:no-repeat}
+.games-section:before,.page-school .games-section:before{content:'';display:block;position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 330' preserveAspectRatio='none'%3E%3Cpath fill='%23e8f7ff' d='M0 30Q0 0 32 0H490C560 0 585 62 650 62C900 78 1180 47 1440 68V318C1240 330 1080 318 850 324S300 334 0 318Z'/%3E%3C/svg%3E");background-size:100% 100%;background-repeat:no-repeat}
 
 .benefits,.home-footer,.content-section{border-radius:0;background:#fff}
 .content-section.contact-process{background:#f7fafc;border-radius:28px;margin-inline:24px;padding-inline:calc(var(--gutter) - 24px)}
