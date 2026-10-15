@@ -198,3 +198,9 @@
 - Kafle odbiorców mają przyciski jednakowego rozmiaru, przy dolnej krawędzi. Karty szkół/firm mają uporządkowany tekst i cenę wyrównaną w dole. Wzmocniony miękki cień dotyczy także kart zapytania.
 - Rozwijanie etapów: ikona i w kółku oraz dotychczasowa strzałka, pełna nazwa dostępna dla czytników. Klawiatura i natywne details pozostają obsługiwane.
 - Kontakt: biuro@wielkiegryplanszowe.pl, +48 600 894 644, Lubelska 37D, 10-408 Olsztyn. Dane zweryfikowane na https://wielkiegryplanszowe.pl/ dnia 15.10.2026. Bez przywracania fikcyjnego e-maila, numeru ani oznaczeń demonstracyjnych.
+
+
+## Główna strona jak wariant /1/ — 15.10.2026
+- Na wyraźne życzenie użytkownika główny index używa wyglądu /Staz1/1/: boczne białe marginesy, szerokość głównej kompozycji do 1476 px, dopasowany węższy nagłówek oraz mniejsze logo i ikony.
+- Reguły przeniesiono do home-index-layout.css, kompilowanego na końcu. Dotyczą wyłącznie strony głównej i zastępują jej wcześniejsze rozszerzenie.
+- /1/ korzysta z tego samego CSS, aby kolejne buildy nie rozjeżdżały wyglądu obu adresów. Główny index pozostaje canonical i index,follow; /1/ zachowuje noindex,follow.
