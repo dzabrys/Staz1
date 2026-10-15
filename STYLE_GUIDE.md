@@ -204,3 +204,19 @@
 - Na wyraźne życzenie użytkownika główny index używa wyglądu /Staz1/1/: boczne białe marginesy, szerokość głównej kompozycji do 1476 px, dopasowany węższy nagłówek oraz mniejsze logo i ikony.
 - Reguły przeniesiono do home-index-layout.css, kompilowanego na końcu. Dotyczą wyłącznie strony głównej i zastępują jej wcześniejsze rozszerzenie.
 - /1/ korzysta z tego samego CSS, aby kolejne buildy nie rozjeżdżały wyglądu obu adresów. Główny index pozostaje canonical i index,follow; /1/ zachowuje noindex,follow.
+
+## Wspólne marginesy podstron — lokalnie, 15.10.2026
+- Na najnowsze życzenie użytkownika pozostałe podstrony korzystają z bocznych marginesów strony głównej. Od 1201 px wspólna rama ma do 1476 px, identyczny nagłówek o wysokości 92 px oraz tę samą skalę logo i nawigacji. Reguły zawiera subpage-frame.css, ładowany po home-index-layout.css.
+- Szkoły, firmy, gry na zamówienie, oferta i kontakt mieszczą podstawowy widok w jednym oknie. Wysokość sekcji oraz rozmiary kart i odstępy dostosowują się do wysokości okna. Bez blokowania scrolla i obcinania treści; rozwinięte etapy mogą zwiększać wysokość dokumentu.
+- Użytkownik potwierdził zachowanie przewijania katalogów i długich opisów produktów. Mają wspólną ramę i nagłówek. Układ mobilny zachowuje naturalne przewijanie.
+- Sprawdzono pięć głównych podstron w 1920×960, 1536×864, 1366×768 i 1280×720: wysokość dokumentu równa wysokości okna. Przy 390×844 brak poziomego przewijania. Sprawdzono katalogi obu kategorii, opis Team building i rozwinięcie etapu. PASS: 28 stron / 843 lokalne odnośniki i zasoby.
+- Zmiany pozostają wyłącznie lokalnie, bez publikacji na GitHub. Podgląd: http://127.0.0.1:4175/Staz1/. Wygląd wybranej strony głównej pozostaje bez zmian.
+
+## Powiększenie podstron, warianty mobilne i publikacja — 15.10.2026
+- Użytkownik następnie zlecił publikację wszystkich dzisiejszych prac nad stroną. Zastępuje to wcześniejsze ograniczenie do localhostu. Publikacja obejmuje wspólne marginesy, powiększenie treści, poprawki telefonu i osobne podglądy.
+- Szkoły, firmy, zamówienia i kontakt używają wspólnego mnożnika typografii --subpage-scale: 1.1, przy wysokości do 850 px 1.05, do 760 px 1.02. Cztery podstrony mają identyczny rozmiar głównego nagłówka w tym samym oknie. Zmniejszono odstępy zamiast obcinać zawartość, aby zachować dopasowanie do jednego ekranu.
+- Sekcję polecanych gier podniesiono o 12 px; niebieskie wcięcie fali jest płytsze. Karty mają większe obrazy, tekst i działania. Zdjęcia szkół/firm na telefonie kończą się w obrębie hero i nie wpadają pod kolejną sekcję.
+- /mobile-propozycje/ porównuje wcześniejszy wygląd, poprawioną listę, siatkę i karty przewijane poziomo. Można przełączać szkoły/firmy oraz przejść od razu do kart. Wcześniejszy CSS jest zamrożony w przed.css; nowe warianty są generowane ze wspólnych treści i prowadzą do aktualnych produktów.
+- /test-formularzy/ oraz /test-formularzy/kontakt-podglad.html udostępniają dzisiejsze osobne podglądy formularzy. Nie zastępują głównej zakładki Kontakt. Budowanie odświeża podgląd kontaktu i oznacza go noindex,follow. Nie wysyłano zgłoszeń podczas publikacji.
+- /podglady/ zbiera wszystkie propozycje pod jednym adresem. Pozostają poza głównym menu i sitemapą. Główna strona i canonical bez zmiany.
+- Sprawdzono dopasowanie czterech powiększonych podstron w 1920×960, 1536×864, 1366×768 oraz 1280×720. Warianty mobilne sprawdzono w szerokościach 390 i 320 px: bez poziomego przewijania całego dokumentu. Karty karuzeli przewijają się we własnej sekcji.

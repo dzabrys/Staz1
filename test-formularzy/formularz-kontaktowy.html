@@ -1,0 +1,42 @@
+<!-- Dołącz formularz-kontaktowy.css i formularz-kontaktowy.js do strony. -->
+<section class="game-inquiry" id="formularz-kontaktowy" aria-labelledby="inquiry-heading">
+  <div class="inquiry-intro">
+    <span class="inquiry-eyebrow">Zaplanujmy wspólną grę</span>
+    <h2 id="inquiry-heading">Opowiedz nam <em>o swoim pomyśle</em></h2>
+    <p>Interesuje Cię gotowa gra czy projekt na zamówienie? Napisz, czego potrzebujesz — pomożemy dobrać grę do Twojej grupy.</p>
+    <p class="inquiry-required">Pola oznaczone * są wymagane.</p>
+  </div>
+  <form class="inquiry-form" action="https://formspree.io/f/myekbjrg" method="post">
+    <fieldset>
+      <legend>1. Jak możemy się z Tobą skontaktować?</legend>
+      <div class="inquiry-grid">
+        <label>Imię i nazwisko *<input name="name" autocomplete="name" required maxlength="120" placeholder="Anna Kowalska"></label>
+        <label>Adres e-mail *<input name="email" type="email" autocomplete="email" required maxlength="254" placeholder="anna@przyklad.pl"></label>
+        <label>Telefon <span>(opcjonalnie)</span><input name="telefon" type="tel" autocomplete="tel" maxlength="40" placeholder="Np. 600 123 456"></label>
+        <label>Szkoła, firma lub instytucja <span>(opcjonalnie)</span><input name="organizacja" autocomplete="organization" maxlength="180" placeholder="Nazwa organizacji"></label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>2. O jakiej grze porozmawiamy?</legend>
+      <div class="inquiry-grid">
+        <label>Rodzaj zapytania *<select name="rodzaj_zapytania" required><option value="">Wybierz rodzaj zapytania</option><option>Wycena gotowej gry</option><option>Gra na zamówienie</option><option>Pomoc w wyborze gry</option><option>Pytanie o grę</option><option>Inna sprawa</option></select></label>
+        <label>Tytuł gry lub własny pomysł *<input name="gra" list="inquiry-games" required maxlength="180" placeholder="Wybierz lub wpisz tytuł gry"><datalist id="inquiry-games"><option value="Skarb piratów"><option value="Zostań kierowcą"><option value="Segreguj śmieci"><option value="Farmer"><option value="Wyścig"><option value="Obieg zamknięty wody"><option value="Kurs na Planetę"><option value="Niebezpieczna Sieć"><option value="W krainie Danii"><option value="Krytyczne myślenie"><option value="Team building"><option value="Zrównoważony rozwój"><option value="Cyberbezpieczeństwo"><option value="Komunikacja i współpraca"><option value="Kreatywne myślenie"><option value="Wielkie puzzle"><option value="Wielkie memory"><option value="Kółko i krzyżyk"><option value="Tor do gry w kapsle"><option value="Gra autorska"><option value="Własny pomysł na grę"><option value="Potrzebuję pomocy w wyborze"></datalist></label>
+        <label class="inquiry-wide">Temat wiadomości *<input name="subject" required maxlength="200" placeholder="Np. Wycena gry Skarb piratów dla szkoły"></label>
+        <label class="inquiry-wide">Wiadomość *<textarea name="message" required rows="6" maxlength="10000" placeholder="Opisz, jakiej gry szukasz, jaki jest cel zajęć lub wydarzenia i o co chcesz zapytać."></textarea></label>
+      </div>
+      <details class="inquiry-details"><summary>Dodaj informacje o wydarzeniu lub grupie (opcjonalnie)</summary>
+        <div class="inquiry-grid">
+          <label>Grupa uczestników<input name="grupa" maxlength="180" placeholder="Np. 25 dzieci w wieku 8–10 lat"></label>
+          <label>Miejsce lub miejscowość<input name="miejsce" maxlength="180" placeholder="Np. Olsztyn, sala gimnastyczna"></label>
+          <label>Planowany termin<input name="termin" type="date"></label>
+          <label>Co chcesz rozwijać przez grę?<input name="cel" maxlength="200" placeholder="Np. współpraca, wiedza o ekologii"></label>
+        </div>
+      </details>
+    </fieldset>
+    <div class="inquiry-trap" aria-hidden="true"><label>Pozostaw puste<input name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+    <input name="zrodlo" type="hidden" value="Strona Kontakt — Wielkie Gry Planszowe">
+    <div class="inquiry-actions"><button class="inquiry-submit" type="submit">Wyślij zapytanie <span aria-hidden="true">→</span></button><p>Odpowiemy na podany adres e-mail.</p></div>
+    <p class="inquiry-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></p>
+    <noscript>Włącz JavaScript, aby wysłać zapytanie bez opuszczania strony. Możesz też napisać na biuro@wielkiegryplanszowe.pl.</noscript>
+  </form>
+</section>
