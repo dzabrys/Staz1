@@ -2,7 +2,7 @@
 .header-without-search nav > a:last-child { border-right: 0; }
 .page-custom #app { display: block; }
 .page-custom .custom-main.custom-proposal { display: block; padding: 0 0 48px; }
-.custom-proposal { --proposal-edge: #10247814; --proposal-shadow: 0 4px 16px #10247808; }
+.custom-proposal { --proposal-edge: #1024781a; --proposal-shadow: 0 3px 8px #10247806, 0 14px 28px -10px #10247825; }
 .custom-proposal :is(section, aside)[id] { scroll-margin-top: 24px; }
 .custom-proposal .breadcrumb { margin-bottom: 24px; }
 .custom-proposal .proposal-hero { display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 64px; padding-block: 8px 48px; }
@@ -22,16 +22,17 @@
 .custom-proposal .proposal-section-heading > p { max-width: 42ch; font-size: 16px; line-height: 1.5; color: #536076; }
 .custom-proposal h2 { font-size: clamp(26px, 2vw, 34px); line-height: 1.15; }
 .custom-proposal .proposal-format-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; }
-.custom-proposal .proposal-format { border: 1px solid var(--proposal-edge); border-radius: 20px; background: #fff; overflow: hidden; box-shadow: var(--proposal-shadow); transition: transform 500ms cubic-bezier(.22,.61,.36,1), box-shadow 500ms; }
+.custom-proposal .proposal-format { border: 1px solid var(--proposal-edge); border-radius: 20px; background: #fff; overflow: hidden; box-shadow: var(--proposal-shadow), inset 0 1px 0 #fff; transition: transform 550ms cubic-bezier(.22,.61,.36,1), box-shadow 550ms, border-color 550ms; }
 .custom-proposal .proposal-format > a { display: grid; grid-template-columns: 120px minmax(0,1fr); gap: 20px; padding: 20px; align-items: center; height: 100%; }
-.custom-proposal .proposal-format-image { background: #f5f8fa; border-radius: 12px; overflow: hidden; aspect-ratio: 1; }
+.custom-proposal .proposal-format-image { background: #f5f8fa; border-radius: 14px; overflow: hidden; aspect-ratio: 1; box-shadow: inset 0 0 0 1px #10247808, 0 3px 8px #10247808; }
 .custom-proposal .proposal-format-image img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
 .custom-proposal .proposal-format h3 { font-size: 20px; line-height: 1.2; margin-bottom: 8px; }
 .custom-proposal .proposal-format p { color: #536076; font-size: 14px; line-height: 1.5; }
 .custom-proposal .proposal-format-link { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 14px; font-size: 14px; font-weight: 700; }
+.custom-proposal .proposal-format-link svg { width: 32px; height: 32px; padding: 6px; border-radius: 50%; background: #fff1e4; transition: transform 500ms cubic-bezier(.22,.61,.36,1), background-color 500ms; }
 .page-custom .custom-proposal .proposal-process { margin-top: 44px; padding: 32px 0; border-top: 1px solid var(--proposal-edge); }
 .page-custom .custom-proposal .steps { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); align-items: start; gap: 16px; }
-.page-custom .custom-proposal .steps > li { padding: 18px; border-radius: 18px; min-height: 0; box-shadow: none; background: #f0f7fc; }
+.page-custom .custom-proposal .steps > li { position: relative; padding: 18px; border-radius: 18px; min-height: 0; box-shadow: 0 3px 7px #10247805, 0 12px 24px -10px #10247822, inset 0 0 0 1px #1024780a, inset 0 1px 0 #ffffffd9; background: #f0f7fc; transition: box-shadow 500ms cubic-bezier(.22,.61,.36,1); }
 .page-custom .custom-proposal .steps > li:nth-child(even) { background: #fff4eb; }
 .page-custom .custom-proposal .step-number { display: block; grid-row: auto; grid-column: auto; align-self: start; font-size: 32px; line-height: 1; margin-bottom: 12px; }
 .custom-proposal .proposal-step-copy { min-width: 0; }
@@ -40,6 +41,10 @@
 .page-custom .custom-proposal .steps .step-details { margin-top: 12px; padding-top: 0; }
 .page-custom .custom-proposal .step-details summary { font-size: 13px; min-height: 44px; gap: 12px; padding: 4px 0; }
 .page-custom .custom-proposal .step-details summary:after { position: static; flex-shrink: 0; }
+.page-custom .custom-proposal .step-details summary { border-top: 1px solid #1024780d; padding-top: 10px; }
+.custom-proposal .proposal-connector { position: absolute; z-index: 1; top: 22px; right: -26px; display: block; width: 36px; height: 26px; color: var(--navy); pointer-events: none; }
+.custom-proposal .proposal-connector svg { width: 100%; height: 100%; display: block; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.custom-proposal .steps > li:nth-child(even) .proposal-connector { color: var(--orange); }
 .custom-proposal .details-content > p { font-size: 15px; line-height: 1.55; padding-top: 12px; color: #354568; }
 .page-custom .custom-proposal .step-details .details-content > p { margin: 0; padding-top: 8px; }
 .custom-proposal .proposal-bottom { display: grid; grid-template-columns: 1.1fr 1fr; align-items: start; gap: 72px; margin-top: 20px; padding-top: 32px; border-top: 1px solid var(--proposal-edge); }
@@ -60,10 +65,13 @@
 .custom-proposal .proposal-contact address span { color: #536076; font-size: 14px; }
 .custom-proposal .proposal-contact > .proposal-text-link { margin-top: 10px; font-size: 14px; }
 @media (hover:hover) and (pointer:fine) {
- .custom-proposal .proposal-format:hover { transform: translateY(-3px); box-shadow: 0 10px 24px #1024780e; }
+ .custom-proposal .proposal-format:hover { transform: translateY(-4px); border-color: #1024782b; box-shadow: 0 5px 10px #10247809, 0 22px 36px -12px #10247838; }
+ .custom-proposal .proposal-format:hover .proposal-format-link svg { background: #ff961f; transform: translateX(2px); }
+ .page-custom .custom-proposal .steps > li:hover { box-shadow: 0 4px 10px #10247809, 0 17px 28px -12px #10247830, inset 0 0 0 1px #10247814, inset 0 1px 0 #ffffffd9; }
 }
 @media (min-width:1001px) and (max-width:1500px) {
  .page-custom .custom-proposal .steps { grid-template-columns: repeat(3,minmax(0,1fr)); }
+ .custom-proposal .steps > li:nth-child(3n) .proposal-connector { display: none; }
  .page-custom .custom-proposal .steps > li { display: grid; grid-template-columns: 32px minmax(0,1fr); gap: 14px; }
  .page-custom .custom-proposal .steps h3 { min-height: 0; }
  .page-custom .custom-proposal .proposal-step-copy > p { min-height: 2.9em; }
@@ -84,6 +92,7 @@
  .custom-proposal .proposal-format-link { max-width: 230px; }
  .custom-proposal .proposal-section-heading { align-items: start; }
  .page-custom .custom-proposal .steps { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+ .custom-proposal .steps > li:nth-child(even) .proposal-connector { display: none; }
  .page-custom .custom-proposal .steps h3 { min-height: 0; }
  .page-custom .custom-proposal .proposal-step-copy > p { min-height: 2.9em; }
  .custom-proposal .proposal-bottom { gap: 28px; }
@@ -107,7 +116,9 @@
  .custom-proposal .proposal-format p { font-size: 14px; }
  .custom-proposal .proposal-format-link { margin-top: 10px; font-size: 13px; }
  .page-custom .custom-proposal .proposal-process { margin-top: 30px; padding: 26px 0; }
- .page-custom .custom-proposal .steps { grid-template-columns: 1fr; gap: 10px; }
+ .page-custom .custom-proposal .steps { grid-template-columns: 1fr; gap: 32px; }
+ .custom-proposal .steps > li .proposal-connector,
+ .custom-proposal .steps > li:nth-child(even) .proposal-connector { display: block; top: auto; right: auto; bottom: -29px; left: calc(50% - 18px); transform: rotate(90deg); }
  .page-custom .custom-proposal .steps > li { display: grid; grid-template-columns: 26px minmax(0,1fr); gap: 14px; padding: 16px; border-radius: 16px; }
  .page-custom .custom-proposal .step-number { font-size: 27px; margin: 0; }
  .page-custom .custom-proposal .steps h3 { font-size: 18px; min-height: 0; margin-bottom: 6px; }
@@ -120,6 +131,9 @@
  .custom-proposal .details-content > p { font-size: 15px; }
 }
 @media (prefers-reduced-motion:reduce) {
- .custom-proposal .proposal-format { transition: none; }
+ .custom-proposal .proposal-format,
+ .custom-proposal .proposal-format-link svg,
+ .page-custom .custom-proposal .steps > li { transition: none; }
  .custom-proposal .proposal-format:hover { transform: none; }
+ .custom-proposal .proposal-format:hover .proposal-format-link svg { transform: none; }
 }

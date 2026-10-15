@@ -231,3 +231,6 @@
 ## v58 — strona zamówień i dane oferty
 
 Wyszukiwarka wyłączona w szablonie, bez pustego miejsca w nagłówku. Karty formatów mają subtelny cień; układ i kolory zachowują Lato, granat i pomarańcz. Etapy rozwijają się niezależnie, na laptopie tworzą trzy kolumny, na telefonie jedną. Widoczny podpis Szczegóły etapu zastępuje samą ikonę. FAQ i kontakt kończą ścieżkę na stronie. Animacje respektują prefers-reduced-motion i nie ukrywają treści przed wykonaniem JavaScriptu. Dane firmy, usługi i FAQ powstają w HTML podczas budowania; nie dodajemy fikcyjnych realizacji, opinii, cen ani parametrów.
+
+## v59 — głębia kart i połączenia etapów
+Kafle formatów mają dwa miękkie cienie, subtelny rant oraz akcent pod strzałką. Etapy zachowują kolory naprzemienne i niezależne wysokości, z lekkim cieniem i separatorem nad szczegółami. Łączniki SVG są dekoracyjne: w prawo w rzędzie, w dół na telefonie; nie wychodzą poza koniec rzędu. Hover jest płynny i respektuje prefers-reduced-motion.
