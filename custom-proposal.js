@@ -30,7 +30,7 @@ const customProposal = () => `<main id="main" class="custom-main custom-proposal
    <div class="proposal-actions">${button('Opowiedz o pomyśle','#zapytaj-o-projekt')}<a class="proposal-text-link" href="#formaty">Zobacz formaty ${arrows}</a></div>
    <p class="proposal-note">Nie potrzebujesz gotowego projektu. Zaczniemy od celu i odbiorców.</p>
   </div>
-  <figure class="proposal-hero-visual"><img src="assets/oferta-custom-cover.webp" width="1200" height="1000" fetchpriority="high" decoding="async" alt="Ilustracja projektowania kolorowej planszy gry"><figcaption>Temat · zasady · projekt graficzny</figcaption></figure>
+  <figure class="proposal-hero-visual"><img style="object-position:center top" src="assets/custom-game-design-1536.webp" srcset="assets/custom-game-design-768.webp 768w, assets/custom-game-design-1536.webp 1536w" sizes="(max-width: 900px) 100vw, 50vw" width="1536" height="1024" fetchpriority="high" decoding="async" alt="Ilustracja dwojga projektantów tworzących kolorową grę planszową"><figcaption>Temat · zasady · projekt graficzny</figcaption></figure>
  </section>
  <section class="proposal-formats" id="formaty" aria-labelledby="formats-title">
   <div class="proposal-section-heading"><div><p class="proposal-eyebrow">Pomysł może przyjąć różną formę</p><h2 id="formats-title">Co możemy <em>stworzyć?</em></h2></div><p>Przykładowe formaty z naszej oferty. Wygląd i zakres Twojej gry ustalimy wspólnie.</p></div>
