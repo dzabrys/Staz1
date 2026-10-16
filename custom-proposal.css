@@ -5,7 +5,8 @@
 .custom-proposal { --proposal-edge: #1024781a; --proposal-shadow: 0 3px 8px #10247806, 0 14px 28px -10px #10247825; }
 .custom-proposal :is(section, aside)[id] { scroll-margin-top: 24px; }
 .custom-proposal .breadcrumb { margin-bottom: 24px; }
-.custom-proposal .proposal-hero { display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 64px; padding-block: 8px 48px; }
+.custom-proposal .proposal-hero { position: relative; isolation: isolate; display: block; min-height: 400px; padding-block: 20px 64px; }
+.custom-proposal .proposal-intro { position: relative; z-index: 1; width: 56%; max-width: 760px; }
 .custom-proposal .proposal-eyebrow { font-size: 13px; line-height: 1.4; font-weight: 700; color: #536076; letter-spacing: .04em; margin-bottom: 12px; }
 .custom-proposal .proposal-intro h1 { font-size: clamp(40px, 3.2vw, 58px); line-height: 1.04; margin-bottom: 22px; }
 .custom-proposal .proposal-lead { font-size: 20px; line-height: 1.5; max-width: 46ch; }
@@ -15,9 +16,9 @@
 .custom-proposal .proposal-text-link:hover { text-decoration: underline; }
 .custom-proposal :is(.proposal-text-link,.proposal-format-link) svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.5; flex-shrink: 0; }
 .custom-proposal .proposal-note { margin-top: 18px; font-size: 14px; line-height: 1.5; max-width: 48ch; color: #536076; }
-.custom-proposal .proposal-hero-visual { margin: 0; position: relative; border-radius: 24px; overflow: hidden; aspect-ratio: 1.65; background: #f5f8fa; }
-.custom-proposal .proposal-hero-visual > img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
-.custom-proposal .proposal-hero-visual figcaption { position: absolute; left: 18px; bottom: 18px; max-width: calc(100% - 36px); padding: 9px 14px; border-radius: 20px; background: #fff; font-size: 13px; font-weight: 700; }
+.custom-proposal .proposal-hero-visual { margin: 0; position: absolute; inset: 0 0 0 auto; z-index: 0; width: 65%; height: 100%; overflow: hidden; }
+.custom-proposal .proposal-hero-visual > img { width: 100%; height: 100%; object-fit: cover; object-position: center 58%; }
+.custom-proposal .proposal-hero-visual:after { content: ''; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg,#fff,#ffffffed 10%,#ffffff4d 32%,#ffffff00 58%,#ffffff66 90%,#fff),linear-gradient(0deg,#fff,transparent 30%,transparent 85%,#fff); }
 .custom-proposal .proposal-section-heading { display: flex; justify-content: space-between; gap: 32px; align-items: end; margin-bottom: 24px; }
 .custom-proposal .proposal-section-heading > p { max-width: 42ch; font-size: 16px; line-height: 1.5; color: #536076; }
 .custom-proposal h2 { font-size: clamp(26px, 2vw, 34px); line-height: 1.15; }
@@ -77,14 +78,15 @@
  .page-custom .custom-proposal .proposal-step-copy > p { min-height: 2.9em; }
  .custom-proposal .proposal-format > a { grid-template-columns: 84px minmax(0,1fr); gap: 14px; padding: 16px; }
  .custom-proposal .proposal-format h3 { font-size: 18px; }
- .custom-proposal .proposal-hero { gap: 40px; }
  .custom-proposal .proposal-bottom { gap: 36px; }
 }
 @media (max-width:1200px) {
  .page-custom .custom-main.custom-proposal { padding-inline: 24px; }
 }
 @media (max-width:1000px) {
- .custom-proposal .proposal-hero { grid-template-columns: 1fr 1fr; gap: 28px; padding-bottom: 32px; }
+ .custom-proposal .proposal-hero { min-height: 360px; padding-bottom: 40px; }
+ .custom-proposal .proposal-intro { width: 66%; }
+ .custom-proposal .proposal-hero-visual { width: 75%; }
  .custom-proposal .proposal-intro h1 { font-size: 42px; }
  .custom-proposal .proposal-lead { font-size: 18px; }
  .custom-proposal .proposal-format-grid { grid-template-columns: 1fr; gap: 12px; }
@@ -101,13 +103,14 @@
 @media (max-width:700px) {
  .page-custom .custom-main.custom-proposal { padding: 0 20px 32px; }
  .custom-proposal .breadcrumb { margin-bottom: 22px; }
- .custom-proposal .proposal-hero { grid-template-columns: 1fr; gap: 22px; padding: 0 0 30px; }
+ .custom-proposal .proposal-hero { min-height: 0; padding: 0 0 32px; }
+ .custom-proposal .proposal-intro { width: 100%; max-width: none; }
  .custom-proposal .proposal-intro h1 { font-size: 36px; margin-bottom: 18px; }
  .custom-proposal .proposal-lead { font-size: 17px; line-height: 1.5; }
  .custom-proposal .proposal-actions { gap: 8px 18px; margin-top: 20px; }
  .custom-proposal .proposal-note { font-size: 13px; margin-top: 12px; }
- .custom-proposal .proposal-hero-visual { aspect-ratio: 1.9; border-radius: 18px; }
- .custom-proposal .proposal-hero-visual figcaption { font-size: 11px; left: 12px; bottom: 12px; padding: 6px 10px; }
+ .custom-proposal .proposal-hero-visual { width: 85%; opacity: .7; }
+ .custom-proposal .proposal-hero-visual:after { background: linear-gradient(90deg,#fff,#ffffffed 24%,#ffffffa8),linear-gradient(0deg,#fff,transparent 55%,transparent 88%,#fff); }
  .custom-proposal .proposal-section-heading { display: block; margin-bottom: 20px; }
  .custom-proposal .proposal-section-heading > p { margin-top: 12px; font-size: 15px; }
  .custom-proposal .proposal-eyebrow { font-size: 12px; margin-bottom: 8px; }
