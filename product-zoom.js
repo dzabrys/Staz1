@@ -6,6 +6,7 @@
   const image = stage?.querySelector('.product-detail-image');
   if (!image) return;
   const lens = stage.querySelector('.product-magnifier');
+  const detail = dialog.querySelector('.product-zoom-detail');
   const range = dialog.querySelector('#product-zoom-range');
   const output = dialog.querySelector('output');
   const status = dialog.querySelector('.product-viewer-status');
@@ -15,14 +16,18 @@
     if (!ready || !dialog.open) return;
     const width = image.clientWidth, height = image.clientHeight;
     if (!width || !height) return;
-    const size = Math.min(190, width, height);
-    const zoom = Number(range.value);
-    const x = position.x * width, y = position.y * height;
-    lens.style.width = lens.style.height = `${size}px`;
-    lens.style.left = `${Math.max(0, Math.min(width-size, x-size/2))}px`;
-    lens.style.top = `${Math.max(0, Math.min(height-size, y-size/2))}px`;
-    lens.style.backgroundSize = `${width*zoom}px ${height*zoom}px`;
-    lens.style.backgroundPosition = `${size/2-x*zoom}px ${size/2-y*zoom}px`;
+    detail.style.height = `${height}px`;
+    const zoom = Math.max(Number(range.value), detail.clientWidth/width);
+    const selectionWidth = Math.min(width, detail.clientWidth/zoom);
+    const selectionHeight = height/zoom;
+    const left = Math.max(0, Math.min(width-selectionWidth, position.x*width-selectionWidth/2));
+    const top = Math.max(0, Math.min(height-selectionHeight, position.y*height-selectionHeight/2));
+    lens.style.width = `${selectionWidth}px`;
+    lens.style.height = `${selectionHeight}px`;
+    lens.style.left = `${left}px`;
+    lens.style.top = `${top}px`;
+    detail.style.backgroundSize = `${width*zoom}px ${height*zoom}px`;
+    detail.style.backgroundPosition = `${-left*zoom}px ${-top*zoom}px`;
   };
   const show = () => { if (ready) { stage.classList.add('has-lens'); render(); } };
   const changeZoom = value => {
@@ -39,12 +44,14 @@
   };
   image.addEventListener('load', () => {
     ready = true;
-    lens.style.backgroundImage = `url(${JSON.stringify(image.currentSrc || image.src)})`;
+    detail.style.backgroundImage = `url(${JSON.stringify(image.currentSrc || image.src)})`;
+    detail.classList.add('is-ready');
     status.textContent = '';
     render();
   });
   image.addEventListener('error', () => {
     ready = false; hide(); image.removeAttribute('src');
+    detail.style.backgroundImage = ''; detail.classList.remove('is-ready');
     status.textContent = 'Nie udało się wczytać obrazu. Zamknij podgląd i otwórz go ponownie, aby spróbować jeszcze raz.';
   });
   trigger.addEventListener('click', () => {

@@ -6,6 +6,8 @@ Przykład przyszłej konfiguracji: `{title:'Skarb piratów', image:'assets/ofert
 
 Obraz podglądu ma `data-detail-src`; src jest ustawiany dopiero po otwarciu okna. Nie trzeba pobierać dużego pliku przy wejściu na stronę produktu. Przy błędzie zamknięcie i ponowne otwarcie ponawia wczytanie.
 
-Obsługa: kursor i kółko myszy, suwak, przyciski plus/minus; dotyk i przesuwanie na telefonie. Klawiatura: Tab do planszy, strzałki do przesuwania lupy, plus/minus do zmiany skali, Escape do zamknięcia. Zakres 1,5–6× względem obrazu wyświetlanego w podglądzie. Powiększenie nie dodaje szczegółów, których nie ma w pliku źródłowym.
+Podgląd ma planszę po lewej z prostokątem zaznaczenia i powiększony fragment w osobnym panelu po prawej. Na telefonie panel znajduje się pod planszą. Prostokąt pokazuje obszar widoczny w powiększeniu i zmniejsza się przy zwiększaniu skali. Przy krawędziach pozostaje wewnątrz planszy.
+
+Obsługa: kursor i kółko myszy, suwak, przyciski plus/minus; dotyk i przesuwanie na telefonie. Klawiatura: Tab do planszy, strzałki do przesuwania zaznaczenia, plus/minus do zmiany skali, Escape do zamknięcia. Zakres 1,5–6× względem obrazu wyświetlanego w podglądzie (przy dużej różnicy proporcji minimalna skala dopasowuje się do szerokości panelu). Powiększenie nie dodaje szczegółów, których nie ma w pliku źródłowym.
 
 Implementacja: `product-zoom.js`, `product-zoom.css`, `productDetailPhoto` i `renderProduct` w `offer-templates.js`. Style i skrypt są dołączane tylko do stron produktów przez `tools/build.cjs`.
