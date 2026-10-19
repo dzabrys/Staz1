@@ -40,7 +40,7 @@ const url=base+(p.file==='index.html'?'':p.file),schema=[{'@context':'https://sc
 schema.push(...require('./site-entities.cjs')(base,p,data.customFaq));
 if(p.file==='gry-na-zamowienie.html')schema[0].mainEntity={'@id':url+'#service'};
 let html=`<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#102478"><meta name="robots" content="${robots}"><title>${esc(p.title)}</title><meta name="description" content="${esc(p.desc)}"><link rel="canonical" href="${url}"><meta property="og:type" content="website"><meta property="og:locale" content="pl_PL"><meta property="og:site_name" content="Wielkie Gry Planszowe"><meta property="og:title" content="${esc(p.title)}"><meta property="og:description" content="${esc(p.desc)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${base}${p.file==='gry-na-zamowienie.html'?'assets/oferta-custom-cover.webp':'assets/hero-1536.webp'}"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="assets/favicon.svg"><link rel="preload" href="assets/font-4.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="site.css?v=${hash('site.css')}"><script type="application/ld+json">${JSON.stringify(schema).replaceAll('<','\\u003c')}</script><script src="runtime.js?v=${hash('runtime.js')}" defer></script><script src="animations.js?v=${hash('animations.js')}" defer></script></head><body class="${body}"><a class="skip-link" href="#main">Przejdź do treści</a><div id="app">${markup}</div>${dialogs}</body></html>`;
-if(p.file==='kontakt.html')html=html.replace('</head>',`<link rel="stylesheet" href="contact-guide.css?v=${hash('contact-guide.css')}"><script src="contact-guide.js?v=${hash('contact-guide.js')}" defer></script></head>`);
+if(p.file==='kontakt.html')html=html.replace('</head>',`<link rel="stylesheet" href="contact-form.css?v=${hash('contact-form.css')}"><script src="contact-form.js?v=${hash('contact-form.js')}" defer></script></head>`);
 fs.writeFileSync(path.join(out,p.file),html);
 }
 for(const file of used)fs.copyFileSync(path.join(root,file),path.join(out,file));
@@ -51,7 +51,7 @@ fs.writeFileSync(path.join(out,'README.md'),`# Wielkie Gry Planszowe
 
 Aktualna strona: ${base}
 
-${pages.length} statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, layout-refinement.css, viewport-fixes.css, home-index-layout.css, subpage-frame.css, runtime.js i animations.js. Strzałka kontaktu na komputerze: contact-guide.css i contact-guide.js. Strona gier na zamówienie: custom-proposal.js i custom-proposal.css. Dane firmy i usługi: tools/site-entities.cjs. Zasady stylistyki: STYLE_GUIDE.md.
+${pages.length} statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, layout-refinement.css, viewport-fixes.css, home-index-layout.css, subpage-frame.css, runtime.js i animations.js. Formularz w głównej zakładce Kontakt: contact-form.css i contact-form.js. Strona gier na zamówienie: custom-proposal.js i custom-proposal.css. Dane firmy i usługi: tools/site-entities.cjs. Zasady stylistyki: STYLE_GUIDE.md.
 
 ## Warianty do porównania
 
@@ -65,7 +65,7 @@ Cztery propozycje nagłówków oferty: ${base}oferta-propozycje/a.html (biały p
 
 Wszystkie podglądy: ${base}podglady/. Porównanie układów na telefonie: ${base}mobile-propozycje/. Strona Kontakt z formularzem: ${base}test-formularzy/kontakt-podglad.html. Porównanie usług formularzy: ${base}test-formularzy/.
 
-Warianty mobilne buduje tools/build-mobile-options.cjs ze wspólnych stron. Wcześniejszy wygląd zachowano w mobile-propozycje/przed-*.html i przed.css. Formularz kontaktowy pozostaje osobnym podglądem; generuje go test-formularzy/build-contact-example.cjs. Strony porównawcze mają noindex,follow.
+Warianty mobilne buduje tools/build-mobile-options.cjs ze wspólnych stron. Wcześniejszy wygląd zachowano w mobile-propozycje/przed-*.html i przed.css. Główna strona Kontakt zawiera formularz przeniesiony z kontakt2.html; jego styl i zachowanie określają contact-form.css i contact-form.js. Osobny starszy podgląd generuje test-formularzy/build-contact-example.cjs. Strony porównawcze mają noindex,follow.
 
 ## Budowanie
 

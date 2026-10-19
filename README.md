@@ -2,7 +2,7 @@
 
 Aktualna strona: https://dzabrys.github.io/Staz1/
 
-28 statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, layout-refinement.css, viewport-fixes.css, home-index-layout.css, subpage-frame.css, runtime.js i animations.js. Strzałka kontaktu na komputerze: contact-guide.css i contact-guide.js. Strona gier na zamówienie: custom-proposal.js i custom-proposal.css. Dane firmy i usługi: tools/site-entities.cjs. Zasady stylistyki: STYLE_GUIDE.md.
+28 statycznych stron, lokalne fonty, WebP, responsywny układ i animacje respektujące prefers-reduced-motion. Źródła: templates.js, offer-templates.js, design.css, offer.css, offer-landing.css, home-refinement.css, school-refinement.css, site-refinement.css, layout-refinement.css, viewport-fixes.css, home-index-layout.css, subpage-frame.css, runtime.js i animations.js. Formularz w głównej zakładce Kontakt: contact-form.css i contact-form.js. Strona gier na zamówienie: custom-proposal.js i custom-proposal.css. Dane firmy i usługi: tools/site-entities.cjs. Zasady stylistyki: STYLE_GUIDE.md.
 
 ## Warianty do porównania
 
@@ -16,7 +16,7 @@ Cztery propozycje nagłówków oferty: https://dzabrys.github.io/Staz1/oferta-pr
 
 Wszystkie podglądy: https://dzabrys.github.io/Staz1/podglady/. Porównanie układów na telefonie: https://dzabrys.github.io/Staz1/mobile-propozycje/. Strona Kontakt z formularzem: https://dzabrys.github.io/Staz1/test-formularzy/kontakt-podglad.html. Porównanie usług formularzy: https://dzabrys.github.io/Staz1/test-formularzy/.
 
-Warianty mobilne buduje tools/build-mobile-options.cjs ze wspólnych stron. Wcześniejszy wygląd zachowano w mobile-propozycje/przed-*.html i przed.css. Formularz kontaktowy pozostaje osobnym podglądem; generuje go test-formularzy/build-contact-example.cjs. Strony porównawcze mają noindex,follow.
+Warianty mobilne buduje tools/build-mobile-options.cjs ze wspólnych stron. Wcześniejszy wygląd zachowano w mobile-propozycje/przed-*.html i przed.css. Główna strona Kontakt zawiera formularz przeniesiony z kontakt2.html; jego styl i zachowanie określają contact-form.css i contact-form.js. Osobny starszy podgląd generuje test-formularzy/build-contact-example.cjs. Strony porównawcze mają noindex,follow.
 
 ## Budowanie
 
