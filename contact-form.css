@@ -1,3 +1,5 @@
+/* Keep the contact section at its content height instead of filling the screen. */
+.page-contact #main.supplemental{flex:0 0 auto;display:block}
 .page-contact .contact-form-shell{
  --form-blue:#102478;
  --form-orange:#ff8818;
