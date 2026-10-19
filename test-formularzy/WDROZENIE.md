@@ -3,7 +3,7 @@
 Podgląd publiczny: https://dzabrys.github.io/Staz1/test-formularzy/kontakt-podglad.html
 Podgląd lokalny: http://127.0.0.1:4175/Staz1/test-formularzy/kontakt-podglad.html
 
-Formularz korzysta z endpointu https://formspree.io/f/myekbjrg podanego do testów. Odbiorcę i ustawienia ochrony antyspamowej konfiguruje się w panelu tego formularza Formspree.
+Formularz korzysta z endpointu https://formspree.io/f/mgaoqqpd podanego do testów. Odbiorcę i ustawienia ochrony antyspamowej konfiguruje się w panelu tego formularza Formspree.
 
 Aby umieścić go w docelowej stronie Kontakt:
 
