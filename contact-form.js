@@ -1,49 +1,8 @@
 document.documentElement.classList.add('js');
 (() => {
   const init = () => {
-    const trigger = document.querySelector('.contact-form-trigger');
-    const shell = document.querySelector('#formularz-kontaktowy');
-    const close = shell?.querySelector('.contact-form-close');
-    const heading = shell?.querySelector('h2');
-    const form = shell?.querySelector('.contact-form');
-    if (!trigger || !shell || !close || !form) return;
-    document.documentElement.classList.add('contact-form-ready');
-
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-    let closeTimer;
-    const setOpen = (open, moveFocus = true) => {
-      clearTimeout(closeTimer);
-      shell.classList.toggle('is-open', open);
-      shell.setAttribute('aria-hidden', String(!open));
-      trigger.setAttribute('aria-expanded', String(open));
-      if (open) {
-        shell.removeAttribute('inert');
-        history.replaceState(null, '', '#formularz-kontaktowy');
-        requestAnimationFrame(() => {
-          shell.scrollIntoView({behavior: reduced.matches ? 'auto' : 'smooth', block: 'start'});
-          if (moveFocus) setTimeout(() => heading?.focus({preventScroll:true}), reduced.matches ? 0 : 420);
-        });
-      } else {
-        closeTimer = setTimeout(() => shell.setAttribute('inert', ''), reduced.matches ? 0 : 650);
-        if (location.hash === '#formularz-kontaktowy') history.replaceState(null, '', location.pathname + location.search);
-        if (moveFocus) trigger.focus({preventScroll:true});
-      }
-    };
-
-    const startsOpen = location.hash === '#formularz-kontaktowy';
-    shell.setAttribute('aria-hidden', String(!startsOpen));
-    trigger.setAttribute('aria-expanded', String(startsOpen));
-    if (startsOpen) shell.classList.add('is-open'); else shell.setAttribute('inert', '');
-    heading?.setAttribute('tabindex', '-1');
-
-    trigger.addEventListener('click', event => {
-      event.preventDefault();
-      setOpen(trigger.getAttribute('aria-expanded') !== 'true');
-    });
-    close.addEventListener('click', () => setOpen(false));
-    shell.addEventListener('keydown', event => {
-      if (event.key === 'Escape') setOpen(false);
-    });
+    const form = document.querySelector('#formularz-kontaktowy .contact-form');
+    if (!form) return;
 
     const game = form.elements.namedItem('gra');
     const topic = new URLSearchParams(location.search).get('temat');
