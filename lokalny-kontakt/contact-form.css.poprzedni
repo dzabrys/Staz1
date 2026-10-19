@@ -1,0 +1,49 @@
+/* Preserve the contact hero; the form stays visible directly below it. */
+.page-contact #main.supplemental{flex:0 0 auto;display:block}
+
+.page-contact .contact-form-shell{--form-blue:#102478;--form-orange:#ff8818;--form-line:#cbd8e5;margin:22px 0 32px;padding:26px 0 0;min-width:0;background:transparent;border:0;border-top:1px solid #e1e9f0;border-radius:0;box-shadow:none;color:#102478}
+.contact-form-heading{margin-bottom:24px}
+.contact-form-heading h2{font-size:28px;line-height:1.2;margin:0 0 10px}
+.contact-form-heading h2:after{content:"";display:block;width:48px;height:4px;border-radius:4px;background:#ff8818;margin-top:10px}
+.contact-form-heading>p{font-size:15px;line-height:1.5;max-width:60ch;color:#52617b}
+.contact-form-heading .contact-required{font-size:12px;margin-top:8px;color:#66758b}
+.contact-form{min-width:0}
+.contact-form fieldset{border:0;margin:0 0 25px;padding:0;min-width:0}
+.contact-form legend{margin:0 0 15px;padding:0;font-size:18px;font-weight:900;line-height:1.35}
+.contact-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 20px}
+.contact-form label{display:flex;flex-direction:column;gap:7px;min-width:0;font-size:14px;font-weight:900;line-height:1.35}
+.contact-form label>small{display:contents;color:#60708c;font-size:12px;font-weight:400}
+.contact-form .contact-form-wide{grid-column:1/-1}
+.contact-form :is(input,select,textarea){width:100%;min-width:0;min-height:48px;border:1px solid var(--form-line);border-radius:13px;background:#fff;color:var(--form-blue);font:inherit;font-size:16px;font-weight:400;line-height:1.35;padding:12px 14px;box-shadow:0 3px 10px #10247808;transition:border-color .2s,box-shadow .2s,transform .2s}
+.contact-form textarea{min-height:138px;resize:vertical}
+.contact-form :is(input,textarea)::placeholder{color:#7a879c;opacity:1}
+.contact-form :is(input,select,textarea):hover{border-color:#8cb6d4}
+.contact-form :is(input,select,textarea):focus{border-color:var(--form-orange);outline:0;box-shadow:0 0 0 4px #ff881826,0 5px 14px #10247812;transform:translateY(-1px)}
+.contact-form-actions{display:flex;align-items:center;flex-wrap:wrap;gap:14px 20px}
+.contact-form-submit{display:inline-flex;align-items:center;justify-content:space-between;gap:28px;min-height:50px;border:0;border-radius:28px;background:var(--form-orange);color:var(--form-blue);font:inherit;font-size:16px;font-weight:900;line-height:1.2;padding:13px 22px;cursor:pointer;box-shadow:0 12px 24px -18px #c85d00;transition:transform .2s,box-shadow .2s,background-color .2s}
+.contact-form-submit:hover{background:#ff9b3d;transform:translateY(-2px);box-shadow:0 16px 28px -18px #c85d00}
+.contact-form-submit:disabled{cursor:wait;opacity:.65;transform:none}
+.contact-form-actions>p{max-width:34ch;color:#60708c;font-size:12px;line-height:1.45}
+.contact-form-status:empty{display:none}
+.contact-form-status{margin:18px 0 0;padding:14px 16px;border-left:4px solid var(--form-blue);border-radius:10px;background:#fff;font-size:14px;line-height:1.5}
+.contact-form-status[data-state="success"]{border-color:#258250;color:#17613a}
+.contact-form-status[data-state="error"]{border-color:#b32525;color:#8f2020}
+.contact-form-trap{display:none!important}
+/* Quiet fields belong to the page rather than a separate decorated card. */
+.contact-form :is(input,select,textarea){min-height:44px;padding:10px 12px;border-radius:8px;box-shadow:none;font-size:15px;background:#f8fafc}
+.contact-form textarea{min-height:116px}
+.contact-form-grid{gap:14px 18px}
+.contact-form label{font-size:13px;gap:6px}
+.contact-form legend{font-size:17px;margin-bottom:14px}
+.contact-form fieldset{margin-bottom:22px}
+.page-contact .subpage-footer{border-top:1px solid #e6edf3}
+.page-contact .contact-form-shell{background:linear-gradient(115deg,#ecf7ffad,transparent 65%),linear-gradient(0deg,#fff3e85c,transparent 45%);border-top:2px solid #d8eaf7;padding:26px 24px 24px}
+.contact-form legend{display:flex;align-items:center;gap:9px}
+.contact-form legend:before{content:"";width:8px;height:8px;border-radius:50%;background:#ff8818;flex-shrink:0}
+.contact-form fieldset:nth-of-type(2) legend:before{background:#487fc8}
+.contact-form :is(input,select,textarea){background:#ffffffed;border-color:#bdcfdf;box-shadow:0 2px 6px #10247804}
+.page-contact .subpage-footer{border-top-color:#d8eaf7}
+
+@media(max-width:1200px){.page-contact .contact-form-shell{margin-inline:var(--gutter,24px)}}
+@media(max-width:520px){.page-contact .contact-form-shell{margin:16px 16px 26px;padding:22px 14px}.contact-form-grid{grid-template-columns:1fr}.contact-form .contact-form-wide{grid-column:auto}.contact-form :is(input,select,textarea){font-size:16px}.contact-form-submit{width:100%}}
+@media(prefers-reduced-motion:reduce){.contact-form :is(input,select,textarea),.contact-form-submit{transition:none}}
