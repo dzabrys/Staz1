@@ -19,6 +19,11 @@ const productUrl = g => 'gra-'+slug(g.title)+'.html';
 const textOnly = s => s.replaceAll('<br>',' ');
 const offerCrumbs = entries => `<nav class="breadcrumb offer-breadcrumb" aria-label="Ścieżka nawigacji"><ol><li><a href="./">Strona główna</a></li>${entries.map(([name,url])=>`<li${url?'':' aria-current="page"'}>${url?`<a href="${url}">${name}</a>`:name}</li>`).join('')}</ol></nav>`;
 const productPhoto = (g,eager=false) => g.image ? `<img src="${g.image}" width="800" height="800" alt="${g.group==='custom'?'Ilustracja: ':'Plansza gry: '}${g.title}" loading="${eager?'eager':'lazy'}" decoding="async"${eager?' fetchpriority="high"':''}>` : crop(g.source,...g.crop,'',`Ilustracja gry: ${g.title}`).replace('loading="lazy"',eager?'loading="eager" fetchpriority="high"':'loading="lazy"');
+// Set detailImage on a product when its separate high-resolution file is ready.
+// Until then, use its existing image; the detail source loads only on opening.
+const productDetailPhoto = g => productPhoto(g.detailImage?{...g,image:g.detailImage}:g)
+ .replace('src=', 'data-detail-src=').replace(/ loading="[^"]*"/, '')
+ .replace('width="800" height="800"', '').replace('<img ', '<img class="product-detail-image" draggable="false" ');
 // Indicative amounts are explicitly labelled until actual pricing is supplied.
 const indicativePrice = group => '<div class="price-block"><strong>'+(group==='custom'?'1 990':'1 490')+' zł</strong><span>Cena poglądowa</span></div>';
 const catalogCard = g => `<article class="catalog-card"><a href="${productUrl(g)}"><div class="catalog-image${g.group==='classic'?' catalog-board':''}">${productPhoto(g)}</div><div class="catalog-copy"><h3>${g.title}</h3><p>${textOnly(g.desc)}</p>${indicativePrice(g.group)}<span class="catalog-link"><span>Poznaj grę</span><span class="catalog-arrow" aria-hidden="true">${arrows}</span></span></div></a></article>`;
@@ -42,6 +47,6 @@ const renderProduct = g => {
    </div>
   </section>
   <section class="product-related" aria-labelledby="related-title"><div class="catalog-section-heading"><h2 id="related-title">Odkryj także</h2><a href="${g.categoryFile}">Wszystkie propozycje ${arrows}</a></div><div class="catalog-grid">${related.map(catalogCard).join('')}</div></section>
- </main><dialog id="product-image-dialog" aria-label="Powiększenie zdjęcia: ${g.title}"><button type="button" class="product-image-close" aria-label="Zamknij powiększenie" autofocus>×</button>${productPhoto(g,true)}</dialog>`;
+ </main><dialog id="product-image-dialog" aria-label="Powiększenie zdjęcia: ${g.title}"><button type="button" class="product-image-close" aria-label="Zamknij powiększenie" autofocus>×</button><p class="product-viewer-title">${g.title} — szczegóły planszy</p><p class="product-viewer-help" id="product-zoom-help">Najedź na obraz, aby zobaczyć detale. Kółkiem myszy zmienisz powiększenie. Na telefonie dotknij i przesuwaj palcem.</p><div class="product-zoom-controls"><label for="product-zoom-range">Powiększenie lupy</label><button type="button" data-zoom-step="-1" aria-label="Zmniejsz powiększenie lupy">−</button><input id="product-zoom-range" type="range" min="1.5" max="6" step="0.25" value="2.5"><button type="button" data-zoom-step="1" aria-label="Zwiększ powiększenie lupy">+</button><output for="product-zoom-range" aria-live="polite">2,5×</output></div><p class="product-viewer-status" role="status">Obraz zostanie wczytany po otwarciu podglądu.</p><div class="product-zoom-viewport"><div class="product-zoom-stage" tabindex="0" role="group" aria-label="Plansza z lupą. Strzałkami przesuwaj lupę, klawiszami plus i minus zmieniaj powiększenie." aria-describedby="product-zoom-help">${productDetailPhoto(g)}<span class="product-magnifier" aria-hidden="true"></span></div></div></dialog>`;
 };
 const renderPage = () => page[2]==='offer'?header+offerLanding():page[2]==='catalog'?header+offerCatalog():page[2]==='other'?header+offerCatalog(true):renderLegacyPage();

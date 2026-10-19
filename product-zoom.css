@@ -1,0 +1,20 @@
+#product-image-dialog{width:min(1100px,94vw);max-height:94dvh;padding:24px;overflow:auto;color:#102478}
+.product-viewer-title{font-weight:900;font-size:22px;padding-right:38px;margin:0 0 8px}
+.product-viewer-help{font-size:14px;line-height:1.5;max-width:75ch;margin:0 0 16px}
+.product-zoom-controls{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;font-size:14px}
+.product-zoom-controls label{font-weight:700;margin-right:6px}
+.product-zoom-controls button{width:36px;height:36px;border-radius:50%;background:#edf7fd;font-size:24px;display:grid;place-items:center}
+.product-zoom-controls input{width:clamp(100px,20vw,220px);accent-color:#102478;min-height:36px}
+.product-zoom-controls output{font-weight:900;min-width:48px;font-variant-numeric:tabular-nums}
+.product-zoom-controls button:hover{background:#ffdab9}
+.product-viewer-status{font-size:14px;padding:16px;background:#edf7fd;border-radius:8px;margin-bottom:12px}
+.product-viewer-status:empty{display:none}
+.product-zoom-viewport{text-align:center;line-height:0;min-height:120px}
+.product-zoom-stage{position:relative;display:inline-block;max-width:100%;line-height:0;touch-action:none;vertical-align:top}
+#product-image-dialog .product-detail-image{display:block;width:auto;height:auto;max-width:100%;max-height:calc(94dvh - 210px);object-fit:contain;border-radius:4px}
+#product-image-dialog .product-detail-image:not([src]){display:none}
+.product-magnifier{position:absolute;display:none;width:190px;height:190px;pointer-events:none;border:3px solid #fff;border-radius:50%;box-shadow:0 0 0 2px #102478,0 6px 24px #10247855;background-color:#fff;background-repeat:no-repeat;z-index:2}
+.product-zoom-stage.has-lens{cursor:none}
+.product-zoom-stage.has-lens .product-magnifier{display:block}
+.product-zoom-stage:focus-visible{outline:3px solid #ff8818;outline-offset:5px}
+@media(max-width:600px){#product-image-dialog{padding:44px 14px 20px}.product-viewer-title{font-size:19px;padding-right:0}.product-viewer-help{font-size:13px}.product-zoom-controls{gap:8px}.product-zoom-controls label{width:100%}#product-image-dialog .product-detail-image{max-height:calc(94dvh - 270px)}}
