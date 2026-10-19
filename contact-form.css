@@ -1,18 +1,6 @@
-/* Contact details and the always-visible form share the ordinary page surface. */
+/* Preserve the contact hero; the form stays visible directly below it. */
 .page-contact #main.supplemental{flex:0 0 auto;display:block}
-.page-contact .contact-page-grid{--form-blue:#102478;--form-orange:#ff8818;--form-line:#cbd8e5;display:grid;grid-template-columns:minmax(260px,.8fr) minmax(0,1.2fr);gap:clamp(32px,5vw,80px);align-items:start;padding:26px 0 38px}
-.contact-page-intro h1{font-size:clamp(38px,3.5vw,56px);line-height:1.06;margin:0 0 22px}
-.contact-page-intro>h2{font-size:23px;line-height:1.25;margin:0 0 14px}
-.contact-page-intro>p{font-size:17px;line-height:1.6;max-width:42ch;color:#52617b}
-.contact-page-details{margin-top:34px;padding-top:24px;border-top:1px solid #e1e9f0}
-.contact-page-details>h2{font-size:26px;margin-bottom:20px}
-.contact-page-details address{font-style:normal;display:grid;gap:7px}
-.contact-page-details address>span{font-size:12px;color:#66758b;margin-top:14px}
-.contact-page-details address>span:first-child{margin-top:0}
-.contact-page-details address>a{font-weight:900;font-size:clamp(17px,1.5vw,22px);overflow-wrap:anywhere;width:fit-content}
-.contact-page-details address>a:hover{text-decoration:underline;text-underline-offset:4px}
-.contact-page-details address>p{font-size:16px;line-height:1.5}
-.page-contact .contact-form-shell{margin:0;padding:2px 0 0;min-width:0;background:transparent;border:0;border-radius:0;box-shadow:none;color:#102478}
+.page-contact .contact-form-shell{--form-blue:#102478;--form-orange:#ff8818;--form-line:#cbd8e5;margin:22px 0 32px;padding:26px 0 0;min-width:0;background:transparent;border:0;border-top:1px solid #e1e9f0;border-radius:0;box-shadow:none;color:#102478}
 .contact-form-heading{margin-bottom:24px}
 .contact-form-heading h2{font-size:28px;line-height:1.2;margin:0 0 10px}
 .contact-form-heading>p{font-size:15px;line-height:1.5;max-width:60ch;color:#52617b}
@@ -47,7 +35,7 @@
 .contact-form legend{font-size:17px;margin-bottom:14px}
 .contact-form fieldset{margin-bottom:22px}
 .page-contact .subpage-footer{border-top:1px solid #e6edf3}
-@media(max-width:1200px){.page-contact .contact-page-grid{padding-inline:var(--gutter,24px);gap:32px}}
-@media(max-width:850px){.page-contact .contact-page-grid{grid-template-columns:1fr;gap:32px}.contact-page-intro h1 br{display:none}.contact-page-intro>p{max-width:65ch}.contact-page-details{margin-top:24px}.contact-page-details address{grid-template-columns:auto 1fr;gap:10px 18px;align-items:baseline}.contact-page-details address>span{margin:0}.contact-form-heading h2{font-size:26px}}
-@media(max-width:520px){.page-contact .contact-page-grid{padding:22px 16px 30px}.contact-page-intro h1{font-size:38px}.contact-page-intro>h2{font-size:21px}.contact-page-details address{grid-template-columns:1fr;gap:6px}.contact-page-details address>span:not(:first-child){margin-top:12px}.contact-form-grid{grid-template-columns:1fr}.contact-form .contact-form-wide{grid-column:auto}.contact-form :is(input,select,textarea){font-size:16px}.contact-form-submit{width:100%}}
+
+@media(max-width:1200px){.page-contact .contact-form-shell{margin-inline:var(--gutter,24px)}}
+@media(max-width:520px){.page-contact .contact-form-shell{margin:16px 16px 26px;padding-top:22px}.contact-form-grid{grid-template-columns:1fr}.contact-form .contact-form-wide{grid-column:auto}.contact-form :is(input,select,textarea){font-size:16px}.contact-form-submit{width:100%}}
 @media(prefers-reduced-motion:reduce){.contact-form :is(input,select,textarea),.contact-form-submit{transition:none}}
