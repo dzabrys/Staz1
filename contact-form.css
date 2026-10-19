@@ -1,8 +1,6 @@
 /* Preserve the contact hero; the form stays visible directly below it. */
 .page-contact #main.supplemental{flex:0 0 auto;display:block}
-.page-contact{background:radial-gradient(ellipse at 100% 70%,#e4f3ff88,transparent 55%),radial-gradient(ellipse at 0 95%,#fff0e388,transparent 45%),#fff}
-.page-contact .contact-photo{opacity:1}
-.page-contact .editorial-fade{background:linear-gradient(90deg,#fff 2%,#fffffff2 28%,#ffffff26 57%,#ffffffad 79%,#ffffffdf),linear-gradient(0deg,#fff,transparent 38%)}
+
 .page-contact .contact-form-shell{--form-blue:#102478;--form-orange:#ff8818;--form-line:#cbd8e5;margin:22px 0 32px;padding:26px 0 0;min-width:0;background:transparent;border:0;border-top:1px solid #e1e9f0;border-radius:0;box-shadow:none;color:#102478}
 .contact-form-heading{margin-bottom:24px}
 .contact-form-heading h2{font-size:28px;line-height:1.2;margin:0 0 10px}
@@ -47,5 +45,5 @@
 .page-contact .subpage-footer{border-top-color:#d8eaf7}
 
 @media(max-width:1200px){.page-contact .contact-form-shell{margin-inline:var(--gutter,24px)}}
-@media(max-width:520px){.page-contact .contact-form-shell{margin:16px 16px 26px;padding:22px 14px}.page-contact .editorial-fade{background:linear-gradient(90deg,#fffffff5,#ffffffb8),linear-gradient(0deg,#fff,transparent 65%)}.contact-form-grid{grid-template-columns:1fr}.contact-form .contact-form-wide{grid-column:auto}.contact-form :is(input,select,textarea){font-size:16px}.contact-form-submit{width:100%}}
+@media(max-width:520px){.page-contact .contact-form-shell{margin:16px 16px 26px;padding:22px 14px}.contact-form-grid{grid-template-columns:1fr}.contact-form .contact-form-wide{grid-column:auto}.contact-form :is(input,select,textarea){font-size:16px}.contact-form-submit{width:100%}}
 @media(prefers-reduced-motion:reduce){.contact-form :is(input,select,textarea),.contact-form-submit{transition:none}}
