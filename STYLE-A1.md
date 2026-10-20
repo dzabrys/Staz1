@@ -44,3 +44,13 @@ Linki menu, produktów i formularza pozostają w rodzinie stron z numerem 1. Zap
 Wariant ma `noindex,follow` oraz canonical do odpowiadającej strony głównej, aby nie tworzyć dodatkowych stron w wynikach wyszukiwania.
 
 Kontrola przed publikacją: 28 stron, 20 produktów, brak brakujących linków i zasobów, jeden H1. Lokalną wersję sprawdzono na komputerze i przy 1024, 390 i 320 px; dodatkowo wszystkie produkty przy 320 px.
+
+## Dopracowana kopia
+
+Strony z numerem 1 zawierają dopracowany wariant: kompozycję strony głównej z trzema jasnymi kaflami i dużą karuzelą fotograficzną, szerokie białe marginesy, jasne sekcje i spójne karty produktów. Oferta zachowuje dwa wysokie kafle fotograficzne.
+
+Wszystkie 28 stron, w tym 20 produktów, zachowują końcówkę `1.html`. Główne strony bez numeru oraz ich współdzielone zasoby pozostają bez zmian. Arkusze dopracowania: `style-a1/offer-cards.css`, `style-a1/refined.css` i `style-a1/reference-airy.css`.
+
+Główne adresy: [strona główna](https://dzabrys.github.io/Staz1/index1.html), [szkoły](https://dzabrys.github.io/Staz1/szkoly1.html), [firmy](https://dzabrys.github.io/Staz1/firmy1.html), [gry na zamówienie](https://dzabrys.github.io/Staz1/gry-na-zamowienie1.html), [oferta](https://dzabrys.github.io/Staz1/oferta1.html), [kontakt](https://dzabrys.github.io/Staz1/kontakt1.html).
+
+Lokalne pliki porównania i kopie robocze nie należą do publikacji.
