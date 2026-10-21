@@ -32,3 +32,90 @@
  .page-school .benefits .feature>span{font-size:16px}
  .page-school .benefits .feature-icon{width:48px;height:52px}
 }
+
+/* Shared audience-page treatment, aligned with Gry na zamowienie. */
+body:is(.page-school,.page-company){--navy:#0b2165;--orange:#ff8616;--action:#ff941c}
+body:is(.page-school,.page-company) :is(.schools-main,.company-main),
+body:is(.page-school,.page-company) .benefits{width:min(1476px,calc(100% - 48px));max-width:1476px;margin-inline:auto}
+body:is(.page-school,.page-company) main .subpage-hero{
+ height:487px;min-height:487px;margin:52px 0 40px;padding:40px;
+ grid-template-rows:minmax(0,1fr);border:0;border-radius:30px;
+ background:radial-gradient(ellipse at 100% 0,#ff9c24,transparent 65%),linear-gradient(115deg,#071a50,#153b96 58%,#725696 82%,#ff8716);
+ box-shadow:0 22px 48px -24px #10247880;color:#fff
+}
+body:is(.page-school,.page-company) .subpage-hero .breadcrumb{
+ position:absolute;top:-42px;left:40px;z-index:2;padding:9px 0 0;color:#102478
+}
+body:is(.page-school,.page-company) .subpage-hero .breadcrumb a{color:#102478}
+body:is(.page-school,.page-company) .subpage-hero .breadcrumb li[aria-current]{color:#bd3d00}
+body:is(.page-school,.page-company) .subpage-hero .breadcrumb li+li:before{color:#ff8616}
+body:is(.page-school,.page-company) :is(.subpage-intro h1,.subpage-intro p){color:#fff}
+body:is(.page-school,.page-company) :is(.subpage-intro h1 em,.subpage-aside h2 em){color:#ffb45d}
+body:is(.page-school,.page-company) :is(.subpage-intro h1 .underline:after,.subpage-aside h2 .underline:after){background:#ffb45d}
+body:is(.page-school,.page-company) .subpage-intro .button{background:#ff941c;color:#071a50;box-shadow:0 8px 20px #071a5040}
+body:is(.page-school,.page-company) .subpage-aside{
+ margin-top:0;padding:22px;border:1px solid #193b8d;border-radius:22px;
+ background:radial-gradient(ellipse at 100% 0,#ff9b25,transparent 70%),linear-gradient(145deg,#102478,#153a91);
+ color:#fff;box-shadow:0 18px 38px -20px #10247885
+}
+body:is(.page-school,.page-company) .subpage-aside :is(h2,p){color:#fff}
+body:is(.page-school,.page-company) .subpage-aside h2 em{color:#ffca83}
+body:is(.page-school,.page-company) :is(.school-hero-photo,.company-photo){opacity:.3;mix-blend-mode:luminosity}
+body.page-school .school-scene{opacity:.32}
+body:is(.page-school,.page-company) :is(.school-fade,.company-fade){background:linear-gradient(90deg,#102e83,#102e8340 65%,transparent),linear-gradient(0deg,#102e83b3,transparent 60%)}
+body:is(.page-school,.page-company) main .games-section{margin:0 0 40px;padding:20px 0 30px;border:0;border-radius:0;background:transparent;box-shadow:none}
+body:is(.page-school,.page-company) main .games-section>h2{margin-bottom:26px;color:#102478}
+body:is(.page-school,.page-company) .games-grid{gap:24px}
+body:is(.page-school,.page-company) .games-grid .game-card{
+ --card-bg:#102478;--card-text:#fff;--card-copy:#e2eaff;position:relative;overflow:visible;
+ border:0;border-radius:18px;background:transparent;box-shadow:none;transform:rotate(-.4deg);transition:transform .2s,box-shadow .2s
+}
+body:is(.page-school,.page-company) .games-grid .game-card:nth-child(even){--card-bg:#ff921c;--card-text:#0b2165;--card-copy:#152c64;transform:rotate(.5deg)}
+body:is(.page-school,.page-company) .games-grid .game-card:before{
+ content:"";position:absolute;z-index:-1;inset:7px -6px -7px 6px;border:1px solid #10247824;border-radius:18px;
+ background:linear-gradient(155deg,#2048a4,#102478 80%,#0a1d62);box-shadow:0 12px 30px -14px #10247870
+}
+body:is(.page-school,.page-company) .games-grid .game-card:nth-child(even):before{border-color:#f17d08;background:linear-gradient(160deg,#ffa32a,#ff8b14 75%,#f77a09)}
+body:is(.page-school,.page-company) .games-grid .game-link{height:100%;overflow:hidden;border:1px solid #ffffff32;border-radius:18px;background:var(--card-bg);color:var(--card-text);box-shadow:0 12px 30px -14px #10247870}
+body:is(.page-school,.page-company) .games-grid .game-image{padding:0;background:var(--card-bg)}
+body:is(.page-school,.page-company) .games-grid .game-image img{aspect-ratio:2.05;border-radius:17px 17px 0 0;object-fit:cover}
+body:is(.page-school,.page-company) .games-grid .age{top:10px;left:10px;border:1px solid #ffffff66;border-radius:999px;background:#fff;color:#102478;font-size:12px}
+body:is(.page-school,.page-company) .games-grid .game-copy{min-height:140px;padding:14px 14px 52px;color:var(--card-text)}
+body:is(.page-school,.page-company) .games-grid .game-copy h3,
+body:is(.page-school,.page-company) .games-grid .price-block,
+body:is(.page-school,.page-company) .games-grid .price-block strong{color:var(--card-text)}
+body:is(.page-school,.page-company) .games-grid .game-copy>p,
+body:is(.page-school,.page-company) .games-grid .price-block span{color:var(--card-copy)}
+body:is(.page-school,.page-company) .games-grid .game-more{background:#ff9b28;color:#0b2165;box-shadow:0 4px 9px #071a5028}
+body:is(.page-school,.page-company) .games-grid .game-card:nth-child(even) .game-more{background:#102478;color:#fff}
+body:is(.page-school,.page-company) .benefits{padding:28px 0 34px;border-top:2px solid #102478;border-radius:0;background:transparent}
+body:is(.page-school,.page-company) .benefits>h2{color:#102478}
+body:is(.page-school,.page-company) .benefits>h2 span{color:#e66c00}
+body:is(.page-school,.page-company) .benefits-row>.feature{
+ position:relative;min-height:112px;padding:17px 14px;border:1px solid #193b8d;border-radius:3px 4px 18px 4px;
+ background:linear-gradient(155deg,#2048a4,#102478 80%,#0a1d62);color:#fff;
+ box-shadow:2px 5px 6px #1024780c,8px 19px 22px -12px #10247866,inset 0 16px 20px -16px #071a5066;transform:rotate(-.7deg)
+}
+body:is(.page-school,.page-company) .benefits-row>.feature:nth-child(even){border-color:#ed7b0c;background:linear-gradient(160deg,#ffa32a,#ff8b14 75%,#f77a09);color:#0b2165;transform:rotate(.7deg)}
+body:is(.page-school,.page-company) .benefits-row>.feature .feature-icon{flex:0 0 48px;padding:5px;border-radius:12px;background:#fff}
+body:is(.page-school,.page-company) .benefits-row>.feature>span{color:inherit}
+@media(hover:hover) and (pointer:fine){
+ body:is(.page-school,.page-company) .games-grid .game-card:hover{transform:rotate(0) translateY(-4px)}
+ body:is(.page-school,.page-company) .games-grid .game-card:hover:before{inset:9px -8px -9px 8px;box-shadow:0 15px 34px -12px #10247870}
+ body:is(.page-school,.page-company) .games-grid .game-card:hover .game-link{box-shadow:0 15px 34px -12px #10247870}
+}
+@media(max-width:1000px){
+ body:is(.page-school,.page-company) :is(.schools-main,.company-main),body:is(.page-school,.page-company) .benefits{width:calc(100% - 40px)}
+ body:is(.page-school,.page-company) main .subpage-hero{height:auto;min-height:400px;padding-top:32px}
+}
+@media(max-width:700px){
+ body:is(.page-school,.page-company) :is(.schools-main,.company-main),body:is(.page-school,.page-company) .benefits{width:auto;margin-inline:12px}
+ body:is(.page-school,.page-company) main .subpage-hero{height:auto;min-height:0;margin:52px 0 30px;padding:20px 20px 26px;border-radius:22px}
+ body:is(.page-school,.page-company) .subpage-hero .breadcrumb{left:20px}
+ body:is(.page-school,.page-company) :is(.school-hero-photo,.company-photo){width:100%;opacity:.2}
+ body:is(.page-school,.page-company) :is(.school-fade,.company-fade){background:linear-gradient(90deg,#102e83d9,#102e8366 65%,transparent),linear-gradient(0deg,#102e83b3,transparent 60%)}
+ body:is(.page-school,.page-company) main .games-section{margin-bottom:28px;padding:16px 0 24px}
+ body:is(.page-school,.page-company) .benefits-row>.feature{min-height:94px;padding:14px 12px;border-radius:3px 4px 16px 4px}
+}
+@media(prefers-reduced-motion:reduce){body:is(.page-school,.page-company) .games-grid .game-card{transition:none}}
+
