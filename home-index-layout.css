@@ -1,12 +1,4 @@
-/* Selected homepage composition with side margins and a matching header, shared with /1/. */
+/* Selected homepage content margins, shared with /1/. Header keeps its original scale. */
 @media(min-width:1201px){
  .page-home .home-main,.page-home .home-footer{width:calc(90% - clamp(64.8px,9vw,172.8px));max-width:1476px}
- .page-home #app{grid-template-rows:92px minmax(0,1fr) auto}
- .page-home #app>.header{width:calc(90% - clamp(64.8px,9vw,172.8px));max-width:1476px;height:92px;margin-inline:auto;padding:8px 0;gap:20px}
- .page-home #app>.header .brand{flex:0 0 clamp(240px,18vw,260px);width:clamp(240px,18vw,260px);height:76px;max-width:none}
- .page-home #app>.header nav{height:56px}
- .page-home #app>.header nav>a{font-size:14px;padding-inline:7px;gap:6px}
- .page-home #app>.header nav svg{width:28px;height:28px}
- .page-home #app>.header .search-toggle{width:44px;height:44px}
- .page-home #app>.header .search-toggle svg{width:26px;height:26px}
 }
